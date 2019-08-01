@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://19.168.1.201:88/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://19.168.1.201:88/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://19.168.1.201:88/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/wcf.parti_training_admin" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetAuthen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuthen" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAuthen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuthenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SumYearlyCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SumYearlyCourse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SumYearlyCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SumYearlyCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditCourse_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditCourse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditCourse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainerList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainer_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainee_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainee" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTraineeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainingList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainingList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeByTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeByTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeByTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeByTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainerByTraining_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainerByTraining" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainerByTraining_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainerByTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainings_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTraineeForTrainings_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTraineeForTrainings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTraineeForTrainings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTraineeForTrainingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainerForTrainings_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainerForTrainings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditTrainerForTrainings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTrainerForTrainingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetYearPlans_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetYearPlans" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetYearPlans_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetYearPlansResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditYearPlans_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditYearPlans" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditYearPlans_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditYearPlansResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCompareYearPlan_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompareYearPlan" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCompareYearPlan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompareYearPlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainingIdNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingIdNames" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainingIdNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingIdNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditQTitle" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditQTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditQuestions" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQAnswers_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditQAnswers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditQAnswers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditQAnswersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnswer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDistrict_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrict" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDistrict_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetProvince_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProvince" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetProvince_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProvinceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetAuthen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAuthen" message="tns:IService1_GetAuthen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAuthenResponse" message="tns:IService1_GetAuthen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SumYearlyCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SumYearlyCourse" message="tns:IService1_SumYearlyCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SumYearlyCourseResponse" message="tns:IService1_SumYearlyCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUsers" message="tns:IService1_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUsersResponse" message="tns:IService1_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetCourse" message="tns:IService1_GetCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetCourseResponse" message="tns:IService1_GetCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditUsers" message="tns:IService1_EditUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditUsersResponse" message="tns:IService1_EditUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditCourse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditCourse" message="tns:IService1_EditCourse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditCourseResponse" message="tns:IService1_EditCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainerList" message="tns:IService1_GetTrainerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainerListResponse" message="tns:IService1_GetTrainerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditTrainer" message="tns:IService1_EditTrainer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditTrainerResponse" message="tns:IService1_EditTrainer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContract" message="tns:IService1_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContractResponse" message="tns:IService1_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeList" message="tns:IService1_GetTraineeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeListResponse" message="tns:IService1_GetTraineeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditTrainee" message="tns:IService1_EditTrainee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditTraineeResponse" message="tns:IService1_EditTrainee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainingList" message="tns:IService1_GetTrainingList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainingListResponse" message="tns:IService1_GetTrainingList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeByTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeByTraining" message="tns:IService1_GetTraineeByTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeByTrainingResponse" message="tns:IService1_GetTraineeByTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainerByTraining">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainerByTraining" message="tns:IService1_GetTrainerByTraining_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainerByTrainingResponse" message="tns:IService1_GetTrainerByTraining_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditTrainings" message="tns:IService1_EditTrainings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditTrainingsResponse" message="tns:IService1_EditTrainings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTraineeForTrainings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditTraineeForTrainings" message="tns:IService1_EditTraineeForTrainings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditTraineeForTrainingsResponse" message="tns:IService1_EditTraineeForTrainings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainerForTrainings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditTrainerForTrainings" message="tns:IService1_EditTrainerForTrainings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditTrainerForTrainingsResponse" message="tns:IService1_EditTrainerForTrainings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetYearPlans">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetYearPlans" message="tns:IService1_GetYearPlans_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetYearPlansResponse" message="tns:IService1_GetYearPlans_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditYearPlans">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditYearPlans" message="tns:IService1_EditYearPlans_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditYearPlansResponse" message="tns:IService1_EditYearPlans_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompareYearPlan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlan" message="tns:IService1_GetCompareYearPlan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlanResponse" message="tns:IService1_GetCompareYearPlan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingIdNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainingIdNames" message="tns:IService1_GetTrainingIdNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainingIdNamesResponse" message="tns:IService1_GetTrainingIdNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditQTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditQTitle" message="tns:IService1_EditQTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditQTitleResponse" message="tns:IService1_EditQTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditQuestions" message="tns:IService1_EditQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditQuestionsResponse" message="tns:IService1_EditQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditQAnswers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditQAnswers" message="tns:IService1_EditQAnswers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditQAnswersResponse" message="tns:IService1_EditQAnswers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetQuestion" message="tns:IService1_GetQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetQuestionResponse" message="tns:IService1_GetQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAnswer" message="tns:IService1_GetAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAnswerResponse" message="tns:IService1_GetAnswer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrict">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDistrict" message="tns:IService1_GetDistrict_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDistrictResponse" message="tns:IService1_GetDistrict_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProvince">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetProvince" message="tns:IService1_GetProvince_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetProvinceResponse" message="tns:IService1_GetProvince_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAuthen">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAuthen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SumYearlyCourse">
+      <soap:operation soapAction="http://tempuri.org/IService1/SumYearlyCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourse">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditCourse">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainerList">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTrainerList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainer">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditTrainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeList">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTraineeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainee">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditTrainee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingList">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTrainingList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeByTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTraineeByTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainerByTraining">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTrainerByTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainings">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditTrainings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTraineeForTrainings">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditTraineeForTrainings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTrainerForTrainings">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditTrainerForTrainings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetYearPlans">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetYearPlans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditYearPlans">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditYearPlans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompareYearPlan">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetCompareYearPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingIdNames">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTrainingIdNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditQTitle">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditQTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditQuestions">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditQAnswers">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditQAnswers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswer">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrict">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetDistrict" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvince">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetProvince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://19.168.1.201:88/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

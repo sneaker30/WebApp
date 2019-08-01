@@ -1,0 +1,434 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="parti.admin.SiteMaster" Debug="true" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title><%: Page.Title %> - PARTI Admin V.1</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <%--    <webopt:BundleReference runat="server" Path="~/Content/css" />--%>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="Content/hover-css/css/hover.css" rel="stylesheet" media="all" />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script type="text/javascript">
+
+        function swalModal(actions, msgs, currentPage) {
+            Swal.fire({
+                type: actions,
+                title: 'ແຈ້ງເຕືອນ',
+                text: msgs,
+            }).then(result => {
+                if (result.value) {
+                    if (currentPage != '') {
+                        window.location = currentPage;
+                    }
+                }
+            });
+        }
+
+        function swalToast(action, msg) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 6000
+            });
+
+            if (action == 'error') {
+                Toast.fire({
+                    type: 'error',
+                    title: msg
+                });
+            } else if (action == 'warning') {
+                Toast.fire({
+                    type: 'warning',
+                    title: msg
+                });
+            } else if (action == 'success') {
+                Toast.fire({
+                    type: 'success',
+                    title: msg
+                });
+            } else if (action == 'info') {
+                Toast.fire({
+                    type: 'info',
+                    title: msg
+                });
+            }
+        }
+
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'PhetsarathOT';
+            src: url("fonts/PhetsarathOT.ttf") format('truetype');
+        }
+
+        .navbar {
+            font-family: PhetsarathOT;
+        }
+
+        .alert {
+            font-family: PhetsarathOT;
+        }
+
+        .footer-copyright {
+            font-family: PhetsarathOT;
+        }
+
+        .sizeX {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .background {
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        form {
+            font-family: PhetsarathOT;
+        }
+
+        body {
+            font-family: PhetsarathOT;
+        }
+
+        .input-field {
+            font-family: PhetsarathOT;
+        }
+
+        .collapsible-header {
+            transition: max-height 0s ease-out;
+        }
+
+        .truncate {
+            width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .laotxt {
+            font-family: PhetsarathOT;
+        }
+
+        .waves-button-input {
+            font-family: PhetsarathOT;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="frmMain" runat="server">
+        <%-- Navbar + Sidenav --%>
+        <div>
+            <%-- navbar --%>
+            <nav class="navbar-fixed">
+                <div class="nav-wrapper grey darken-3 z-depth-2">
+                    <a data-target="mobile-demo" class="sidenav-trigger"><i class="large material-icons">menu</i></a>
+                    <p class="hide-on-large-only hide-on-extra-large-only">ລະບົບຄຸ້ມຄອງຂໍ້ມຸນການຝຶກອົບຮົມ</p>
+                    <ul class="hide-on-med-and-down">
+                        <li><a id="menu1" href="Main" class="waves-effect waves-light"><i class="small material-icons">home</i></a></li>
+                        <li><a id="menu2" href="YearPlans" class="waves-effect waves-light">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></li>
+                        <li><a id="menu3" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang" data-target="dropdownTraining">ການຈັດຝຶກອົບຮົມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu4" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang" data-target="dropdownItemData">ຈັດການຂໍ້ມູນ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu5" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang" data-target="dropdownSurvey">ການປະເມີນ/ແບບສອບຖາມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu6" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang" data-target="dropdownReport">ສັງລວມບົດລາຍງານຕ່າງໆ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
+                    <ul class="hide-on-med-and-down right">
+                        <li><a class="dropdown-trigger right hvr-icon-hang" data-target="dropdownUser">&nbsp;&nbsp;&nbsp;
+                            <img id="imgUserAvatar" width="52" height="52" src="img/man.png" runat="server" class="hvr-grow-shadow circle z-depth-3 sizeX">
+                            <i class="hvr-icon material-icons right">arrow_drop_down</i>
+                        </a></li>
+                    </ul>
+                </div>
+        </nav>
+            <%-- navbar --%>
+
+        <%-- dropdown --%>
+        <ul id="dropdownTraining" class="dropdown-content">
+            <li><a href="Training">ສ້າງການຝຶກອົບຮົມ</a></li>
+            <li><a href="#!">ລາຍງານການຝຶກອົບຮົມ</a></li>
+        </ul>
+        <ul id="dropdownItemData" class="dropdown-content">
+            <li><a href="Trainees">ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</a></li>
+            <li><a href="Trainers">ຂໍ້ມູນຄູຝຶກ</a></li>
+            <li><a href="Course">ຂໍ້ມູນຫລັກສູດ</a></li>
+            <li id="mnUsers" runat="server"><a href="Users">ຂໍ້ມູນບັນຊີຜູ້ໃຊ້</a></li>
+        </ul>
+        <ul id="dropdownSurvey" class="dropdown-content">
+            <li><a href="Evaluation">ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></li>
+            <li><a href="#!">ລາຍງານສັງລວມການປະເມີນ/ແບບສອບຖາມ</a></li>
+        </ul>
+        <ul id="dropdownReport" class="dropdown-content">
+            <li><a href="#!">ການຈັດຝຶກອົບຮົມໂດຍສະຖາບັນ</a></li>
+            <li><a href="#!">ການຈັດຝຶກອົບຮົມໂດຍພາກສ່ວນອື່ນ</a></li>
+            <li><a href="#!">ການຖືກເຊີນໄປຂື້ນຫ້ອງໃຫ້ພາກສ່ວນອື່ນ</a></li>
+        </ul>
+        <ul id="dropdownUser" class="dropdown-content">
+            <li><a href="UserProfile" class="modal-trigger">ຂໍ້ມູນສ່ວນຕົວ</a></li>
+            <li><a href="#modal3" class="modal-trigger" onclick="SetTxTUName()">ປ່ຽນລະຫັດຜ່ານ</a></li>
+            <li class="divider"></li>
+            <li><a class="waves-effect waves-light red-text" runat="server" onserverclick="btLogout_Click">ອອກຈາກລະບົບ</a></li>
+        </ul>
+        <%-- dropdown --%>
+
+        <%-- sidenav --%>
+        <ul class="sidenav" id="mobile-demo">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="https://i.pinimg.com/736x/c6/12/d4/c612d46c62c61249462744f81100121c--co-working-industrial-office.jpg">
+                    </div>
+                    <a>
+                        <img class="circle hvr-grow-shadow" runat="server" id="imgSidenavUserAvatar" src="img/man.png" width="100" height="100"></a>
+                    <h5>
+                        <a href="UserProfile" class="waves-effect waves-light">
+                            <span runat="server" id="lblUsername" class="white-text" style="font-size: 18px;"></span>
+                        </a>
+                    </h5>
+                    <a><span id="lblPosition" runat="server" class="white-text" style="font-size: 22px;"></span></a>
+                    <a href="#" class="waves-effect waves-light white-text right hvr-grow-shadow" runat="server" onserverclick="btLogout_Click"><i class="material-icons">exit_to_app</i></a>
+                </div>
+            </li>
+            <ul class="collapsible expandable">
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">home</i><a href="Main" class="black-text">ຫນ້າຫລັກ</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">event_note</i><a href="YearPlans" class="black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">assignment</i>ການຈັດຝຶກອົບຮົມ</div>
+                    <div class="collapsible-body"><a href="Training" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການຝຶກອົບຮົມ</a></div>
+                    <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານການຝຶກອົບຮົມ</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">info</i>ຈັດການຂໍ້ມູນ</div>
+                    <div class="collapsible-body"><a href="Trainees" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</a></div>
+                    <div class="collapsible-body"><a href="Trainers" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຄູຝຶກ</a></div>
+                    <div class="collapsible-body"><a href="Course" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຫລັກສູດ</a></div>
+                    <div class="collapsible-body" id="navUser" runat="server"><a href="Users" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນບັນຊີຜູ້ໃຊ້</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">poll</i>ການປະເມີນ/ແບບສອບຖາມ</div>
+                    <div class="collapsible-body"><a href="Evaluation" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></div>
+                    <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານສັງລວມການປະເມີນ/ແບບສອບຖາມ</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header waves-effect waves-light"><i class="material-icons">note</i>ສັງລວມບົດລາຍງານຕ່າງໆ</div>
+                    <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍສະຖາບັນ</a></div>
+                    <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍພາກສ່ວນອື່ນ</a></div>
+                    <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຖືກເຊີນໄປຂື້ນຫ້ອງໃຫ້ພາກສ່ວນອື່ນ</a></div>
+                </li>
+            </ul>
+        </ul>
+        <%-- sidenav --%>
+        </div>
+        <%-- Navbar + Sidenav --%>
+
+        <%-- User Button --%>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red tooltipped" data-position="left" data-tooltip="ເມນູລັດ">
+                <i class="large material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red tooltipped" data-position="left" data-tooltip="ເລື່ອນຂື້ນເທີງ" onclick="ScrUp()"><i class="material-icons">arrow_upward</i></a></li>
+                <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="ເລື່ອນລົງລຸ່ມ" onclick="ScrDown()"><i class="material-icons">arrow_downward</i></a></li>
+                <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="ຂໍ້ມູນສ່ວນຕົວ" href="UserProfile"><i class="material-icons">account_box</i></a></li>
+                <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="ອອກຈາກລະບົບ" runat="server" onserverclick="btLogout_Click"><i class="material-icons">exit_to_app</i></a></li>
+            </ul>
+        </div>
+        <%-- User Button --%>
+
+        <%-- footer --%>
+        <div class="container body-content">
+            <div class="row">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <hr />
+            <div class="row">
+                <footer id="footer">
+                    <div class="footer-copyright text-center py-3">
+                        <p>
+                            &copy; <%: DateTime.Now.Year %> - ພັດທະນາໂດຍ: 
+                            <a href="https://parti.moha.gov.la/">ສະຖາບັນຄົ້ນຄວ້າວິທະຍາສາດການປົກຄອງ ແລະ ຝຶກອົບຮົມ,​ ກະຊວງພາຍໃນ.</a>
+                        </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <%-- footer --%>
+
+        <%-- modal change passwd --%>
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                <h5>ປ່ຽນລະຫັດຜ່ານ</h5>
+                <br />
+                <div class="row">
+                    <div class="input-field">
+                        <label for="txtUName">ຊື່ຜູ້ໃຊ້</label>
+                        <input type="text" id="txtUName" runat="server" class="validate" disabled />
+                    </div>
+                    <div class="input-field">
+                        <label for="txtPWDNew1">ລະຫັດຜ່ານໃຫມ່</label>
+                        <input type="password" id="txtPWDNew1" name="txtPWDNew1" data-length="10" runat="server" class="validate"
+                            onkeyup="CheckPWD()" />
+                        <span id='messagePWD1' class="helper-text"></span>
+                    </div>
+                    <div class="input-field">
+                        <label for="txtPWDNew2">ຢືນຢັນລະຫັດຜ່ານໃຫມ່</label>
+                        <input type="password" id="txtPWDNew2" name="txtPWDNew2" data-length="10" runat="server" class="validate"
+                            onkeyup="CheckPWD()" />
+                        <span id='messagePWD2' class="helper-text"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-green btn" id="btnChangePWD" runat="server" onserverclick="btnChangePWD_ServerClick">ປ່ຽນ</a>
+                <a class="waves-effect waves-green btn modal-close">ຍົກເລີກ</a>
+            </div>
+        </div>
+        <%-- modal change passwd --%>
+    </form>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.modal').modal({
+                dismissible: false
+            });
+            $('.dropdown-trigger').dropdown();
+            $('input#<%: txtPWDNew1.ClientID %>, input#<%: txtPWDNew2.ClientID %>').characterCounter();
+            $('.tooltipped').tooltip();
+            TruncateMenu();
+            DisablebtnChgPWD();
+            $(window).resize(function () {
+                TruncateMenu();
+            });
+            $('.waves-button-input').addClass('white-text');
+            $('.fixed-action-btn').floatingActionButton();
+        });
+
+        function ScrUp() {
+            $('html,body').animate({ scrollTop: 0 }, 1000);
+        }
+
+        function ScrDown() {
+            var lenght = $(document).height();;
+            $('html,body').animate({ scrollTop: lenght }, 2500);
+        }
+
+        function TruncateMenu() {
+            var w = $(window).width();
+            if (w > 992 && w < 1076) {
+                $("#menu2").addClass('truncate');
+                $("#menu3").addClass('truncate');
+                $("#menu4").addClass('truncate');
+                $("#menu5").addClass('truncate');
+                $("#menu6").addClass('truncate');
+            } else {
+                $("#menu2").removeClass('truncate');
+                $("#menu3").removeClass('truncate');
+                $("#menu4").removeClass('truncate');
+                $("#menu5").removeClass('truncate');
+                $("#menu6").removeClass('truncate');
+            }
+        }
+
+        function CheckPWD() {
+            var pwd1 = document.getElementById('<%: txtPWDNew1.ClientID %>').value;
+            var pwd2 = document.getElementById('<%: txtPWDNew2.ClientID %>').value;
+
+            if (pwd1.length > 10) {
+                document.getElementById('messagePWD1').style.color = "red";
+                document.getElementById('messagePWD1').innerHTML = "ລະຫັດຜ່ານຕ້ອງບໍ່ເກີນ 10 ຕົວ";
+                $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+            } else if (pwd1.length <= 10) {
+                document.getElementById('messagePWD1').innerHTML = "";
+                $('#<%: btnChangePWD.ClientID %>').removeClass('disabled');
+                if (pwd1 == pwd2) {
+                    document.getElementById('messagePWD2').style.color = "green";
+                    document.getElementById('messagePWD2').innerHTML = "ຄືກັນ";
+                    $('#<%: btnChangePWD.ClientID %>').removeClass('disabled');
+                } else {
+                    document.getElementById('messagePWD2').style.color = "red";
+                    document.getElementById('messagePWD2').innerHTML = "ບໍ່ຄືກັນ";
+                    $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+                }
+            }
+
+            if (pwd2.length > 10) {
+                document.getElementById('messagePWD2').style.color = "red";
+                document.getElementById('messagePWD2').innerHTML = "ລະຫັດຜ່ານຕ້ອງບໍ່ເກີນ 10 ຕົວ";
+                $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+            } else if (pwd2.length <= 10) {
+                document.getElementById('messagePWD2').innerHTML = "";
+                $('#<%: btnChangePWD.ClientID %>').removeClass('disabled');
+                if (pwd1 == pwd2) {
+                    document.getElementById('messagePWD2').style.color = "green";
+                    document.getElementById('messagePWD2').innerHTML = "ຄືກັນ";
+                    $('#<%: btnChangePWD.ClientID %>').removeClass('disabled');
+                } else {
+                    document.getElementById('messagePWD2').style.color = "red";
+                    document.getElementById('messagePWD2').innerHTML = "ບໍ່ຄືກັນ";
+                    $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+                }
+            }
+        }
+
+        function SetTxTUName() {
+            document.getElementById('<%: txtUName.ClientID %>').value = "<%: Session["username"].ToString() %>";
+            M.updateTextFields();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+            var collapsibleElem = document.querySelector('.collapsible');
+            var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+        });
+
+        function DisablebtnChgPWD() {
+            var pwd1 = document.getElementById('<%: txtPWDNew1.ClientID %>').value;
+            var pwd2 = document.getElementById('<%: txtPWDNew2.ClientID %>').value;
+
+            if (pwd1 == "") {
+                $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+            } else if (pwd2 == "") {
+                $('#<%: btnChangePWD.ClientID %>').addClass('disabled');
+            }
+        }
+
+    </script>
+
+</body>
+</html>
