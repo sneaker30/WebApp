@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="500.aspx.cs" Inherits="parti.admin._500" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="parti.admin.Error" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ERROR.500</title>
+    <title>ERROR</title>
     <style>
         *, *:before, *:after {
             box-sizing: border-box;
@@ -470,8 +470,8 @@
         <main>
             <div>
                 <div>
-                    <span>500&nbsp;error</span>
-                    <span>Internal&nbsp;Error&nbsp;</span>
+                    <span>&nbsp;Error</span>
+                    <span>Internal&nbsp;</span>
                 </div>
                 <svg viewBox='0 0 200 600'>
                     <polygon points='118.302698 8 59.5369448 66.7657528 186.487016 193.715824 14 366.202839 153.491505 505.694344 68.1413353 591.044514 200 591.044514 200 8'></polygon>

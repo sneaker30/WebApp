@@ -487,7 +487,7 @@
                 <div>
                     <span>sorry&nbsp;about&nbsp;that!</span>
                     <span>
-                        <a runat="server" href="Main.aspx">
+                        <a runat="server" href="Main">
                             <b>return&nbsp;home?</b>
                         </a>
                     </span>

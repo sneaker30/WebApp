@@ -542,6 +542,7 @@
     <Content Include="dist\fonts\dropify.svg" />
     <Content Include="dist\js\dropify.js" />
     <Content Include="dist\js\dropify.min.js" />
+    <Content Include="Error.aspx" />
     <Content Include="Evaluation.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="img\1.jpg" />
@@ -1151,6 +1152,13 @@
     </Compile>
     <Compile Include="Course.aspx.designer.cs">
       <DependentUpon>Course.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
