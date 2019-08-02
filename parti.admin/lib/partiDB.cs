@@ -77,14 +77,36 @@ namespace parti.admin.lib
         public class GetTraineeList
         {
             public string id { get; set; }
-            public string name { get; set; }
-            public string faminame { get; set; }
+            public string fullname_la { get; set; }
+            public string fullname_eng { get; set; }
             public DateTime date_of_birth { get; set; }
             public string sex { get; set; }
+            public string status { get; set; }
+            public string village { get; set; }
+            public string district { get; set; }
+            public string province { get; set; }
             public string work_place { get; set; }
+            public string department { get; set; }
             public string position { get; set; }
-            public DateTime date_of_modified_data { get; set; }
-            public string doc_url { get; set; }
+            public DateTime date_of_govermented { get; set; }
+            public string office_tel { get; set; }
+            public string mobile_tel { get; set; }
+            public string email { get; set; }
+            public string avatar_url { get; set; }
+            public string approval_id { get; set; }
+            public string doc1_url { get; set; }
+            public string doc2_url { get; set; }
+            public string doc3_url { get; set; }
+            public string doc4_url { get; set; }
+            public string doc5_url { get; set; }
+            public string appr_fullname { get; set; }
+            public string appr_position_name { get; set; }
+            public string appr_position_major { get; set; }
+            public string appr_relationship_trainee { get; set; }
+            public string appr_office_name { get; set; }
+            public string appr_office_tel { get; set; }
+            public string appr_mobile_tel { get; set; }
+            public string appr_email { get; set; }
         }
 
         public class GetTrainingList

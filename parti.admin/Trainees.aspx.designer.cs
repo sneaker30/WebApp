@@ -55,7 +55,7 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtIDHid;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtIDHid;
         
         /// <summary>
         /// txtName control.

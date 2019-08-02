@@ -71,6 +71,8 @@
                 <thead>
                     <tr>
                         <th>ລຳດັບ</th>
+                        <th>ຮູບພາບ</th>
+                        <th>ລະຫັດລັດຖະກອນ</th>
                         <th>ຊື່ເຕັມ</th>
                         <th>ບ່ອນປະຈຳການ</th>
                         <th>ແກ້ໄຂ</th>
@@ -93,23 +95,26 @@
             <div class="row">
                 <div class="col s6">
                     <div class="row">
-                        <input type="hidden" id="txtIDHid" runat="server" />
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m4 l4">
+                            <label for="txtIDHid">ລະຫັດລັດຖະກອນ</label>
+                            <input type="text" id="txtIDHid" runat="server" class="validate laotxt" required />
+                        </div>
+                        <div class="input-field col s12 m4 l4">
                             <label for="txtName">ຊື່</label>
                             <input type="text" id="txtName" runat="server" class="validate laotxt" required />
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m4 l4">
                             <label for="txtfaminame">ນາມສະກຸນ</label>
                             <input type="text" id="txtfaminame" runat="server" class="validate laotxt" required />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s6">
+                        <div class="col s12 m6 l6">
                             <label for="dtpBD">ວັນເດືອນປີເກີດ</label>
                             <input type="text" class="datepicker" runat="server" id="dtpBD" required>
                             <span class="helper-text" data-error="ສະເພາະວັນທີ." data-success="ວັນເດືອນປີເກີດ.">ວັນເດືອນປີເກີດ.</span>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <div class="custom-control custom-checkbox custom-control-inline">
                                 <label>
                                     <input class="with-gap" type="radio" id="rdMale" runat="server" name="rdSex" checked><span>ຊາຍ</span></label>
@@ -121,12 +126,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <label for="txtworkPlace">ບ່ອນປະຈຳການ</label>
                             <input type="text" id="txtworkPlace" runat="server" class="validate laotxt" required="" />
                             <span class="helper-text">ຕົວຢ່າງ: ກະຊວງພາຍໃນ, ກົມຄຸ້ມຄອງລັດທະກອນ, ພະແນກບໍລິຫານ</span>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <label for="txtPosition">ຫນ້າທີ່ຮັບຜິດຊອບ</label>
                             <input type="text" id="txtPosition" runat="server" class="validate laotxt" required />
                             <span class="helper-text">ຕົວຢ່າງ: ຫົວຫນ້າກົມ, ຮອງກົມ, ວິຊາການ</span>
