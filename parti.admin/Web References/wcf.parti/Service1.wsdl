@@ -175,6 +175,18 @@
   <wsdl:message name="IService1_GetProvince_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProvinceResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_EditEducation_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditEducation" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditEducation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditEducationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditApproval_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditApproval" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditApproval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditApprovalResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetAuthen">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAuthen" message="tns:IService1_GetAuthen_InputMessage" />
@@ -287,6 +299,14 @@
     <wsdl:operation name="GetProvince">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetProvince" message="tns:IService1_GetProvince_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetProvinceResponse" message="tns:IService1_GetProvince_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditEducation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditEducation" message="tns:IService1_EditEducation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditEducationResponse" message="tns:IService1_EditEducation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditApproval">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditApproval" message="tns:IService1_EditApproval_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditApprovalResponse" message="tns:IService1_EditApproval_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -536,6 +556,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetProvince">
       <soap:operation soapAction="http://tempuri.org/IService1/GetProvince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditEducation">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditEducation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditApproval">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditApproval" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

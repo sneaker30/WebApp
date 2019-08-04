@@ -85,6 +85,10 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetProvinceOperationCompleted;
         
+        private System.Threading.SendOrPostCallback EditEducationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EditApprovalOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -206,6 +210,12 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetProvinceCompletedEventHandler GetProvinceCompleted;
+        
+        /// <remarks/>
+        public event EditEducationCompletedEventHandler EditEducationCompleted;
+        
+        /// <remarks/>
+        public event EditApprovalCompletedEventHandler EditApprovalCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -570,40 +580,143 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditTrainee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EditTrainee([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string faminame, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_birth, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sex, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string work_place, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc_url) {
+        public string EditTrainee(
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string fullname_la, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string fullname_eng, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_birth, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sex, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string status, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string village, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string district, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string province, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string work_place, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string department, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_govermented, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string office_tel, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string mobile_tel, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string email, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string avatar, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string approval_id, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc1_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc2_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc3_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc4_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc5_url) {
             object[] results = this.Invoke("EditTrainee", new object[] {
                         action,
                         id,
-                        name,
-                        faminame,
+                        fullname_la,
+                        fullname_eng,
                         date_of_birth,
                         sex,
+                        status,
+                        village,
+                        district,
+                        province,
                         work_place,
+                        department,
                         position,
-                        doc_url});
+                        date_of_govermented,
+                        office_tel,
+                        mobile_tel,
+                        email,
+                        avatar,
+                        approval_id,
+                        doc1_url,
+                        doc2_url,
+                        doc3_url,
+                        doc4_url,
+                        doc5_url});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void EditTraineeAsync(string action, string id, string name, string faminame, string date_of_birth, string sex, string work_place, string position, string doc_url) {
-            this.EditTraineeAsync(action, id, name, faminame, date_of_birth, sex, work_place, position, doc_url, null);
+        public void EditTraineeAsync(
+                    string action, 
+                    string id, 
+                    string fullname_la, 
+                    string fullname_eng, 
+                    string date_of_birth, 
+                    string sex, 
+                    string status, 
+                    string village, 
+                    string district, 
+                    string province, 
+                    string work_place, 
+                    string department, 
+                    string position, 
+                    string date_of_govermented, 
+                    string office_tel, 
+                    string mobile_tel, 
+                    string email, 
+                    string avatar, 
+                    string approval_id, 
+                    string doc1_url, 
+                    string doc2_url, 
+                    string doc3_url, 
+                    string doc4_url, 
+                    string doc5_url) {
+            this.EditTraineeAsync(action, id, fullname_la, fullname_eng, date_of_birth, sex, status, village, district, province, work_place, department, position, date_of_govermented, office_tel, mobile_tel, email, avatar, approval_id, doc1_url, doc2_url, doc3_url, doc4_url, doc5_url, null);
         }
         
         /// <remarks/>
-        public void EditTraineeAsync(string action, string id, string name, string faminame, string date_of_birth, string sex, string work_place, string position, string doc_url, object userState) {
+        public void EditTraineeAsync(
+                    string action, 
+                    string id, 
+                    string fullname_la, 
+                    string fullname_eng, 
+                    string date_of_birth, 
+                    string sex, 
+                    string status, 
+                    string village, 
+                    string district, 
+                    string province, 
+                    string work_place, 
+                    string department, 
+                    string position, 
+                    string date_of_govermented, 
+                    string office_tel, 
+                    string mobile_tel, 
+                    string email, 
+                    string avatar, 
+                    string approval_id, 
+                    string doc1_url, 
+                    string doc2_url, 
+                    string doc3_url, 
+                    string doc4_url, 
+                    string doc5_url, 
+                    object userState) {
             if ((this.EditTraineeOperationCompleted == null)) {
                 this.EditTraineeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditTraineeOperationCompleted);
             }
             this.InvokeAsync("EditTrainee", new object[] {
                         action,
                         id,
-                        name,
-                        faminame,
+                        fullname_la,
+                        fullname_eng,
                         date_of_birth,
                         sex,
+                        status,
+                        village,
+                        district,
+                        province,
                         work_place,
+                        department,
                         position,
-                        doc_url}, this.EditTraineeOperationCompleted, userState);
+                        date_of_govermented,
+                        office_tel,
+                        mobile_tel,
+                        email,
+                        avatar,
+                        approval_id,
+                        doc1_url,
+                        doc2_url,
+                        doc3_url,
+                        doc4_url,
+                        doc5_url}, this.EditTraineeOperationCompleted, userState);
         }
         
         private void OnEditTraineeOperationCompleted(object arg) {
@@ -1202,6 +1315,96 @@ namespace parti.admin.wcf.parti {
             if ((this.GetProvinceCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetProvinceCompleted(this, new GetProvinceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditEducation", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string EditEducation([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string education_level, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string education_major, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string education_country, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string educated_year, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string education_name) {
+            object[] results = this.Invoke("EditEducation", new object[] {
+                        action,
+                        id,
+                        education_level,
+                        education_major,
+                        education_country,
+                        educated_year,
+                        education_name});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EditEducationAsync(string action, string id, string education_level, string education_major, string education_country, string educated_year, string education_name) {
+            this.EditEducationAsync(action, id, education_level, education_major, education_country, educated_year, education_name, null);
+        }
+        
+        /// <remarks/>
+        public void EditEducationAsync(string action, string id, string education_level, string education_major, string education_country, string educated_year, string education_name, object userState) {
+            if ((this.EditEducationOperationCompleted == null)) {
+                this.EditEducationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditEducationOperationCompleted);
+            }
+            this.InvokeAsync("EditEducation", new object[] {
+                        action,
+                        id,
+                        education_level,
+                        education_major,
+                        education_country,
+                        educated_year,
+                        education_name}, this.EditEducationOperationCompleted, userState);
+        }
+        
+        private void OnEditEducationOperationCompleted(object arg) {
+            if ((this.EditEducationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EditEducationCompleted(this, new EditEducationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditApproval", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string EditApproval([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string approval_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string fullname, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position_major, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string relationship_trainee, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string office_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string office_tel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string mobile_tel, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string email) {
+            object[] results = this.Invoke("EditApproval", new object[] {
+                        action,
+                        approval_id,
+                        fullname,
+                        position_name,
+                        position_major,
+                        relationship_trainee,
+                        office_name,
+                        office_tel,
+                        mobile_tel,
+                        email});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EditApprovalAsync(string action, string approval_id, string fullname, string position_name, string position_major, string relationship_trainee, string office_name, string office_tel, string mobile_tel, string email) {
+            this.EditApprovalAsync(action, approval_id, fullname, position_name, position_major, relationship_trainee, office_name, office_tel, mobile_tel, email, null);
+        }
+        
+        /// <remarks/>
+        public void EditApprovalAsync(string action, string approval_id, string fullname, string position_name, string position_major, string relationship_trainee, string office_name, string office_tel, string mobile_tel, string email, object userState) {
+            if ((this.EditApprovalOperationCompleted == null)) {
+                this.EditApprovalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditApprovalOperationCompleted);
+            }
+            this.InvokeAsync("EditApproval", new object[] {
+                        action,
+                        approval_id,
+                        fullname,
+                        position_name,
+                        position_major,
+                        relationship_trainee,
+                        office_name,
+                        office_tel,
+                        mobile_tel,
+                        email}, this.EditApprovalOperationCompleted, userState);
+        }
+        
+        private void OnEditApprovalOperationCompleted(object arg) {
+            if ((this.EditApprovalCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EditApprovalCompleted(this, new EditApprovalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1986,6 +2189,58 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetProvinceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void EditEducationCompletedEventHandler(object sender, EditEducationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EditEducationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EditEducationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void EditApprovalCompletedEventHandler(object sender, EditApprovalCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EditApprovalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EditApprovalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

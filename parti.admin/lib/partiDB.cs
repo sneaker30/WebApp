@@ -99,6 +99,7 @@ namespace parti.admin.lib
             public string doc3_url { get; set; }
             public string doc4_url { get; set; }
             public string doc5_url { get; set; }
+            public string appr_id { get; set; }
             public string appr_fullname { get; set; }
             public string appr_position_name { get; set; }
             public string appr_position_major { get; set; }
@@ -107,6 +108,11 @@ namespace parti.admin.lib
             public string appr_office_tel { get; set; }
             public string appr_mobile_tel { get; set; }
             public string appr_email { get; set; }
+            public string education_level { get; set; }
+            public string education_major { get; set; }
+            public string education_country { get; set; }
+            public string education_year { get; set; }
+            public string education_name { get; set; }
         }
 
         public class GetTrainingList

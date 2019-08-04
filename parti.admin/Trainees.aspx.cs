@@ -61,7 +61,9 @@ namespace parti.admin
                 {
                     TraineeLists.Add(new GetTraineeList(vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
                         vl.province, vl.work_place, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email, vl.avatar_url,
-                        vl.approval_id, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.date_of_modified_data));
+                        vl.approval_id, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.appr_id, vl.appr_fullname, vl.appr_position_name, vl.appr_position_major,
+                        vl.appr_relationship_trainee, vl.appr_office_name, vl.appr_office_tel, vl.appr_mobile_tel, vl.appr_email, vl.education_level, vl.education_major,
+                        vl.education_country, vl.education_year, vl.education_name));
                     //Render Table
                     HtmlElement _tbody = new HtmlElement();
                     //_tbody.InnerHtml = "<tr id='" + i + "' class='search_result'>" +
@@ -120,6 +122,7 @@ namespace parti.admin
             public string doc3_url { get; set; }
             public string doc4_url { get; set; }
             public string doc5_url { get; set; }
+            public string appr_id { get; set; }
             public string appr_fullname { get; set; }
             public string appr_position_name { get; set; }
             public string appr_position_major { get; set; }
@@ -128,44 +131,57 @@ namespace parti.admin
             public string appr_office_tel { get; set; }
             public string appr_mobile_tel { get; set; }
             public string appr_email { get; set; }
+            public string education_level { get; set; }
+            public string education_major { get; set; }
+            public string education_country { get; set; }
+            public string education_year { get; set; }
+            public string education_name { get; set; }
 
-            public GetTraineeList(string id, string fullname_la, string fullname_eng, DateTime date_of_birth, string sex, string status, string village,
-                string district, string province, string work_place, string department, string position, DateTime date_of_govermented, string office_tel,
-                string mobile_tel, string email, string avatar_url, string approval_id, string doc1_url, string doc2_url, string doc3_url, string doc4_url,
-                string doc5_url, DateTime date_of_modified_data, string appr_fullname, string appr_position_name, string appr_position_major
-                string appr_relationship_trainee, string appr_office_name, string appr_office_tel, string appr_mobile_tel, string appr_email)
+
+            public GetTraineeList(string _id, string _fullname_la, string _fullname_eng, DateTime _date_of_birth, string _sex, string _status, string _village,
+                string _district, string _province, string _work_place, string _department, string _position, DateTime _date_of_govermented, string _office_tel,
+                string _mobile_tel, string _email, string _avatar_url, string _approval_id, string _doc1_url, string _doc2_url, string _doc3_url, string _doc4_url,
+                string _doc5_url, string _appr_id, string _appr_fullname, string _appr_position_name, string _appr_position_major,
+                string _appr_relationship_trainee, string _appr_office_name, string _appr_office_tel, string _appr_mobile_tel, string _appr_email, string _education_level,
+                string _education_major, string _education_country, string _education_year, string _education_name)
             {
-                this.id = id;
-                this.fullname_la = fullname_la;
-                this.fullname_eng = fullname_eng;
-                this.date_of_birth = date_of_birth;
-                this.sex = sex;
-                this.status = status;
-                this.village = village;
-                this.district = district;
-                this.province = province;
-                this.work_place = work_place;
-                this.department = department;
-                this.position = position;
-                this.date_of_govermented = date_of_govermented;
-                this.office_tel = office_tel;
-                this.mobile_tel = mobile_tel;
-                this.email = email;
-                this.avatar_url = avatar_url;
-                this.approval_id = approval_id;
-                this.doc1_url = doc1_url;
-                this.doc2_url = doc2_url;
-                this.doc3_url = doc3_url;
-                this.doc4_url = doc4_url;
-                this.doc5_url = doc5_url;
-                this.appr_fullname = appr_fullname;
-                this.appr_position_name = appr_position_name;
-                this.appr_position_major = appr_position_major;
-                this.appr_relationship_trainee = appr_relationship_trainee;
-                this.appr_office_name = appr_office_name;
-                this.appr_office_tel = appr_office_tel;
-                this.appr_mobile_tel = appr_mobile_tel;
-                this.appr_email = appr_email;
+                this.id = _id;
+                this.fullname_la = _fullname_la;
+                this.fullname_eng = _fullname_eng;
+                this.date_of_birth = _date_of_birth;
+                this.sex = _sex;
+                this.status = _status;
+                this.village = _village;
+                this.district = _district;
+                this.province = _province;
+                this.work_place = _work_place;
+                this.department = _department;
+                this.position = _position;
+                this.date_of_govermented = _date_of_govermented;
+                this.office_tel = _office_tel;
+                this.mobile_tel = _mobile_tel;
+                this.email = _email;
+                this.avatar_url = _avatar_url;
+                this.approval_id = _approval_id;
+                this.doc1_url = _doc1_url;
+                this.doc2_url = _doc2_url;
+                this.doc3_url = _doc3_url;
+                this.doc4_url = _doc4_url;
+                this.doc5_url = _doc5_url;
+                this.appr_id = _appr_id;
+                this.appr_fullname = _appr_fullname;
+                this.appr_position_name = _appr_position_name;
+                this.appr_position_major = _appr_position_major;
+                this.appr_relationship_trainee = _appr_relationship_trainee;
+                this.appr_office_name = _appr_office_name;
+                this.appr_office_tel = _appr_office_tel;
+                this.appr_mobile_tel = _appr_mobile_tel;
+                this.appr_email = _appr_email;
+                this.education_level = _education_level;
+                this.education_major = _education_major;
+                this.education_country = _education_country;
+                this.education_year = _education_year;
+                this.education_name = _education_name;
             }
         }
 
@@ -219,14 +235,14 @@ namespace parti.admin
                 string sex = null;
                 string picture_url = null;
                 string txtid = null;
-                if (string.IsNullOrEmpty(txtReferDoc.PostedFile.FileName) == false)
+                if (string.IsNullOrEmpty(txtAvatar.PostedFile.FileName) == false)
                 {
-                    var imgfile = Path.GetFileName(txtReferDoc.PostedFile.FileName);
+                    var imgfile = Path.GetFileName(txtAvatar.PostedFile.FileName);
                     var imgfilePath = Server.MapPath("traineedocs/") + imgfile;
                     var extension = Path.GetExtension(imgfilePath);
                     var renamePath = Server.MapPath("traineedocs/") + txtIDHid.Value + extension;
                     picture_url = "traineedocs/" + txtIDHid.Value + extension;
-                    txtReferDoc.SaveAs(imgfilePath);
+                    txtAvatar.SaveAs(imgfilePath);
                     if (File.Exists(renamePath))
                     {
                         File.Delete(renamePath);
@@ -235,7 +251,7 @@ namespace parti.admin
                 }
                 else
                 {
-                    picture_url = txtReferDocHidd.Value;
+                    picture_url = txtAvatarHidd.Value;
                 }
 
                 if (rdMale.Checked)
@@ -272,6 +288,33 @@ namespace parti.admin
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
             }
+        }
+
+        private string SavedFileUpload(string imgFile, string index)
+        {
+            string result = null;
+            try
+            {
+                if (string.IsNullOrEmpty(imgFile) == false)
+                {
+                    var imgfile = Path.GetFileName(imgFile);
+                    var imgfilePath = Server.MapPath("traineedocs/") + index + "_" + imgfile;
+                    var extension = Path.GetExtension(imgfilePath);
+                    var renamePath = Server.MapPath("traineedocs/") + index + "_" + txtID.Value + extension;
+                    txtAvatar.SaveAs(imgfilePath);
+                    if (File.Exists(renamePath))
+                    {
+                        File.Delete(renamePath);
+                    }
+                    File.Move(imgfilePath, renamePath);
+                    result = "traineedocs/" + index + "_" + txtID.Value + extension;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+            }
+            return result;
         }
     }
 }

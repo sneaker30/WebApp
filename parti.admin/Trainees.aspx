@@ -90,7 +90,7 @@
 
     <%-- Modal Trainee --%>
     <div id="modalTrainee" class="modal">
-        <div class="modal-content">
+        <%-- <div class="modal-content">
             <h5>ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</h5>
             <div class="row">
                 <div class="col s6">
@@ -148,7 +148,245 @@
                     <p class="grey-text">ປະເພດໄຟຣທີ່ສາມາດແນບໄດ້: JPG, JPEG, PNG, PDF.</p>
                 </div>
             </div>
+        </div>--%>
+        <%-- New Form --%>
+        <div class="modal-content">
+            <h5>ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</h5>
+            <hr>
+            <h6>1. ປະຫວັດສ່ວນຕົວ</h6>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <label for="txtID">ລະຫັດລັດຖະກອນ</label>
+                    <input type="text" id="txtID" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtNameLA">ຊື່ນາມສະກຸນ ພາສາລາວ</label>
+                    <input type="text" id="txtNameLA" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtNameEng">ຊື່ນາມສະກຸນ ພາສາອັງກິດ</label>
+                    <input type="text" id="txtNameEng" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <label for="dtpBD">ວັນເດືອນປີເກີດ</label>
+                    <input type="text" class="datepicker" runat="server" id="dtpBD" required>
+                    <span class="helper-text" data-error="ສະເພາະວັນທີ." data-success="ວັນເດືອນປີເກີດ."></span>
+                </div>
+                <div class="input-field col s12 m2 l2">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <label>
+                            <input class="with-gap" type="radio" id="rdMale" runat="server" name="rdSex" checked><span>ຊາຍ</span>
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <label>
+                            <input class="with-gap" type="radio" id="rdFamale" runat="server" name="rdSex"><span>ຍິງ</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <div>
+                        <br />
+                        <label>
+                            <input class="with-gap" type="radio" id="rdMarried" runat="server" name="rdStatus" checked><span>ໂສດ</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" type="radio" id="rdSingle" runat="server" name="rdStatus"><span>ແຕ່ງງານ</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" type="radio" id="rdDivorce" runat="server" name="rdStatus"><span>ຍ່າຮ້າງ</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtVillage">ບ້ານ</label>
+                    <input type="text" id="txtVillage" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtDistrict">ເມືອງ</label>
+                    <input type="text" id="txtDistrict" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtProvince">ແຂວງ</label>
+                    <input type="text" id="txtProvince" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <h6>2. ວຸດທິການສຶກສາ</h6>
+            <div class="row">
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtEducation_level">ວິຊາສະເພາະທີ່ຮຽນຈົບຊັ້ນ</label>
+                    <input type="text" id="txtEducation_level" runat="server" class="validate laotxt" required />
+                    <span class="helper-text">ຕົວຢ່າງ: ຊັ້ນຕົ້ນ, ຊັ້ນກາງ, ຊັ້ນສູງ, ປະລິນຍາຕີ, ປະລິນຍາໂທ, ປະລິນຍາເອກ...</span>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtEducation_major">ສາຂາວິຊາ ຫລື ວິຊາຮຽນ</label>
+                    <input type="text" id="txtEducation_major" runat="server" class="validate laotxt" required />
+                    <span class="helper-text">ຕົວຢ່າງ: ວິທະຍາສາດການປົກຄອງ, ຄູ...</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <br />
+                    <div>
+                        <label>
+                            <input class="with-gap" type="radio" id="rdEduIn" runat="server" name="rdEducation_country" checked><span>ຈົບຈາກພາຍໃນ</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" type="radio" id="rdEduOut" runat="server" name="rdEducation_country"><span>ຈົບຈາກຕ່າງປະເທດ</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtEducation_Name">ຊື່ສະຖານສຶກສາ</label>
+                    <input type="text" id="txtEducation_Name" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtEducated_year">ສົກປີຮຽນຈົບ</label>
+                    <input type="text" id="txtEducated_year" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <h6>3. ບ່ອນປະຈຳການປະຈຸບັນ</h6>
+            <div class="row">
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtWork_place">ກະຊວງ/ແຂວງ/ເມືອງ</label>
+                    <input type="text" id="txtWork_place" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtDepartment">ກົມ/ພະແນກ/ຫ້ອງການ</label>
+                    <input type="text" id="txtDepartment" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtPosition">ຕຳແໜ່ງ</label>
+                    <input type="text" id="txtPosition" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <label for="txtDate_of_govermented">ວັນສັງກັດລັດ</label>
+                    <input class="datepicker" type="text" id="txtDate_of_govermented" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <label for="txtOffice_tel">ເບີໂທຫ້ອງການ</label>
+                    <input type="text" id="txtOffice_tel" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <label for="txtMobile_tel">ເບີມືຖື</label>
+                    <input type="text" id="txtMobile_tel" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <label for="txtEmail">ອີເມວ</label>
+                    <input type="text" id="txtEmail" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <h6>4. ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</h6>
+            <div class="row">
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtAppr_Fullname">ຊື່ ແລະ ນາມສະກຸນ</label>
+                    <input type="text" id="txtAppr_Fullname" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <label for="txtAppr_Relationship_trainee">ສາຍພົວພັນກັບຜູ້ສະໝັກ</label>
+                    <input type="text" id="txtAppr_Relationship_trainee" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Position_name">ຕຳແໜ່ງ</label>
+                    <input type="text" id="txtAppr_Position_name" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Position_major">ໜ້າທີ່ຮັບຜິດຊອບຊີ້ນຳ</label>
+                    <input type="text" id="txtAppr_Position_major" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Office_name">ຊື່ສຳນັກງານ</label>
+                    <input type="text" id="txtAppr_Office_name" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Office_tel">ເບີໂທຫ້ອງການ</label>
+                    <input type="text" id="txtAppr_Office_tel" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Mobile_tel">ເບີມືຖື</label>
+                    <input type="text" id="txtAppr_Mobile_tel" runat="server" class="validate laotxt" required />
+                </div>
+                <div class="input-field col s12 m4 l4">
+                    <label for="txtAppr_Email">ອີເມວ</label>
+                    <input type="text" id="txtAppr_Email" runat="server" class="validate laotxt" required />
+                </div>
+            </div>
+            <h6>5. ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</h6>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtAvatar" placeholder="ຮູບພາບຂອງຜູ້ຝຶກອົບຮົມ" runat="server" />
+                    <input type="hidden" id="txtAvatarHidd" runat="server" />
+                </div>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc1" placeholder="ເອກະສານແນບທີ1" runat="server" />
+                    <input type="hidden" id="txtReferDoc1Hidd" runat="server" />
+                </div>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc2" placeholder="ເອກະສານແນບທີ2" runat="server" />
+                    <input type="hidden" id="txtReferDoc2Hidd" runat="server" />
+                </div>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc3" placeholder="ເອກະສານແນບທີ3" runat="server" />
+                    <input type="hidden" id="txtReferDoc3Hidd" runat="server" />
+                </div>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc4" placeholder="ເອກະສານແນບທີ4" runat="server" />
+                    <input type="hidden" id="txtReferDoc4Hidd" runat="server" />
+                </div>
+            </div>
+            <div class="file-field input-field">
+                <div class="btn-small">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc5" placeholder="ເອກະສານແນບທີ5" runat="server" />
+                    <input type="hidden" id="txtReferDoc5Hidd" runat="server" />
+                </div>
+            </div>
         </div>
+        <br />
+        <%-- New Form --%>
         <div class="modal-footer">
             <asp:Button class="waves-effect waves-green btn-small" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
             <asp:Button class="waves-effect waves-green btn-small red" ID="btnDel" runat="server" OnClick="btnDel_OnClick" Text="ລົບ"></asp:Button>
@@ -160,8 +398,7 @@
 
     <%-- JS --%>
     <script type="text/javascript">
-        function PreviewIMG() {
-            var file = document.getElementById("<%: txtReferDocHidd.ClientID %>").value;
+        function PreviewIMG(file) {
             if (file != '') {
                 window.open(file);
             } else {

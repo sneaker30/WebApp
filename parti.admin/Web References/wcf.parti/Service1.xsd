@@ -164,13 +164,28 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="faminame" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fullname_la" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fullname_eng" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="date_of_birth" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sex" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="village" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="district" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="province" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="work_place" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="department" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="position" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="doc_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="date_of_govermented" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="office_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobile_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="avatar" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="approval_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc1_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc2_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc3_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc4_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc5_url" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -453,6 +468,49 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetProvinceResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEducation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="education_level" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="education_major" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="education_country" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="educated_year" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="education_name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEducationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditEducationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditApproval">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="approval_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fullname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="position_name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="position_major" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="relationship_trainee" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="office_name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="office_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobile_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditApprovalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditApprovalResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
