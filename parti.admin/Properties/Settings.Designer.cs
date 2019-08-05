@@ -26,7 +26,7 @@ namespace parti.admin.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:88/Service1.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://19.168.1.201:88/Service1.svc")]
         public string parti_admin_wcf_parti_Service1 {
             get {
                 return ((string)(this["parti_admin_wcf_parti_Service1"]));

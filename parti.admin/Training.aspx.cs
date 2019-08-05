@@ -320,14 +320,17 @@ namespace parti.admin
                 //{
                 foreach (var vl in rootObject.GetTraineeList)
                 {
-                    TraineeLists.Add(new Trainee.GetTraineeList(vl.id, vl.name, vl.faminame, vl.date_of_birth, vl.sex, vl.work_place,
-                    vl.position, vl.date_of_modified_data, vl.doc_url));
+                    TraineeLists.Add(new Trainee.GetTraineeList(vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
+                        vl.province, vl.work_place, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email, vl.avatar_url,
+                        vl.approval_id, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.appr_id, vl.appr_fullname, vl.appr_position_name, vl.appr_position_major,
+                        vl.appr_relationship_trainee, vl.appr_office_name, vl.appr_office_tel, vl.appr_mobile_tel, vl.appr_email, vl.education_level, vl.education_major,
+                        vl.education_country, vl.education_year, vl.education_name));
                     //Render Table Trainer Choice
                     HtmlElement _tbody = new HtmlElement();
                     HtmlElement _tbody2 = new HtmlElement();
 
                     _tbody.InnerHtml = "<tr id='1Tnee" + i + "' class='trTrainee'>" +
-                                       "<td>" + vl.name + " " + vl.faminame + ", " + vl.work_place + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.work_place + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 blue tooltipped " +
                                        "hvr-grow-shadow' " +
@@ -337,7 +340,7 @@ namespace parti.admin
                                        "<input type='hidden' value='" + vl.id + "' id='i1Tnee" + i + "'/></tr>";
 
                     _tbody2.InnerHtml = "<tr id='2Tnee" + i + "' hidden>" +
-                                       "<td>" + vl.name + " " + vl.faminame + ", " + vl.work_place + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.work_place + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 red darken-3 tooltipped " +
                                        "hvr-grow-shadow' " +

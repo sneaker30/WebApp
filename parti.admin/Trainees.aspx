@@ -417,14 +417,6 @@
                 count: 5,
                 btnHTML: '<br><br><a href="#" id="btnMore" class="load-more_btn btn-flat waves-effect tooltipped blue-text text-darken-3" data-position="left" data-tooltip="ເບີ່ງສ່ວນທີ່ເຫລືອ" onclick="ScrollDown()">ເບີ່ງສ່ວນທີ່ເຫລືອ...</a>'
             });
-            $('.dropify').dropify({
-                messages: {
-                    'default': 'ກົດໃສ່ນີ້ ຫລື ຫລາກໄຟຣມາວ່າງໃສ່ບ່ອນນີ້',
-                    'replace': 'ກົດໃສ່ນີ້ ຫລື ຫລາກໄຟຣມາວ່າງໃສ່ບ່ອນນີ້ ເພື່ອປ່ຽນໄຟຣ',
-                    'remove': 'ລົບ',
-                    'error': 'ເກີດຂໍ້ຜິດພາດກະລຸນາລອງໃຫມ່.'
-                },
-            });
             $('.materialboxed').materialbox();
         });
 
@@ -450,7 +442,6 @@
             if (traineeID == "-1") {
                 ClearTxT();
                 document.getElementById("<%: btnState.ClientID %>").value = "add";
-                document.getElementById("<%: txtIDHid.ClientID %>").value = UUID();
             } else {
                 document.getElementById("<%: btnState.ClientID %>").value = "edit";
                 $.ajax({
@@ -461,18 +452,56 @@
                     data: "{TraineeID:" + traineeID + "}",
                     success: function (response) {
                         var obj = response.d;
-                        document.getElementById("<%: txtIDHid.ClientID %>").value = obj.id;
-                        document.getElementById("<%: txtName.ClientID %>").value = obj.name;
-                        document.getElementById("<%: txtfaminame.ClientID %>").value = obj.faminame;
+                        document.getElementById("<%: txtID.ClientID %>").value = obj.id;
+                        document.getElementById("<%: txtNameLA.ClientID %>").value = obj.fullname_la;
+                        document.getElementById("<%: txtNameEng.ClientID %>").value = obj.fullname_eng;
                         document.getElementById("<%: dtpBD.ClientID %>").value = obj.date_of_birth;
-                        document.getElementById("<%: txtworkPlace.ClientID %>").value = obj.work_place;
-                        document.getElementById("<%: txtPosition.ClientID %>").value = obj.position;
-                        if (obj.sex == "m") {
+                        if (obj.sex === "m") {
                             document.getElementById("<%: rdMale.ClientID %>").setAttribute("checked", "checked");
-                        } else if (obj.sex == "f") {
+                        } else if (obj.sex === "f") {
                             document.getElementById("<%: rdFamale.ClientID %>").setAttribute("checked", "checked");
                         }
-                        document.getElementById("<%: txtReferDocHidd.ClientID %>").value = obj.doc_url;
+                        if (obj.status === "") {
+                            document.getElementById("<%: rdSingle.ClientID %>").setAttribute("checked", "checked");
+                        } else if (obj.status === "") {
+                            document.getElementById("<%: rdDivorce.ClientID %>").setAttribute("checked", "checked");
+                        } else if (obj.status === "") {
+                            document.getElementById("<%: rdMarried.ClientID %>").setAttribute("checked", "checked");
+                        }
+                        document.getElementById("<%: txtVillage.ClientID %>").value = obj.village;
+                        document.getElementById("<%: txtDistrict.ClientID %>").value = obj.district;
+                        document.getElementById("<%: txtProvince.ClientID %>").value = obj.province;
+                        document.getElementById("<%: txtWork_place.ClientID %>").value = obj.work_place;
+                        document.getElementById("<%: txtDepartment.ClientID %>").value = obj.department;
+                        document.getElementById("<%: txtPosition.ClientID %>").value = obj.position;
+                        document.getElementById("<%: txtDate_of_govermented.ClientID %>").value = obj.date_of_govermented;
+                        document.getElementById("<%: txtOffice_tel.ClientID %>").value = obj.office_tel;
+                        document.getElementById("<%: txtMobile_tel.ClientID %>").value = obj.mobile_tel;
+                        document.getElementById("<%: txtEmail.ClientID %>").value = obj.email;
+                        document.getElementById("<%: txtAvatar.ClientID %>").value = obj.avatar_url;
+                        document.getElementById("<%: txtReferDoc1Hidd.ClientID %>").value = obj.doc1_url;
+                        document.getElementById("<%: txtReferDoc2Hidd.ClientID %>").value = obj.doc2_url;
+                        document.getElementById("<%: txtReferDoc3Hidd.ClientID %>").value = obj.doc3_url;
+                        document.getElementById("<%: txtReferDoc4Hidd.ClientID %>").value = obj.doc4_url;
+                        document.getElementById("<%: txtReferDoc5Hidd.ClientID %>").value = obj.doc5_url;
+                        document.getElementById("<%: txtAppr_Fullname.ClientID %>").value = obj.appr_fullname;
+                        document.getElementById("<%: txtAppr_Position_name.ClientID %>").value = obj.appr_position_name;
+                        document.getElementById("<%: txtAppr_Position_major.ClientID %>").value = obj.appr_position_major;
+                        document.getElementById("<%: txtAppr_Relationship_trainee.ClientID %>").value = obj.appr_relationship_trainee;
+                        document.getElementById("<%: txtAppr_Office_name.ClientID %>").value = obj.appr_office_name;
+                        document.getElementById("<%: txtAppr_Office_tel.ClientID %>").value = obj.appr_office_tel;
+                        document.getElementById("<%: txtAppr_Mobile_tel.ClientID %>").value = obj.appr_mobile_tel;
+                        document.getElementById("<%: txtAppr_Email.ClientID %>").value = obj.appr_email;
+                        document.getElementById("<%: txtEducation_level.ClientID %>").value = obj.education_level;
+                        document.getElementById("<%: txtEducation_major.ClientID %>").value = obj.education_major;
+                        if (education_country === "") {
+
+                        } else if (education_country === "") {
+
+                        }
+
+
+
                         M.updateTextFields();
                     },
                     failure: function (response) {
@@ -484,14 +513,36 @@
         }
 
         function ClearTxT() {
-            document.getElementById("<%: txtIDHid.ClientID %>").value = "";
-            document.getElementById("<%: txtName.ClientID %>").value = "";
-            document.getElementById("<%: txtfaminame.ClientID %>").value = "";
+            document.getElementById("<%: txtID.ClientID %>").value = "";
+            document.getElementById("<%: txtNameLA.ClientID %>").value = "";
+            document.getElementById("<%: txtNameEng.ClientID %>").value = "";
             document.getElementById("<%: dtpBD.ClientID %>").value = "";
-            document.getElementById("<%: txtworkPlace.ClientID %>").value = "";
+            document.getElementById("<%: txtVillage.ClientID %>").value = "";
+            document.getElementById("<%: txtDistrict.ClientID %>").value = "";
+            document.getElementById("<%: txtProvince.ClientID %>").value = "";
+            document.getElementById("<%: txtWork_place.ClientID %>").value = "";
+            document.getElementById("<%: txtDepartment.ClientID %>").value = "";
             document.getElementById("<%: txtPosition.ClientID %>").value = "";
-            document.getElementById("<%: txtReferDocHidd.ClientID %>").value = "";
-            document.getElementById("<%: txtReferDoc.ClientID %>").value = "";
+            document.getElementById("<%: txtDate_of_govermented.ClientID %>").value = "";
+            document.getElementById("<%: txtOffice_tel.ClientID %>").value = "";
+            document.getElementById("<%: txtMobile_tel.ClientID %>").value = "";
+            document.getElementById("<%: txtEmail.ClientID %>").value = "";
+            document.getElementById("<%: txtAvatar.ClientID %>").value = "";
+            document.getElementById("<%: txtReferDoc1Hidd.ClientID %>").value = "";
+            document.getElementById("<%: txtReferDoc2Hidd.ClientID %>").value = "";
+            document.getElementById("<%: txtReferDoc3Hidd.ClientID %>").value = "";
+            document.getElementById("<%: txtReferDoc4Hidd.ClientID %>").value = "";
+            document.getElementById("<%: txtReferDoc5Hidd.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Fullname.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Position_name.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Position_major.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Relationship_trainee.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Office_name.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Office_tel.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Mobile_tel.ClientID %>").value = "";
+            document.getElementById("<%: txtAppr_Email.ClientID %>").value = "";
+            document.getElementById("<%: txtEducation_level.ClientID %>").value = "";
+            document.getElementById("<%: txtEducation_major.ClientID %>").value = "";
             M.updateTextFields();
         }
 

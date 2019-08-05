@@ -1348,10 +1348,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:88/Service1.svc%3fwsdl">
+    <WebReferenceUrl Include="http://19.168.1.201:88/Service1.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\wcf.parti\</RelPath>
-      <UpdateFromURL>http://localhost:88/Service1.svc%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://19.168.1.201:88/Service1.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

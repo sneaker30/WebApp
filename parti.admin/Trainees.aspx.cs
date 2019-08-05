@@ -192,11 +192,16 @@ namespace parti.admin
                 wcf.parti.Service1 _parti = new wcf.parti.Service1();
                 string action = "del";
                 string sex = null;
+                string status = null;
                 string picture_url = null;
-                string renamePath = Server.MapPath(txtReferDocHidd.Value);
+                string renamePath = Server.MapPath(txtAvatarHidd.Value);
 
-                string result = _parti.EditTrainee(action, txtIDHid.Value, txtName.Value, txtfaminame.Value, dtpBD.Value, sex,
-                    txtworkPlace.Value, txtPosition.Value, picture_url);
+                string result = _parti.EditTrainee(action, txtID.Value, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
+                    status, txtVillage.Value, txtDistrict.Value, txtProvince.Value,
+                    txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd.Value,
+                    txtID.Value, txtReferDoc1Hidd.Value, txtReferDoc2Hidd.Value, txtReferDoc3Hidd.Value,
+                    txtReferDoc4Hidd.Value, txtReferDoc5Hidd.Value);
 
                 if (result == "e3")
                 {
@@ -212,7 +217,7 @@ namespace parti.admin
                 }
                 else if (result == "e5")
                 {
-                    if (txtReferDocHidd.Value != "")
+                    if (txtAvatarHidd.Value != "")
                     {
                         File.Delete(renamePath);
                     }
@@ -233,15 +238,16 @@ namespace parti.admin
                 wcf.parti.Service1 parti = new wcf.parti.Service1();
                 var action = btnState.Value.ToString();
                 string sex = null;
+                string status = null;
                 string picture_url = null;
                 string txtid = null;
                 if (string.IsNullOrEmpty(txtAvatar.PostedFile.FileName) == false)
                 {
                     var imgfile = Path.GetFileName(txtAvatar.PostedFile.FileName);
-                    var imgfilePath = Server.MapPath("traineedocs/") + imgfile;
+                    var imgfilePath = Server.MapPath("avatar/") + imgfile;
                     var extension = Path.GetExtension(imgfilePath);
-                    var renamePath = Server.MapPath("traineedocs/") + txtIDHid.Value + extension;
-                    picture_url = "traineedocs/" + txtIDHid.Value + extension;
+                    var renamePath = Server.MapPath("avatar/") + txtID.Value + extension;
+                    picture_url = "avatar/" + txtID.Value + extension;
                     txtAvatar.SaveAs(imgfilePath);
                     if (File.Exists(renamePath))
                     {
@@ -263,10 +269,93 @@ namespace parti.admin
                     sex = "f";
                 }
 
-                txtid = txtIDHid.Value;
-                var result = parti.EditTrainee(action, txtid, txtName.Value, txtfaminame.Value, dtpBD.Value, sex, txtworkPlace.Value,
-                    txtPosition.Value, picture_url);
+                if (rdDivorce.Checked)
+                {
+                    status = "d";
+                }
+                else if (rdMarried.Checked)
+                {
+                    status = "m";
+                }
+                else if (rdSingle.Checked)
+                {
+                    status = "s";
+                }
 
+                SavedFileUpload(txtReferDoc1Hidd.Value, "1");
+                SavedFileUpload(txtReferDoc2Hidd.Value, "2");
+                SavedFileUpload(txtReferDoc3Hidd.Value, "3");
+                SavedFileUpload(txtReferDoc4Hidd.Value, "4");
+                SavedFileUpload(txtReferDoc5Hidd.Value, "5");
+
+                txtid = txtID.Value;
+                var result = parti.EditTrainee(action, txtid, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
+                    status, txtVillage.Value, txtDistrict.Value, txtProvince.Value,
+                    txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd.Value,
+                    txtid, txtReferDoc1Hidd.Value, txtReferDoc2Hidd.Value, txtReferDoc3Hidd.Value,
+                    txtReferDoc4Hidd.Value, txtReferDoc5Hidd.Value);
+
+                if (result == "e3")
+                {
+                    MessageBox.swalModal(this.Page, "info", "e3: ມີ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ໃຫມ່...", "");
+                }
+                else if (result == "e0")
+                {
+                    MessageBox.swalModal(this.Page, "error", "en:internal error", "");
+                }
+                else if (result == "e2")
+                {
+                    MessageBox.swalModal(this.Page, "warning", "e2:connection to dbs error...", "");
+                }
+                else if (result == "e5")
+                {
+                    EditApproval();
+                    EditEducation();
+                    MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+            }
+        }
+
+        private void SavedFileUpload(string imgFile, string index)
+        {
+            string result = null;
+            try
+            {
+                if (string.IsNullOrEmpty(imgFile) == false)
+                {
+                    var imgfile = Path.GetFileName(imgFile);
+                    var imgfilePath = Server.MapPath("traineedocs/") + index + "_" + imgfile;
+                    var extension = Path.GetExtension(imgfilePath);
+                    var renamePath = Server.MapPath("traineedocs/") + index + "_" + txtID.Value + extension;
+
+                    txtAvatar.SaveAs(imgfilePath);
+                    if (File.Exists(renamePath))
+                    {
+                        File.Delete(renamePath);
+                    }
+                    File.Move(imgfilePath, renamePath);
+                    result = "traineedocs/" + index + "_" + txtID.Value + extension;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+            }
+        }
+
+        private void EditApproval()
+        {
+            wcf.parti.Service1 parti = new wcf.parti.Service1();
+            var action = btnState.Value.ToString();
+            try
+            {
+                var result = parti.EditApproval(action, txtID.Value, txtAppr_Fullname.Value, txtAppr_Position_name.Value, txtAppr_Position_major.Value,
+                    txtAppr_Relationship_trainee.Value, txtAppr_Office_name.Value, txtAppr_Office_tel.Value, txtAppr_Mobile_tel.Value, txtAppr_Email.Value);
                 if (result == "e3")
                 {
                     MessageBox.swalModal(this.Page, "info", "e3: ມີ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ໃຫມ່...", "");
@@ -290,31 +379,46 @@ namespace parti.admin
             }
         }
 
-        private string SavedFileUpload(string imgFile, string index)
+        private void EditEducation()
         {
-            string result = null;
+            wcf.parti.Service1 parti = new wcf.parti.Service1();
+            var action = btnState.Value.ToString();
+            string country = null;
+
+            if (rdEduIn.Checked)
+            {
+                country = "in";
+            }
+            else if (rdEduOut.Checked)
+            {
+                country = "out";
+            }
+
             try
             {
-                if (string.IsNullOrEmpty(imgFile) == false)
+                var result = parti.EditEducation(action, txtID.Value, txtEducation_level.Value,
+                    txtEducation_major.Value, country, txtEducated_year.Value, txtEducation_Name.Value);
+                if (result == "e3")
                 {
-                    var imgfile = Path.GetFileName(imgFile);
-                    var imgfilePath = Server.MapPath("traineedocs/") + index + "_" + imgfile;
-                    var extension = Path.GetExtension(imgfilePath);
-                    var renamePath = Server.MapPath("traineedocs/") + index + "_" + txtID.Value + extension;
-                    txtAvatar.SaveAs(imgfilePath);
-                    if (File.Exists(renamePath))
-                    {
-                        File.Delete(renamePath);
-                    }
-                    File.Move(imgfilePath, renamePath);
-                    result = "traineedocs/" + index + "_" + txtID.Value + extension;
+                    MessageBox.swalModal(this.Page, "info", "e3: ມີ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ໃຫມ່...", "");
+                }
+                else if (result == "e0")
+                {
+                    MessageBox.swalModal(this.Page, "error", "en:internal error", "");
+                }
+                else if (result == "e2")
+                {
+                    MessageBox.swalModal(this.Page, "warning", "e2:connection to dbs error...", "");
+                }
+                else if (result == "e5")
+                {
+                    MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
             }
-            return result;
         }
     }
 }
