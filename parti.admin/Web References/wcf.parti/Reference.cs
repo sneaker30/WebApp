@@ -89,6 +89,8 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback EditApprovalOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetVillageOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -216,6 +218,9 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event EditApprovalCompletedEventHandler EditApprovalCompleted;
+        
+        /// <remarks/>
+        public event GetVillageCompletedEventHandler GetVillageCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1409,6 +1414,34 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetVillage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetVillage() {
+            object[] results = this.Invoke("GetVillage", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetVillageAsync() {
+            this.GetVillageAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetVillageAsync(object userState) {
+            if ((this.GetVillageOperationCompleted == null)) {
+                this.GetVillageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVillageOperationCompleted);
+            }
+            this.InvokeAsync("GetVillage", new object[0], this.GetVillageOperationCompleted, userState);
+        }
+        
+        private void OnGetVillageOperationCompleted(object arg) {
+            if ((this.GetVillageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetVillageCompleted(this, new GetVillageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2241,6 +2274,32 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal EditApprovalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void GetVillageCompletedEventHandler(object sender, GetVillageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetVillageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetVillageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

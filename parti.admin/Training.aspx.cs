@@ -324,7 +324,7 @@ namespace parti.admin
                         vl.province, vl.work_place, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email, vl.avatar_url,
                         vl.approval_id, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.appr_id, vl.appr_fullname, vl.appr_position_name, vl.appr_position_major,
                         vl.appr_relationship_trainee, vl.appr_office_name, vl.appr_office_tel, vl.appr_mobile_tel, vl.appr_email, vl.education_level, vl.education_major,
-                        vl.education_country, vl.education_year, vl.education_name));
+                        vl.education_country, vl.educated_year, vl.education_name));
                     //Render Table Trainer Choice
                     HtmlElement _tbody = new HtmlElement();
                     HtmlElement _tbody2 = new HtmlElement();

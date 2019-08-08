@@ -361,7 +361,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtAvatarHidd;
+        
+        /// <summary>
+        /// txtAvatarHidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd_I;
         
         /// <summary>
         /// txtReferDoc1 control.
@@ -379,7 +388,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc1Hidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtReferDoc1Hidd;
+        
+        /// <summary>
+        /// txtReferDoc1Hidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc1Hidd_I;
         
         /// <summary>
         /// txtReferDoc2 control.
@@ -397,7 +415,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc2Hidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtReferDoc2Hidd;
+        
+        /// <summary>
+        /// txtReferDoc2Hidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc2Hidd_I;
         
         /// <summary>
         /// txtReferDoc3 control.
@@ -415,7 +442,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc3Hidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtReferDoc3Hidd;
+        
+        /// <summary>
+        /// txtReferDoc3Hidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc3Hidd_I;
         
         /// <summary>
         /// txtReferDoc4 control.
@@ -433,7 +469,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc4Hidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtReferDoc4Hidd;
+        
+        /// <summary>
+        /// txtReferDoc4Hidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc4Hidd_I;
         
         /// <summary>
         /// txtReferDoc5 control.
@@ -451,7 +496,16 @@ namespace parti.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc5Hidd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtReferDoc5Hidd;
+        
+        /// <summary>
+        /// txtReferDoc5Hidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtReferDoc5Hidd_I;
         
         /// <summary>
         /// btnSave control.

@@ -111,7 +111,7 @@ namespace parti.admin.lib
             public string education_level { get; set; }
             public string education_major { get; set; }
             public string education_country { get; set; }
-            public string education_year { get; set; }
+            public string educated_year { get; set; }
             public string education_name { get; set; }
         }
 
@@ -170,6 +170,14 @@ namespace parti.admin.lib
             public string title { get; set; }
         }
 
+        public class GetVillage
+        {
+            public string v_id { get; set; }
+            public string v_name { get; set; }
+            public string d_id { get; set; }
+            public string p_id { get; set; }
+        }
+
         public class GetDistrict
         {
             public string d_id { get; set; }
@@ -185,6 +193,7 @@ namespace parti.admin.lib
 
         public class RootObject
         {
+            public List<GetVillage> GetVillage { get; set; }
             public List<GetDistrict> GetDistrict { get; set; }
             public List<GetProvince> GetProvince { get; set; }
             public List<GetCompareYearPlan> GetCompareYearPlan { get; set; }

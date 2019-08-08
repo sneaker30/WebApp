@@ -325,7 +325,8 @@
 
         $(document).ready(function () {
             $('.modal').modal({
-                dismissible: false
+                dismissible: false,
+                preventScrolling: true 	
             });
             $('.dropdown-trigger').dropdown();
             $('input#<%: txtPWDNew1.ClientID %>, input#<%: txtPWDNew2.ClientID %>').characterCounter();
