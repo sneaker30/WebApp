@@ -108,19 +108,28 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="faminame" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fullname_la" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fullname_eng" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="date_of_birth" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sex" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="village" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="district" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="province" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="work_place" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="department" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="position" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="picture_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="date_of_govermented" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="office_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobile_tel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="avatar_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc1_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc2_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc3_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc4_url" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doc5_url" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="lv1" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="lv2" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="lv3" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="lv4" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="lv5" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -523,6 +532,25 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetVillageResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditExperience">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="experience_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="responsibility" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="office" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="years" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditExperienceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditExperienceResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

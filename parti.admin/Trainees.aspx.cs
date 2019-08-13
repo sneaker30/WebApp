@@ -198,14 +198,14 @@ namespace parti.admin
                 string sex = null;
                 string status = null;
                 string picture_url = null;
-                string renamePath = Server.MapPath(txtAvatarHidd.InnerText);
+                string renamePath = Server.MapPath(txtAvatarHidd_I.Value);
 
-                string result = _parti.EditTrainee(action, txtID.Value, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
+                var result = _parti.EditTrainee(action, txtID.Value, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
                     status, txtVillage.Value, txtDistrict.Value, txtProvince.Value,
                     txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
-                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd.InnerText,
-                    txtID.Value, txtReferDoc1Hidd.InnerText, txtReferDoc2Hidd.InnerText, txtReferDoc3Hidd.InnerText,
-                    txtReferDoc4Hidd.InnerText, txtReferDoc5Hidd.InnerText);
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd_I.Value,
+                    txtID.Value, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value, txtReferDoc3Hidd_I.Value,
+                    txtReferDoc4Hidd_I.Value, txtReferDoc5Hidd_I.Value);
 
                 if (result == "e3")
                 {
@@ -221,7 +221,7 @@ namespace parti.admin
                 }
                 else if (result == "e5")
                 {
-                    if (txtAvatarHidd.InnerText != "")
+                    if (txtAvatarHidd_I.Value != "")
                     {
                         File.Delete(renamePath);
                     }

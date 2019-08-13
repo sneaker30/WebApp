@@ -193,6 +193,12 @@
   <wsdl:message name="IService1_GetVillage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetVillageResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_EditExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditExperience" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EditExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditExperienceResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetAuthen">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAuthen" message="tns:IService1_GetAuthen_InputMessage" />
@@ -317,6 +323,10 @@
     <wsdl:operation name="GetVillage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetVillage" message="tns:IService1_GetVillage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetVillageResponse" message="tns:IService1_GetVillage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EditExperience" message="tns:IService1_EditExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EditExperienceResponse" message="tns:IService1_EditExperience_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -593,6 +603,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetVillage">
       <soap:operation soapAction="http://tempuri.org/IService1/GetVillage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditExperience">
+      <soap:operation soapAction="http://tempuri.org/IService1/EditExperience" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

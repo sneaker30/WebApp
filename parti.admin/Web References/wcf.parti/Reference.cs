@@ -91,6 +91,8 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetVillageOperationCompleted;
         
+        private System.Threading.SendOrPostCallback EditExperienceOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -221,6 +223,9 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetVillageCompletedEventHandler GetVillageCompleted;
+        
+        /// <remarks/>
+        public event EditExperienceCompletedEventHandler EditExperienceCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -451,48 +456,114 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditTrainer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EditTrainer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string faminame, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_birth, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sex, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string work_place, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string picture_url, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string username, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string lv1, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string lv2, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string lv3, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string lv4, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string lv5) {
+        public string EditTrainer(
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string fullname_la, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string fullname_eng, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_birth, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sex, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string status, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string village, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string district, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string province, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string work_place, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string department, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string position, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_govermented, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string office_tel, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string mobile_tel, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string email, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string avatar_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc1_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc2_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc3_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc4_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string doc5_url, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string username) {
             object[] results = this.Invoke("EditTrainer", new object[] {
                         action,
                         id,
-                        name,
-                        faminame,
+                        fullname_la,
+                        fullname_eng,
                         date_of_birth,
                         sex,
+                        status,
+                        village,
+                        district,
+                        province,
                         work_place,
+                        department,
                         position,
-                        picture_url,
-                        username,
-                        lv1,
-                        lv2,
-                        lv3,
-                        lv4,
-                        lv5});
+                        date_of_govermented,
+                        office_tel,
+                        mobile_tel,
+                        email,
+                        avatar_url,
+                        doc1_url,
+                        doc2_url,
+                        doc3_url,
+                        doc4_url,
+                        doc5_url,
+                        username});
             return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void EditTrainerAsync(string action, string id, string name, string faminame, string date_of_birth, string sex, string work_place, string position, string picture_url, string username, string lv1, string lv2, string lv3, string lv4, string lv5) {
-            this.EditTrainerAsync(action, id, name, faminame, date_of_birth, sex, work_place, position, picture_url, username, lv1, lv2, lv3, lv4, lv5, null);
         }
         
         /// <remarks/>
         public void EditTrainerAsync(
                     string action, 
                     string id, 
-                    string name, 
-                    string faminame, 
+                    string fullname_la, 
+                    string fullname_eng, 
                     string date_of_birth, 
                     string sex, 
+                    string status, 
+                    string village, 
+                    string district, 
+                    string province, 
                     string work_place, 
+                    string department, 
                     string position, 
-                    string picture_url, 
+                    string date_of_govermented, 
+                    string office_tel, 
+                    string mobile_tel, 
+                    string email, 
+                    string avatar_url, 
+                    string doc1_url, 
+                    string doc2_url, 
+                    string doc3_url, 
+                    string doc4_url, 
+                    string doc5_url, 
+                    string username) {
+            this.EditTrainerAsync(action, id, fullname_la, fullname_eng, date_of_birth, sex, status, village, district, province, work_place, department, position, date_of_govermented, office_tel, mobile_tel, email, avatar_url, doc1_url, doc2_url, doc3_url, doc4_url, doc5_url, username, null);
+        }
+        
+        /// <remarks/>
+        public void EditTrainerAsync(
+                    string action, 
+                    string id, 
+                    string fullname_la, 
+                    string fullname_eng, 
+                    string date_of_birth, 
+                    string sex, 
+                    string status, 
+                    string village, 
+                    string district, 
+                    string province, 
+                    string work_place, 
+                    string department, 
+                    string position, 
+                    string date_of_govermented, 
+                    string office_tel, 
+                    string mobile_tel, 
+                    string email, 
+                    string avatar_url, 
+                    string doc1_url, 
+                    string doc2_url, 
+                    string doc3_url, 
+                    string doc4_url, 
+                    string doc5_url, 
                     string username, 
-                    string lv1, 
-                    string lv2, 
-                    string lv3, 
-                    string lv4, 
-                    string lv5, 
                     object userState) {
             if ((this.EditTrainerOperationCompleted == null)) {
                 this.EditTrainerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditTrainerOperationCompleted);
@@ -500,19 +571,28 @@ namespace parti.admin.wcf.parti {
             this.InvokeAsync("EditTrainer", new object[] {
                         action,
                         id,
-                        name,
-                        faminame,
+                        fullname_la,
+                        fullname_eng,
                         date_of_birth,
                         sex,
+                        status,
+                        village,
+                        district,
+                        province,
                         work_place,
+                        department,
                         position,
-                        picture_url,
-                        username,
-                        lv1,
-                        lv2,
-                        lv3,
-                        lv4,
-                        lv5}, this.EditTrainerOperationCompleted, userState);
+                        date_of_govermented,
+                        office_tel,
+                        mobile_tel,
+                        email,
+                        avatar_url,
+                        doc1_url,
+                        doc2_url,
+                        doc3_url,
+                        doc4_url,
+                        doc5_url,
+                        username}, this.EditTrainerOperationCompleted, userState);
         }
         
         private void OnEditTrainerOperationCompleted(object arg) {
@@ -1442,6 +1522,46 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditExperience", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string EditExperience([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string experience_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string responsibility, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string office, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string years) {
+            object[] results = this.Invoke("EditExperience", new object[] {
+                        action,
+                        id,
+                        experience_id,
+                        responsibility,
+                        office,
+                        years});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EditExperienceAsync(string action, string id, string experience_id, string responsibility, string office, string years) {
+            this.EditExperienceAsync(action, id, experience_id, responsibility, office, years, null);
+        }
+        
+        /// <remarks/>
+        public void EditExperienceAsync(string action, string id, string experience_id, string responsibility, string office, string years, object userState) {
+            if ((this.EditExperienceOperationCompleted == null)) {
+                this.EditExperienceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditExperienceOperationCompleted);
+            }
+            this.InvokeAsync("EditExperience", new object[] {
+                        action,
+                        id,
+                        experience_id,
+                        responsibility,
+                        office,
+                        years}, this.EditExperienceOperationCompleted, userState);
+        }
+        
+        private void OnEditExperienceOperationCompleted(object arg) {
+            if ((this.EditExperienceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EditExperienceCompleted(this, new EditExperienceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2300,6 +2420,32 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetVillageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void EditExperienceCompletedEventHandler(object sender, EditExperienceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EditExperienceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EditExperienceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
