@@ -5,7 +5,7 @@
 
     <style>
         .bottom-sheet {
-            min-height: 100%;
+            min-height: 90%;
         }
 
         .imageUpload {

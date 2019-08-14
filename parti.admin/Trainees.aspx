@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="scm" runat="server" EnablePageMethods="true" />
     <script src="Scripts/jquery.simpleLoadMore.min.js"></script>
-    <link href="dist/css/dropify.css" rel="stylesheet" />
-    <script src="dist/js/dropify.js"></script>
 
     <style>
         .bottom-sheet {
@@ -29,6 +27,37 @@
 
         .dropify-clear {
             font-family: PhetsarathOT;
+        }
+
+        .imageUpload {
+            display: none;
+        }
+
+        .profileImage {
+            cursor: pointer;
+        }
+
+        #profile-container {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+            #profile-container img {
+                width: 150px;
+                height: 150px;
+            }
+
+        .img {
+            width: 100px;
+            height: 110px;
+            object-fit: fill;
+            cursor: pointer;
         }
     </style>
     <br />
@@ -98,25 +127,25 @@
         <div class="modal-content">
             <div class="row">
                 <div class="col s12 m3 l3" align="center">
-                    <div id="profile-container">
-                        <img id="profileImage" runat="server" src="img/avatar.png" class="img responsive-img tooltipped" data-position="left" data-tooltip="ປ່ຽນຮູບພາບ 150x150" />
+                    <div class="row">
+                        <div id="profile-container">
+                            <img id="profileImage" runat="server" src="img/avatar.png" class="img responsive-img tooltipped" data-position="left" data-tooltip="ປ່ຽນຮູບພາບ 150x150" />
+                        </div>
+                        <asp:FileUpload ID="imageUpload" runat="server" name="profile_photo" class="imageUpload" />
+                        <input type="hidden" id="txtAvatarHidd_I" runat="server" />
                     </div>
-                    <asp:FileUpload ID="imageUpload" runat="server" name="profile_photo" class="imageUpload" />
                 </div>
                 <br />
                 <div class="col s12 m9 l9">
                     <ul class="tabs">
-                        <li class="tab col"><a href="#tab1" class="grey-text">1. ປະຫວັດສ່ວນຕົວ</a></li>
-                        <li class="tab col"><a href="#tab2" class="grey-text">2. ວຸດທິການສຶກສາ</a></li>
-                        <li class="tab col"><a href="#tab3" class="grey-text">3. ບ່ອນປະຈຳການປະຈຸບັນ</a></li>
-                        <li class="tab col"><a href="#tab4" class="grey-text">4. ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</a></li>
-                        <li class="tab col"><a href="#tab5" class="grey-text">5. ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab1">ປະຫວັດສ່ວນຕົວ</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab2">ວຸດທິການສຶກສາ</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab3">ບ່ອນປະຈຳການປະຈຸບັນ</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab4">ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab5">ປະສົບການເຂົ້າຮ່ວມຝຶກອົບຮົມ (03 ມື້ ຫາ 03 ເດືອນ)</a></li>
+                        <li class="tab col s2 m2 l2"><a href="#tab6">ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</a></li>
                     </ul>
-                    <h5>ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</h5>
-                    <hr>
-                    <br />
                     <div id="tab1" class="row">
-                        <h6>1. ປະຫວັດສ່ວນຕົວ</h6>
                         <br />
                         <div class="row">
                             <div class="input-field col s12 m12 l12">
@@ -185,9 +214,7 @@
                             </div>
                         </div>
                     </div>
-                    <br />
                     <div id="tab2" class="row">
-                        <h6>2. ວຸດທິການສຶກສາ</h6>
                         <br />
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
@@ -226,9 +253,7 @@
                             </div>
                         </div>
                     </div>
-                    <br />
                     <div id="tab3" class="row">
-                        <h6>3. ບ່ອນປະຈຳການປະຈຸບັນ</h6>
                         <br />
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
@@ -266,9 +291,7 @@
                             </div>
                         </div>
                     </div>
-                    <br />
                     <div id="tab4" class="row">
-                        <h6>4. ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</h6>
                         <br />
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
@@ -309,130 +332,86 @@
                             </div>
                         </div>
                     </div>
-                    <br />
-                    <div id="tab5" class="row">
-                        <h6>5. ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</h6>
+                    <div id="tab6" class="row">
                         <br />
                         <div class="row">
-                            <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ຮູບພາບຜູ້ຝຶກອົບຮົມ</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" ID="txtAvatar" placeholder="ຮູບພາບຜູ້ຝຶກອົບຮົມ" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtAvatarHidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtAvatarHidd_I" runat="server" />
-                                    </div>
-                                </div>
+                            <div class="col s12 m12 l12">
+                                <asp:FileUpload type="file" class="file-path validate tooltipped" data-position="left" data-tooltip="ແນບເອກະສານ" ID="txtReferDoc1" runat="server" onchange="LabelMe(this)" />
+                                ທີ່ຢູ່ຂອງຟຣາຍ:
+                                <label id="txtReferDoc1Hidd" runat="server"></label>
+                                <input type="hidden" id="txtReferDoc1Hidd_I" runat="server" />
+                                <a class="btn btn-flat tooltipped" data-position="right" data-tooltip="ເປີດເບີ່ງຟຣາຍ" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc1Hidd_I.ClientID %>').value)">
+                                    <i class="material-icons">pageview</i>
+                                </a>
                             </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtAvatarHidd_I.ClientID %>').value)">
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <asp:FileUpload type="file" class="file-path validate tooltipped" data-position="left" data-tooltip="ແນບເອກະສານ" ID="txtReferDoc2" runat="server" onchange="LabelMe(this)" />
+                                ທີ່ຢູ່ຂອງຟຣາຍ:
+                                <label id="txtReferDoc2Hidd" runat="server"></label>
+                                <input type="hidden" id="txtReferDoc2Hidd_I" runat="server" />
+                                <a class="btn btn-flat tooltipped" data-position="right" data-tooltip="ເປີດເບີ່ງຟຣາຍ" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc2Hidd_I.ClientID %>').value)">
                                     <i class="material-icons">pageview</i>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ເອກະສານແນບທີ1</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc1" placeholder="ເອກະສານແນບທີ1" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtReferDoc1Hidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtReferDoc1Hidd_I" runat="server" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc1Hidd_I.ClientID %>').value)">
+                                <asp:FileUpload type="file" class="file-path validate tooltipped" data-position="left" data-tooltip="ແນບເອກະສານ" ID="txtReferDoc3" runat="server" onchange="LabelMe(this)" />
+                                ທີ່ຢູ່ຂອງຟຣາຍ:
+                                <label id="txtReferDoc3Hidd" runat="server"></label>
+                                <input type="hidden" id="txtReferDoc3Hidd_I" runat="server" />
+                                <a class="btn btn-flat tooltipped" data-position="right" data-tooltip="ເປີດເບີ່ງຟຣາຍ" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc3Hidd_I.ClientID %>').value)">
                                     <i class="material-icons">pageview</i>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ເອກະສານແນບທີ2</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc2" placeholder="ເອກະສານແນບທີ2" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtReferDoc2Hidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtReferDoc2Hidd_I" runat="server" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc2Hidd_I.ClientID %>').value)">
+                                <asp:FileUpload type="file" class="file-path validate tooltipped" data-position="left" data-tooltip="ແນບເອກະສານ" ID="txtReferDoc4" runat="server" onchange="LabelMe(this)" />
+                                ທີ່ຢູ່ຂອງຟຣາຍ:
+                                <label id="txtReferDoc4Hidd" runat="server"></label>
+                                <input type="hidden" id="txtReferDoc4Hidd_I" runat="server" />
+                                <a class="btn btn-flat tooltipped" data-position="right" data-tooltip="ເປີດເບີ່ງຟຣາຍ" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc4Hidd_I.ClientID %>').value)">
                                     <i class="material-icons">pageview</i>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ເອກະສານແນບທີ3</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc3" placeholder="ເອກະສານແນບທີ3" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtReferDoc3Hidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtReferDoc3Hidd_I" runat="server" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc3Hidd_I.ClientID %>').value)">
+                                <asp:FileUpload type="file" class="file-path validate tooltipped" data-position="left" data-tooltip="ແນບເອກະສານ" ID="txtReferDoc5" runat="server" onchange="LabelMe(this)" />
+                                ທີ່ຢູ່ຂອງຟຣາຍ:
+                                <label id="txtReferDoc5Hidd" runat="server"></label>
+                                <input type="hidden" id="txtReferDoc5Hidd_I" runat="server" />
+                                <a class="btn btn-flat tooltipped" data-position="right" data-tooltip="ເປີດເບີ່ງຟຣາຍ" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc5Hidd_I.ClientID %>').value)">
                                     <i class="material-icons">pageview</i>
                                 </a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ເອກະສານແນບທີ4</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc4" placeholder="ເອກະສານແນບທີ4" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtReferDoc4Hidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtReferDoc4Hidd_I" runat="server" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc4Hidd_I.ClientID %>').value)">
-                                    <i class="material-icons">pageview</i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12 m6 l6">
-                                <div class="file-field input-field">
-                                    <div class="btn btn-small">
-                                        <span>ເອກະສານແນບທີ5</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <asp:FileUpload type="file" class="file-path validate" ID="txtReferDoc5" placeholder="ເອກະສານແນບທີ5" runat="server" onchange="LabelMe(this)" />
-                                        <label id="txtReferDoc5Hidd" runat="server" style="font-size: large"></label>
-                                        <input type="hidden" id="txtReferDoc5Hidd_I" runat="server" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m6 l6">
-                                <a class="btn btn-flat right" onclick="PreviewIMG(document.getElementById('<%: txtReferDoc5Hidd_I.ClientID %>').value)">
-                                    <i class="material-icons">pageview</i>
-                                </a>
-                            </div>
-                        </div>
+                    </div>
+                    <div id="tab5" class="row">
+                        <br />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="col s2 m2 l2 grey-text">ລ/ດ</th>
+                                    <th class="col s4 m4 l4 grey-text">ຫົວຂໍ້ຝຶກອົບຮົມ</th>
+                                    <th class="col s2 m2 l2 grey-text">ຈັດໂດຍ</th>
+                                    <th class="col s2 m2 l2 grey-text">ສະຖານທີ່ຈັດ</th>
+                                    <th class="col s2 m2 l2 grey-text">ວັນທີ-ເດືອນ-ປີ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -443,12 +422,12 @@
             <div class="row">
                 <div class="col s12 m3 l3"></div>
                 <div class="col s12 m1 l1">
-                    <asp:Button class="btn-small waves-effect waves-light laotxt" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
+                    <asp:Button class="btn-small waves-effect waves-light laotxt left" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
                     <input type="hidden" id="Hidden1" runat="server" />
                     <input type="hidden" id="avartaUrl" runat="server" />
                 </div>
                 <div class="col s12 m1 l1">
-                    <a class="btn-small waves-effect waves-light modal-close laotxt">ຍົກເລີກ</a>
+                    <a class="btn-small waves-effect waves-light modal-close laotxt left">ຍົກເລີກ</a>
                 </div>
                 <div class="col s12 m7 l7">
                     <asp:Button class="btn-small waves-effect waves-light right red darken-3 laotxt" ID="btnDel" runat="server" Text="ລົບ" OnClick="btnDel_OnClick"></asp:Button>
@@ -560,7 +539,7 @@
             $('.tooltipped').tooltip();
             $('.tabs').tabs();
             $('.datepicker').datepicker({
-                format: 'mm/dd/yyyy'
+                format: 'yyyy-mm-dd'
             });
             $('.some-list').simpleLoadMore({
                 item: 'tr',
@@ -568,6 +547,21 @@
                 btnHTML: '<br><br><a href="#" id="btnMore" class="load-more_btn btn-flat waves-effect tooltipped blue-text text-darken-3" data-position="left" data-tooltip="ເບີ່ງສ່ວນທີ່ເຫລືອ" onclick="ScrollDown()">ເບີ່ງສ່ວນທີ່ເຫລືອ...</a>'
             });
             $('.materialboxed').materialbox();
+            $('#<%: profileImage.ClientID %>').click(function (e) {
+                $('#<%: imageUpload.ClientID %>').click();
+            });
+
+            function fasterPreview(uploader) {
+                if (uploader.files && uploader.files[0]) {
+                    $('#<%: profileImage.ClientID %>').attr('src', window.URL.createObjectURL(uploader.files[0]));
+                }
+            }
+
+            $('#<%: imageUpload.ClientID %>').change(function () {
+                fasterPreview(this);
+                var thefile = document.getElementById('<%: imageUpload.ClientID %>');
+                document.getElementById('<%: txtAvatarHidd_I.ClientID %>').Value = thefile.value;
+            });
         });
 
         function ScrollDown() {
@@ -628,7 +622,7 @@
                         document.getElementById("<%: txtOffice_tel.ClientID %>").value = obj.office_tel;
                         document.getElementById("<%: txtMobile_tel.ClientID %>").value = obj.mobile_tel;
                         document.getElementById("<%: txtEmail.ClientID %>").value = obj.email;
-                        document.getElementById("<%: txtAvatarHidd.ClientID %>").innerText = obj.avatar_url;
+                        document.getElementById("<%: profileImage.ClientID %>").src = obj.avatar_url.replace("~", "");
                         document.getElementById("<%: txtReferDoc1Hidd.ClientID %>").innerText = obj.doc1_url;
                         document.getElementById("<%: txtReferDoc2Hidd.ClientID %>").innerText = obj.doc2_url;
                         document.getElementById("<%: txtReferDoc3Hidd.ClientID %>").innerText = obj.doc3_url;
@@ -682,7 +676,6 @@
             document.getElementById("<%: txtOffice_tel.ClientID %>").value = "";
             document.getElementById("<%: txtMobile_tel.ClientID %>").value = "";
             document.getElementById("<%: txtEmail.ClientID %>").value = "";
-            document.getElementById("<%: txtAvatarHidd.ClientID %>").innerText = "";
             document.getElementById("<%: txtReferDoc1Hidd.ClientID %>").innerText = "";
             document.getElementById("<%: txtReferDoc2Hidd.ClientID %>").innerText = "";
             document.getElementById("<%: txtReferDoc3Hidd.ClientID %>").innerText = "";
@@ -698,6 +691,7 @@
             document.getElementById("<%: txtAppr_Email.ClientID %>").value = "";
             document.getElementById("<%: txtEducation_level.ClientID %>").value = "";
             document.getElementById("<%: txtEducation_major.ClientID %>").value = "";
+            document.getElementById("<%: profileImage.ClientID %>").src = "img/avatar.png";
             M.updateTextFields();
         }
 
@@ -708,16 +702,6 @@
             } else if (state === 'edit') {
                 $('#btnPreview').removeClass('disabled');
             }
-        }
-
-        function UUID() {
-            var dt = new Date().getTime();
-            var uuid = 'xxxxxxxx-xxxx-8xxx-Qxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = (dt + Math.random() * 16) % 16 | 0;
-                dt = Math.floor(dt / 16);
-                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-            });
-            return uuid;
         }
 
     </script>

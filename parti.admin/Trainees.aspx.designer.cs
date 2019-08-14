@@ -67,6 +67,15 @@ namespace parti.admin {
         protected global::System.Web.UI.WebControls.FileUpload imageUpload;
         
         /// <summary>
+        /// txtAvatarHidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd_I;
+        
+        /// <summary>
         /// txtID control.
         /// </summary>
         /// <remarks>
@@ -362,33 +371,6 @@ namespace parti.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtAppr_Email;
-        
-        /// <summary>
-        /// txtAvatar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload txtAvatar;
-        
-        /// <summary>
-        /// txtAvatarHidd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtAvatarHidd;
-        
-        /// <summary>
-        /// txtAvatarHidd_I control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd_I;
         
         /// <summary>
         /// txtReferDoc1 control.

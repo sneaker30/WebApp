@@ -70,16 +70,6 @@ namespace parti.admin
                         vl.education_country, vl.educated_year, vl.education_name));
                     //Render Table
                     HtmlElement _tbody = new HtmlElement();
-                    //_tbody.InnerHtml = "<tr id='" + i + "' class='search_result'>" +
-                    //                   "<td>" + i + "</td>" +
-                    //                   "<td>" + vl.name + " " + vl.faminame + "</td>" +
-                    //                   "<td>" + vl.work_place + "</td>" +
-                    //                   "<td><div class='row'><div class='col'>" +
-                    //                   "<button type='button' class='btn-small z-depth-3 teal darken-2 tooltipped hvr-grow-shadow modal-trigger' " +
-                    //                   "href='#modalTrainee' data-position='left' data-tooltip='ແກ້ໄຂຂໍ້ມູນ' id='" + (i - 1) + "' " +
-                    //                   "onclick='SetTraineeInfo(this.id)'><i class='material-icons'>edit</i></button>" +
-                    //                   "</div>&nbsp;<div class='col'></div></div></td></tr>";
-
                     _tbody.InnerHtml = "<tr id='" + i + "' class='search_result'>" +
                                        "<td>" + i + "</td>" +
                                        "<td><img class='materialboxed circle z-depth-3' width='50' " +
@@ -152,7 +142,7 @@ namespace parti.admin
                 this.id = _id;
                 this.fullname_la = _fullname_la;
                 this.fullname_eng = _fullname_eng;
-                this.date_of_birth = _date_of_birth.ToString("MM/dd/yyyy");
+                this.date_of_birth = _date_of_birth.ToString("yyyy-MM-dd");
                 this.sex = _sex;
                 this.status = _status;
                 this.village = _village;
@@ -161,7 +151,7 @@ namespace parti.admin
                 this.work_place = _work_place;
                 this.department = _department;
                 this.position = _position;
-                this.date_of_govermented = _date_of_govermented.ToString("MM/dd/yyyy");
+                this.date_of_govermented = _date_of_govermented.ToString("yyyy-MM-dd");
                 this.office_tel = _office_tel;
                 this.mobile_tel = _mobile_tel;
                 this.email = _email;
@@ -247,20 +237,19 @@ namespace parti.admin
                 string status = null;
                 string picture_url = null;
                 string txtid = null;
-                if (string.IsNullOrEmpty(txtAvatar.PostedFile.FileName) == false)
+                if (string.IsNullOrEmpty(imageUpload.PostedFile.FileName) == false)
                 {
-                    var imgfile = Path.GetFileName(txtAvatar.PostedFile.FileName);
+                    var imgfile = Path.GetFileName(imageUpload.PostedFile.FileName);
                     var imgfilePath = Server.MapPath("avatar/") + imgfile;
                     var extension = Path.GetExtension(imgfilePath);
                     var renamePath = Server.MapPath("avatar/") + txtID.Value + extension;
                     picture_url = "avatar/" + txtID.Value + extension;
-                    txtAvatar.SaveAs(imgfilePath);
+                    imageUpload.SaveAs(imgfilePath);
                     if (File.Exists(renamePath))
                     {
                         File.Delete(renamePath);
                     }
                     File.Move(imgfilePath, renamePath);
-                    txtAvatarHidd.InnerText = picture_url;
                     txtAvatarHidd_I.Value = picture_url;
                 }
                 if (string.IsNullOrEmpty(txtReferDoc1.PostedFile.FileName) == false)
