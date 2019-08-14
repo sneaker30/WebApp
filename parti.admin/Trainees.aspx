@@ -8,7 +8,7 @@
 
     <style>
         .bottom-sheet {
-            min-height: 100%;
+            min-height: 90%;
         }
 
         .table {
@@ -97,15 +97,21 @@
         <%-- New Form --%>
         <div class="modal-content">
             <div class="row">
-                <div class="col s12 m1 l1"></div>
-                <div class="col s12 m10 l10">
-                    <%--                    <ul class="tabs">
+                <div class="col s12 m3 l3" align="center">
+                    <div id="profile-container">
+                        <img id="profileImage" runat="server" src="img/avatar.png" class="img responsive-img tooltipped" data-position="left" data-tooltip="ປ່ຽນຮູບພາບ 150x150" />
+                    </div>
+                    <asp:FileUpload ID="imageUpload" runat="server" name="profile_photo" class="imageUpload" />
+                </div>
+                <br />
+                <div class="col s12 m9 l9">
+                    <ul class="tabs">
                         <li class="tab col"><a href="#tab1" class="grey-text">1. ປະຫວັດສ່ວນຕົວ</a></li>
                         <li class="tab col"><a href="#tab2" class="grey-text">2. ວຸດທິການສຶກສາ</a></li>
                         <li class="tab col"><a href="#tab3" class="grey-text">3. ບ່ອນປະຈຳການປະຈຸບັນ</a></li>
                         <li class="tab col"><a href="#tab4" class="grey-text">4. ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</a></li>
                         <li class="tab col"><a href="#tab5" class="grey-text">5. ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</a></li>
-                    </ul>--%>
+                    </ul>
                     <h5>ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</h5>
                     <hr>
                     <br />
@@ -429,23 +435,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m1 l1"></div>
             </div>
         </div>
         <br />
         <%-- New Form --%>
         <div class="modal-footer">
             <div class="row">
-                <div class="col s12 m1 l1"></div>
-                <div class="col s12 m10 l10">
-                    <div class="row">
-                        <asp:Button class="waves-effect waves-green btn-small col left" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
-                        <div class="col"></div>
-                        <button type="button" class="waves-effect waves-green btn-small modal-close laotxt col left">ຍົກເລີກ</button>
-                        <asp:Button class="waves-effect waves-green btn-small red col right" ID="btnDel" runat="server" OnClick="btnDel_OnClick" Text="ລົບ"></asp:Button>
-                    </div>
+                <div class="col s12 m3 l3"></div>
+                <div class="col s12 m1 l1">
+                    <asp:Button class="btn-small waves-effect waves-light laotxt" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
+                    <input type="hidden" id="Hidden1" runat="server" />
+                    <input type="hidden" id="avartaUrl" runat="server" />
                 </div>
-                <div class="col s12 m1 l1"></div>
+                <div class="col s12 m1 l1">
+                    <a class="btn-small waves-effect waves-light modal-close laotxt">ຍົກເລີກ</a>
+                </div>
+                <div class="col s12 m7 l7">
+                    <asp:Button class="btn-small waves-effect waves-light right red darken-3 laotxt" ID="btnDel" runat="server" Text="ລົບ" OnClick="btnDel_OnClick"></asp:Button>
+                </div>
             </div>
             <input type="hidden" id="btnState" runat="server" />
         </div>

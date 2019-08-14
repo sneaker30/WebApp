@@ -30,22 +30,29 @@ namespace parti.admin
         {
             try
             {
-                wcf.parti.Service1 _parti = new wcf.parti.Service1();
-                string action = "edit";
+                wcf.parti.Service1 parti = new wcf.parti.Service1();
+                var action = btnState.Value.ToString();
                 string sex = null;
                 string picture_url = null;
-                if (String.IsNullOrEmpty(imageUpload.PostedFile.FileName) == false)
+                string txtid = null;
+                string status = null;
+
+                if (string.IsNullOrEmpty(imageUpload.PostedFile.FileName) == false)
                 {
-                    string imgfile = Path.GetFileName(imageUpload.PostedFile.FileName);
-                    string imgfilePath = Server.MapPath("avatar/") + imgfile;
-                    string extension = Path.GetExtension(imgfilePath);
-                    string renamePath = Server.MapPath("avatar/") + txtUsername.Value + extension;
+                    var imgfile = Path.GetFileName(imageUpload.PostedFile.FileName);
+                    var imgfilePath = Server.MapPath("avatar/") + imgfile;
+                    var extension = Path.GetExtension(imgfilePath);
+                    var renamePath = Server.MapPath("avatar/") + txtUsername.Value + extension;
                     picture_url = "~/avatar/" + txtUsername.Value + extension;
                     imageUpload.SaveAs(imgfilePath);
-                    if (File.Exists(renamePath))
+                    if (imgfilePath != renamePath)
                     {
-                        File.Delete(renamePath);
+                        if (File.Exists(renamePath))
+                        {
+                            File.Delete(renamePath);
+                        }
                     }
+
                     File.Move(imgfilePath, renamePath);
                 }
                 else
@@ -69,12 +76,36 @@ namespace parti.admin
                     sex = "f";
                 }
 
-                string result = _parti.EditTrainer(action, txtID.Value, txtName.Value, txtfaminame.Value, dtpBD.Value, sex, txtworkPlace.Value,
-                    txtPosition.Value, picture_url, txtUsername.Value, txtlv1.Value, txtlv2.Value, txtlv3.Value, txtlv4.Value, txtlv5.Value);
+                if (action == "add")
+                {
+                    txtid = txtID.Value;
+                }
+                else if (action == "edit")
+                {
+                    txtid = txtIDHidden.Value;
+                }
+
+                if (rdDivorce.Checked)
+                {
+                    status = "d";
+                }
+                else if (rdMarried.Checked)
+                {
+                    status = "m";
+                }
+                else if (rdSingle.Checked)
+                {
+                    status = "s";
+                }
+
+                var result = parti.EditTrainer(action, txtid, txtNameLa.Value, txtNameEng.Value, dtpBD.Value, sex, status, txtVillage.Value,
+                    txtDistrict.Value, txtProvince.Value, txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, lblPicUrlPath.InnerText, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value,
+                    txtReferDoc3Hidd_I.Value, txtReferDoc4Hidd_I.Value, txtReferDoc5Hidd_I.Value, txtUsername.Value);
 
                 if (result == "e3")
                 {
-                    MessageBox.swalModal(this.Page, "info", "e3: ມີລະຫັດນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ລະຫັດໃຫມ່...", "");
+                    MessageBox.swalModal(this.Page, "info", "e3: ມີ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ໃຫມ່...", "");
                 }
                 else if (result == "e0")
                 {
@@ -98,36 +129,67 @@ namespace parti.admin
         public class GetUserProfile
         {
             public string id { get; set; }
-            public string name { get; set; }
-            public string faminame { get; set; }
-            public string date_of_birth { get; set; }
+            public string fullname_la { get; set; }
+            public string fullname_eng { get; set; }
+            public DateTime date_of_birth { get; set; }
             public string sex { get; set; }
-            public string work_place { get; set; }
+            public string status { get; set; }
+            public string village { get; set; }
+            public string district { get; set; }
+            public string province { get; set; }
+            public string workplace { get; set; }
+            public string department { get; set; }
             public string position { get; set; }
-            public string picture_url { get; set; }
-            public string userame { get; set; }
-            public string lv1 { get; set; }
-            public string lv2 { get; set; }
-            public string lv3 { get; set; }
-            public string lv4 { get; set; }
-            public string lv5 { get; set; }
+            public string date_of_govermented { get; set; }
+            public string office_tel { get; set; }
+            public string mobile_tel { get; set; }
+            public string email { get; set; }
+            public string avatar_url { get; set; }
+            public string doc1_url { get; set; }
+            public string doc2_url { get; set; }
+            public string doc3_url { get; set; }
+            public string doc4_url { get; set; }
+            public string doc5_url { get; set; }
+            public string username { get; set; }
+            public string education_level { get; set; }
+            public string education_major { get; set; }
+            public string education_country { get; set; }
+            public string education_year { get; set; }
+            public string education_name { get; set; }
 
-            public GetUserProfile(string id, string name, string faminame, DateTime date_of_birth, string sex, string work_place, string position, string picture_url, string userame, string lv1, string lv2, string lv3, string lv4, string lv5)
+            public GetUserProfile(string id, string fullname_la, string fullname_eng, DateTime date_of_birth, string sex, string status, string village,
+                string district, string province, string workplace, string department, string position, string date_of_govermented, string office_tel, string mobile_tel,
+                string email, string avatar_url, string doc1_url, string doc2_url, string doc3_url, string doc4_url, string doc5_url, string userame,
+                string education_level, string education_major, string education_country, string education_year, string education_name)
             {
                 this.id = id;
-                this.name = name;
-                this.faminame = faminame;
-                this.date_of_birth = date_of_birth.ToString("MM/dd/yyyy");
+                this.fullname_la = fullname_la;
+                this.fullname_eng = fullname_eng;
+                this.date_of_birth = date_of_birth;
                 this.sex = sex;
-                this.work_place = work_place;
+                this.status = status;
+                this.village = village;
+                this.district = district;
+                this.province = province;
+                this.workplace = workplace;
+                this.department = department;
                 this.position = position;
-                this.picture_url = picture_url;
-                this.userame = userame;
-                this.lv1 = lv1;
-                this.lv2 = lv2;
-                this.lv3 = lv3;
-                this.lv4 = lv4;
-                this.lv5 = lv5;
+                this.date_of_govermented = date_of_govermented;
+                this.office_tel = office_tel;
+                this.mobile_tel = mobile_tel;
+                this.email = email;
+                this.avatar_url = avatar_url;
+                this.doc1_url = doc1_url;
+                this.doc2_url = doc2_url;
+                this.doc3_url = doc3_url;
+                this.doc4_url = doc4_url;
+                this.doc5_url = doc5_url;
+                this.username = userame;
+                this.education_level = education_level;
+                this.education_major = education_major;
+                this.education_country = education_country;
+                this.education_year = education_year;
+                this.education_name = education_name;
             }
         }
 
@@ -155,8 +217,10 @@ namespace parti.admin
                 rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
                 foreach (var vl in rootObject.GetTrainerList)
                 {
-                    getUserProfile.Add(new GetUserProfile(vl.id, vl.name, vl.faminame, vl.date_of_birth, vl.sex, vl.work_place, vl.position,
-                        vl.picture_url, vl.userame, vl.lv1, vl.lv2, vl.lv3, vl.lv4, vl.lv5));
+                    getUserProfile.Add(new GetUserProfile(vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
+                        vl.province, vl.workplace, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email,
+                        vl.avatar_url, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.username, vl.education_level, vl.education_major,
+                        vl.education_country, vl.education_year, vl.education_name));
                 }
             }
             return getUserProfile;
@@ -172,20 +236,15 @@ namespace parti.admin
             txtID.Value = _userProfile.id;
             txtIDHidden.Value = _userProfile.id;
             txtID.Attributes.Add("disabled", "disabled");
-            txtName.Value = _userProfile.name;
-            txtfaminame.Value = _userProfile.faminame;
-            dtpBD.Value = _userProfile.date_of_birth;
-            txtworkPlace.Value = _userProfile.work_place;
+            txtNameLa.Value = _userProfile.fullname_la;
+            txtNameEng.Value = _userProfile.fullname_eng;
+            dtpBD.Value = _userProfile.date_of_birth.ToString("yyyy-MM-dd");
+            txtWork_place.Value = _userProfile.workplace;
             txtPosition.Value = _userProfile.position;
-            lblPicUrlPath.InnerText = _userProfile.picture_url;
-            avartaUrl.Value = _userProfile.picture_url;
-            txtUsername.Value = _userProfile.userame;
-            txtlv1.Value = _userProfile.lv1;
-            txtlv2.Value = _userProfile.lv2;
-            txtlv3.Value = _userProfile.lv3;
-            txtlv4.Value = _userProfile.lv4;
-            txtlv5.Value = _userProfile.lv5;
-            profileImage.Src = _userProfile.picture_url.Replace("~", "");
+            lblPicUrlPath.InnerText = _userProfile.avatar_url;
+            avartaUrl.Value = _userProfile.avatar_url;
+            txtUsername.Value = _userProfile.username;
+            profileImage.Src = _userProfile.avatar_url.Replace("~", "");
             if (_userProfile.sex == "m")
             {
                 rdMale.Attributes.Add("checked", "checked");
@@ -193,6 +252,50 @@ namespace parti.admin
             else if (_userProfile.sex == "f")
             {
                 rdFamale.Attributes.Add("checked", "checked");
+            }
+
+            if (_userProfile.status == "s")
+            {
+                rdSingle.Attributes.Add("checked", "checked");
+            }
+            else if (_userProfile.status == "m")
+            {
+                rdMarried.Attributes.Add("checked", "checked");
+            }
+            else if (_userProfile.status == "d")
+            {
+                rdDivorce.Attributes.Add("checked", "checked");
+            }
+
+            txtVillage.Value = _userProfile.village;
+            txtDistrict.Value = _userProfile.district;
+            txtProvince.Value = _userProfile.province;
+            txtDepartment.Value = _userProfile.department;
+            txtDate_of_govermented.Value = _userProfile.date_of_govermented;
+            txtOffice_tel.Value = _userProfile.office_tel;
+            txtMobile_tel.Value = _userProfile.mobile_tel;
+            txtEmail.Value = _userProfile.email;
+            txtReferDoc1Hidd_I.Value = _userProfile.doc1_url;
+            txtReferDoc1Hidd.InnerText = _userProfile.doc1_url;
+            txtReferDoc2Hidd_I.Value = _userProfile.doc2_url;
+            txtReferDoc2Hidd.InnerText = _userProfile.doc2_url;
+            txtReferDoc3Hidd_I.Value = _userProfile.doc3_url;
+            txtReferDoc3Hidd.InnerText = _userProfile.doc3_url;
+            txtReferDoc4Hidd_I.Value = _userProfile.doc4_url;
+            txtReferDoc4Hidd.InnerText = _userProfile.doc4_url;
+            txtReferDoc5Hidd_I.Value = _userProfile.doc5_url;
+            txtReferDoc5Hidd.InnerText = _userProfile.doc5_url;
+            txtEducation_level.Value = _userProfile.education_level;
+            txtEducation_major.Value = _userProfile.education_major;
+            txtEducated_year.Value = _userProfile.education_year;
+            txtEducation_Name.Value = _userProfile.education_name;
+            if (_userProfile.education_country == "in")
+            {
+                rdEduIn.Attributes.Add("checked", "checked");
+            }
+            else if (_userProfile.education_country == "out")
+            {
+                rdEduOut.Attributes.Add("checked", "checked");
             }
         }
     }

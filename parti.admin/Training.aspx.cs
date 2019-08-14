@@ -260,14 +260,16 @@ namespace parti.admin
                 });
                 foreach (var vl in rootObject.GetTrainerList)
                 {
-                    TrainerLists.Add(new Trainers.GetTrainerList(vl.id, vl.name, vl.faminame, vl.date_of_birth, vl.sex, vl.work_place,
-                        vl.position, vl.picture_url, vl.userame, vl.lv1, vl.lv2, vl.lv3, vl.lv4, vl.lv5));
+                    TrainerLists.Add(new Trainers.GetTrainerList(vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
+                        vl.province, vl.workplace, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email,
+                        vl.avatar_url, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.username, vl.education_level, vl.education_major,
+                        vl.education_country,vl.education_year, vl.education_name));
                     //Render Table Trainer Choice
                     HtmlElement _tbody = new HtmlElement();
                     HtmlElement _tbody2 = new HtmlElement();
 
                     _tbody.InnerHtml = "<tr id='1Tner" + i + "' class='trTrainer'>" +
-                                       "<td>" + vl.name + " " + vl.faminame + ", " + vl.work_place + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.workplace + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 blue tooltipped " +
                                        "hvr-grow-shadow' " +
@@ -277,7 +279,7 @@ namespace parti.admin
                                        "<input type='hidden' value='" + vl.id + "' id='i1Tner" + i + "'/></tr>";
 
                     _tbody2.InnerHtml = "<tr id='2Tner" + i + "' hidden>" +
-                                       "<td>" + vl.name + " " + vl.faminame + ", " + vl.work_place + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.workplace + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 red darken-3 tooltipped " +
                                        "hvr-grow-shadow' " +

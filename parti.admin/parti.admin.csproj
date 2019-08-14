@@ -965,6 +965,7 @@
     <Content Include="dist\fonts\dropify.eot" />
     <Content Include="dist\fonts\dropify.ttf" />
     <Content Include="dist\fonts\dropify.woff" />
+    <Content Include="TestForkRepotoOrg.html" />
     <Content Include="YearPlans.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />

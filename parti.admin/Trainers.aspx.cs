@@ -40,16 +40,18 @@ namespace parti.admin {
                 int i = 0;
                 rootObject = JsonConvert.DeserializeObject<partiDB.RootObject> (json_str);
                 foreach (var vl in rootObject.GetTrainerList) {
-                    TrainerLists.Add (new GetTrainerList (vl.id, vl.name, vl.faminame, vl.date_of_birth, vl.sex, vl.work_place, vl.position,
-                        vl.picture_url, vl.userame, vl.lv1, vl.lv2, vl.lv3, vl.lv4, vl.lv5));
+                    TrainerLists.Add (new GetTrainerList (vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
+                        vl.province, vl.workplace, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email,
+                        vl.avatar_url, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.username, vl.education_level, vl.education_major,
+                        vl.education_country,vl.education_year, vl.education_name));
                     //Render Carousel
                     HtmlElement carouselItem = new HtmlElement ();
                     carouselItem.InnerHtml = "<div class='card card-profiler laotxt hvr-grow-shadow' data-cindex='" + i + "'>" +
                         "<div class='card-image'>" +
-                        "<a href='#'><img class='img' src='" + vl.picture_url.Replace ("~", "") + "'></a>" +
+                        "<a href='#'><img class='img' src='" + vl.avatar_url.Replace ("~", "") + "'></a>" +
                         "</div>" +
                         "<div class='table center'>" +
-                        "<p>" + vl.name + " " + vl.faminame + "</p>" +
+                        "<p>" + vl.fullname_la + "</p>" +
                         "<h6>" + vl.position + "</h6>" +
                         "<button id='btn" + i + "' value='" + i + "' onclick='SetTrainerInfo(this.value); return false;' type='button' " +
                         "class='btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger' href='#modalTrainer' data-position='top' " +
@@ -125,6 +127,8 @@ namespace parti.admin {
                 this.doc1_url = doc1_url;
                 this.doc2_url = doc2_url;
                 this.doc3_url = doc3_url;
+                this.doc4_url = doc4_url;
+                this.doc5_url = doc5_url;
                 this.username = userame;
                 this.education_level = education_level;
                 this.education_major = education_major;
@@ -149,6 +153,8 @@ namespace parti.admin {
                 string sex = null;
                 string picture_url = null;
                 string txtid = null;
+                string status = null;
+
                 if (string.IsNullOrEmpty (imageUpload.PostedFile.FileName) == false) {
                     var imgfile = Path.GetFileName (imageUpload.PostedFile.FileName);
                     var imgfilePath = Server.MapPath ("avatar/") + imgfile;
@@ -183,8 +189,23 @@ namespace parti.admin {
                     txtid = txtIDHidden.Value;
                 }
 
-                var result = parti.EditTrainer (action, txtid, txtfu.Value, txtfaminame.Value, dtpBD.Value, sex, txtworkPlace.Value,
-                    txtPosition.Value, picture_url, txtUsername.Value, txtlv1.Value, txtlv2.Value, txtlv3.Value, txtlv4.Value, txtlv5.Value);
+                if (rdDivorce.Checked)
+                {
+                    status = "d";
+                }
+                else if (rdMarried.Checked)
+                {
+                    status = "m";
+                }
+                else if (rdSingle.Checked)
+                {
+                    status = "s";
+                }
+
+                var result = parti.EditTrainer (action, txtid, txtNameLa.Value, txtNameEng.Value, dtpBD.Value, sex, status, txtVillage.Value,
+                    txtDistrict.Value, txtProvince.Value, txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, lblPicUrlPath.InnerText, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value,
+                    txtReferDoc3Hidd_I.Value, txtReferDoc4Hidd_I.Value, txtReferDoc5Hidd_I.Value, txtUsername.Value);
 
                 if (result == "e3") {
                     MessageBox.swalModal (this.Page, "info", "e3: ມີ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ ລະຫັດ/ຊື່ຜູ້ໃຊ້ ໃຫມ່...", "");
@@ -206,11 +227,13 @@ namespace parti.admin {
                 string action = "del";
                 string sex = null;
                 string picture_url = null;
+                string status = null;
                 string renamePath = Server.MapPath (avartaUrl.Value.Replace ("~/", ""));
 
-                string result = _parti.EditTrainer (action, txtIDHidden.Value, txtName.Value, txtfaminame.Value, dtpBD.Value, sex, txtworkPlace.Value,
-                    txtPosition.Value, picture_url, txtUsername.Value, txtlv1.Value, txtlv2.Value, txtlv3.Value, txtlv4.Value, txtlv5.Value);
-
+                string result = _parti.EditTrainer (action, txtID.Value, txtNameLa.Value, txtNameEng.Value, dtpBD.Value, sex, status, txtVillage.Value,
+                    txtDistrict.Value, txtProvince.Value, txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
+                    txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, lblPicUrlPath.InnerText, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value,
+                    txtReferDoc3Hidd_I.Value, txtReferDoc4Hidd_I.Value, txtReferDoc5Hidd_I.Value, txtUsername.Value);
                 if (result == "e3") {
                     MessageBox.swalModal (this.Page, "info", "e3: ມີລະຫັດນີ້ໃນຖານຂໍ້ມູນແລ້ວ ລອງໃສ່ລະຫັດໃຫມ່...", "");
                 } else if (result == "e0") {

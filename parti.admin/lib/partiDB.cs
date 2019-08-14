@@ -37,7 +37,7 @@ namespace parti.admin.lib {
             public string id { get; set; }
             public string fullname_la { get; set; }
             public string fullname_eng { get; set; }
-            public string date_of_birth { get; set; }
+            public DateTime date_of_birth { get; set; }
             public string sex { get; set; }
             public string status { get; set; }
             public string village { get; set; }
