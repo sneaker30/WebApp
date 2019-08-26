@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace parti.admin.lib {
-    public class partiDB {
-        public class GetAuthen {
-            public int tid { get; set; }
-            public int id { get; set; }
+namespace parti.admin.lib
+{
+    public class partiDB
+    {
+        public class GetAuthen
+        {
+            public string tid { get; set; }
+            public string id { get; set; }
             public string username { get; set; }
             public string passwd { get; set; }
             public string rules { get; set; }
@@ -14,25 +17,29 @@ namespace parti.admin.lib {
             public string position { get; set; }
         }
 
-        public class SumYearlyCourse {
+        public class SumYearlyCourse
+        {
             public string course;
             public int total;
         }
 
-        public class GetUsers {
+        public class GetUsers
+        {
             public int id { get; set; }
             public string username { get; set; }
             public string passwd { get; set; }
             public string rules { get; set; }
         }
 
-        public class GetCourse {
+        public class GetCourse
+        {
             public int id { get; set; }
             public string name { get; set; }
             public string description { get; set; }
         }
 
-        public class GetTrainerList {
+        public class GetTrainerList
+        {
 
             public string id { get; set; }
             public string fullname_la { get; set; }
@@ -43,10 +50,10 @@ namespace parti.admin.lib {
             public string village { get; set; }
             public string district { get; set; }
             public string province { get; set; }
-            public string workplace { get; set; }
+            public string work_place { get; set; }
             public string department { get; set; }
             public string position { get; set; }
-            public string date_of_govermented { get; set; }
+            public DateTime date_of_govermented { get; set; }
             public string office_tel { get; set; }
             public string mobile_tel { get; set; }
             public string email { get; set; }
@@ -60,11 +67,12 @@ namespace parti.admin.lib {
             public string education_level { get; set; }
             public string education_major { get; set; }
             public string education_country { get; set; }
-            public string education_year { get; set; }
+            public string educated_year { get; set; }
             public string education_name { get; set; }
         }
 
-        public class GetUserProfile {
+        public class GetUserProfile
+        {
             public int id { get; set; } //user id
             public string name { get; set; } //trainer id
             public string faminame { get; set; }
@@ -81,7 +89,8 @@ namespace parti.admin.lib {
             public string lv5 { get; set; }
         }
 
-        public class GetTraineeList {
+        public class GetTraineeList
+        {
             public string id { get; set; }
             public string fullname_la { get; set; }
             public string fullname_eng { get; set; }
@@ -121,7 +130,8 @@ namespace parti.admin.lib {
             public string education_name { get; set; }
         }
 
-        public class GetTrainingList {
+        public class GetTrainingList
+        {
             public string id { get; set; }
             public string title { get; set; }
             public int course_id { get; set; }
@@ -136,28 +146,32 @@ namespace parti.admin.lib {
             public DateTime date_of_modified_date { get; set; }
         }
 
-        public class GetTraineeByTraining {
+        public class GetTraineeByTraining
+        {
             public string training_id { get; set; }
             public string trainee_id { get; set; }
             public string fullname { get; set; }
             public string work_place { get; set; }
         }
 
-        public class GetTrainerByTraining {
+        public class GetTrainerByTraining
+        {
             public string training_id { get; set; }
             public string trainer_id { get; set; }
             public string fullname { get; set; }
             public string work_place { get; set; }
         }
 
-        public class GetYearPlan {
+        public class GetYearPlan
+        {
             public int id { get; set; }
             public string year_plan { get; set; }
             public string course_id { get; set; }
             public int target { get; set; }
         }
 
-        public class GetCompareYearPlan {
+        public class GetCompareYearPlan
+        {
             public string PlanType { get; set; }
             public string CourseID { get; set; }
             public string CourseName { get; set; }
@@ -165,30 +179,80 @@ namespace parti.admin.lib {
             public string DoneTarget { get; set; }
         }
 
-        public class GetTrainingIDName {
+        public class GetTrainingIDName
+        {
             public string id { get; set; }
             public string title { get; set; }
         }
 
-        public class GetVillage {
+        public class GetVillage
+        {
             public string v_id { get; set; }
             public string v_name { get; set; }
             public string d_id { get; set; }
             public string p_id { get; set; }
         }
 
-        public class GetDistrict {
+        public class GetDistrict
+        {
             public string d_id { get; set; }
             public string d_name { get; set; }
             public string p_id { get; set; }
         }
 
-        public class GetProvince {
+        public class GetProvince
+        {
             public string p_id { get; set; }
             public string p_name { get; set; }
         }
 
-        public class RootObject {
+        public class GetTrainingExperience
+        {
+            public string training_id { get; set; }
+            public string title { get; set; }
+            public string int_or_ext { get; set; }
+            public string address { get; set; }
+            public DateTime training_date { get; set; }
+            public string trainee_id { get; set; }
+        }
+
+        public class GetTrainingExperience_Trainer
+        {
+            public string training_id { get; set; }
+            public string title { get; set; }
+            public string int_or_ext { get; set; }
+            public string address { get; set; }
+            public DateTime training_date { get; set; }
+            public string trainer_id { get; set; }
+        }
+
+        public class GetExperience
+        {
+            public string id { get; set; }
+            public string experience_id { get; set; }
+            public string responsibility { get; set; }
+            public string office { get; set; }
+            public string years { get; set; }
+        }
+
+        public class CheckTraineeForTraining
+        {
+            public string id { get; set; }
+            public string trainee_id { get; set; }
+            public string course_id { get; set; }
+            public string course_name { get; set; }
+            public string title { get; set; }
+            public string training_address { get; set; }
+            public DateTime training_date { get; set; }
+            public string code { get; set; }
+        }
+
+        public class RootObject
+        {
+            public List<CheckTraineeForTraining> CheckTraineeForTraining { get; set; }
+            public List<GetTrainingExperience_Trainer> GetTrainingExperience_Trainer { get; set; }
+            public List<GetExperience> GetExperience { get; set; }
+            public List<GetTrainingExperience> GetTrainingExperience { get; set; }
             public List<GetVillage> GetVillage { get; set; }
             public List<GetDistrict> GetDistrict { get; set; }
             public List<GetProvince> GetProvince { get; set; }

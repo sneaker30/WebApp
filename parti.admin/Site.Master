@@ -33,7 +33,7 @@
             Swal.fire({
                 type: actions,
                 title: 'ແຈ້ງເຕືອນ',
-                text: msgs,
+                html: msgs,
             }).then(result => {
                 if (result.value) {
                     if (currentPage != '') {
@@ -155,12 +155,12 @@
                     <a data-target="mobile-demo" class="sidenav-trigger"><i class="large material-icons black-text">menu</i></a>
                     <p class="hide-on-large-only hide-on-extra-large-only black-text">ລະບົບຄຸ້ມຄອງຂໍ້ມຸນການຝຶກອົບຮົມ</p>
                     <ul class="hide-on-med-and-down">
-                        <li><a id="menu1" href="Main" class="waves-effect waves-light"><i class="small material-icons black-text">home</i></a></li>
-                        <li><a id="menu2" href="YearPlans" class="waves-effect waves-light black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></li>
-                        <li><a id="menu3" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang black-text" data-target="dropdownTraining">ການຈັດຝຶກອົບຮົມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
-                        <li><a id="menu4" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang black-text" data-target="dropdownItemData">ຈັດການຂໍ້ມູນ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
-                        <li><a id="menu5" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang black-text" data-target="dropdownSurvey">ການປະເມີນ/ແບບສອບຖາມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
-                        <li><a id="menu6" class="dropdown-trigger waves-effect waves-light right hvr-icon-hang black-text" data-target="dropdownReport">ສັງລວມບົດລາຍງານຕ່າງໆ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu1" href="Main" class="waves-effect waves-teal"><i class="small material-icons black-text">home</i></a></li>
+                        <li><a id="menu2" href="YearPlans" class="waves-effect waves-teal black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></li>
+                        <li><a id="menu3" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownTraining">ການຈັດຝຶກອົບຮົມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu4" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownItemData">ຈັດການຂໍ້ມູນ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu5" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownSurvey">ການປະເມີນ/ແບບສອບຖາມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <li><a id="menu6" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownReport">ສັງລວມບົດລາຍງານຕ່າງໆ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                     <ul class="hide-on-med-and-down right">
                         <li><a class="dropdown-trigger right hvr-icon-hang" data-target="dropdownUser">&nbsp;&nbsp;&nbsp;
@@ -196,7 +196,7 @@
                 <li><a href="UserProfile" class="modal-trigger black-text">ຂໍ້ມູນສ່ວນຕົວ</a></li>
                 <li><a href="#modal3" class="modal-trigger black-text" onclick="SetTxTUName()">ປ່ຽນລະຫັດຜ່ານ</a></li>
                 <li class="divider"></li>
-                <li><a class="waves-effect waves-light red-text" runat="server" onserverclick="btLogout_Click">ອອກຈາກລະບົບ</a></li>
+                <li><a class="waves-effect waves-teal red-text darken-3" runat="server" onserverclick="btLogout_Click">ອອກຈາກລະບົບ</a></li>
             </ul>
             <%-- dropdown --%>
 
@@ -205,45 +205,45 @@
                 <li>
                     <div class="user-view">
                         <div class="background">
-                            <img src="https://i.pinimg.com/736x/c6/12/d4/c612d46c62c61249462744f81100121c--co-working-industrial-office.jpg">
+                            <img src="https://image.freepik.com/free-photo/aerial-view-business-data-analysis-graph_53876-13390.jpg">
                         </div>
                         <a>
                             <img class="circle hvr-grow-shadow" runat="server" id="imgSidenavUserAvatar" src="img/man.png" width="150" height="150"></a>
                         <h5>
-                            <a href="UserProfile" class="waves-effect waves-light">
+                            <a href="UserProfile" class="waves-effect waves-teal">
                                 <span runat="server" id="lblUsername" class="white-text" style="font-size: 18px;"></span>
                             </a>
                         </h5>
                         <a><span id="lblPosition" runat="server" class="white-text" style="font-size: 22px;"></span></a>
-                        <a href="#" class="waves-effect waves-light white-text right hvr-grow-shadow" runat="server" onserverclick="btLogout_Click"><i class="material-icons">exit_to_app</i></a>
+                        <a href="#" class="waves-effect waves-teal white-text right hvr-grow-shadow" runat="server" onserverclick="btLogout_Click"><i class="material-icons">exit_to_app</i></a>
                     </div>
                 </li>
                 <ul class="collapsible expandable">
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">home</i><a href="Main" class="black-text">ຫນ້າຫລັກ</a></div>
+                        <div class="collapsible-header"><i class="material-icons">home</i><a href="Main" class="black-text">ຫນ້າຫລັກ</a></div>
                     </li>
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">event_note</i><a href="YearPlans" class="black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></div>
+                        <div class="collapsible-header"><i class="material-icons">event_note</i><a href="YearPlans" class="black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></div>
                     </li>
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">assignment</i>ການຈັດຝຶກອົບຮົມ</div>
+                        <div class="collapsible-header"><i class="material-icons">assignment</i>ການຈັດຝຶກອົບຮົມ</div>
                         <div class="collapsible-body"><a href="Training" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການຝຶກອົບຮົມ</a></div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານການຝຶກອົບຮົມ</a></div>
                     </li>
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">info</i>ຈັດການຂໍ້ມູນ</div>
+                        <div class="collapsible-header"><i class="material-icons">info</i>ຈັດການຂໍ້ມູນ</div>
                         <div class="collapsible-body"><a href="Trainees" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</a></div>
                         <div class="collapsible-body"><a href="Trainers" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຄູຝຶກ</a></div>
                         <div class="collapsible-body"><a href="Course" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນຫລັກສູດ</a></div>
                         <div class="collapsible-body" id="navUser" runat="server"><a href="Users" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ຂໍ້ມູນບັນຊີຜູ້ໃຊ້</a></div>
                     </li>
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">poll</i>ການປະເມີນ/ແບບສອບຖາມ</div>
+                        <div class="collapsible-header"><i class="material-icons">poll</i>ການປະເມີນ/ແບບສອບຖາມ</div>
                         <div class="collapsible-body"><a href="Evaluation" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານສັງລວມການປະເມີນ/ແບບສອບຖາມ</a></div>
                     </li>
                     <li>
-                        <div class="collapsible-header waves-effect waves-light"><i class="material-icons">note</i>ສັງລວມບົດລາຍງານຕ່າງໆ</div>
+                        <div class="collapsible-header"><i class="material-icons">note</i>ສັງລວມບົດລາຍງານຕ່າງໆ</div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍສະຖາບັນ</a></div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍພາກສ່ວນອື່ນ</a></div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຖືກເຊີນໄປຂື້ນຫ້ອງໃຫ້ພາກສ່ວນອື່ນ</a></div>
@@ -256,7 +256,7 @@
 
         <%-- User Button --%>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large red tooltipped sidenav-trigger" data-position="left" data-tooltip="ເມນູລັດ" data-target="mobile-demo">
+            <a class="btn-floating btn-large red darken-3 tooltipped sidenav-trigger" data-position="left" data-tooltip="ເມນູລັດ" data-target="mobile-demo">
                 <i class="large material-icons">menu</i>
             </a>
             <ul>
@@ -338,6 +338,10 @@
             });
             $('.waves-button-input').addClass('white-text');
             $('.fixed-action-btn').floatingActionButton();
+            $('.collapsible').collapsible({
+                inDuration: 50,
+                outDuration: 50
+            });
         });
 
         function ScrUp() {
@@ -415,8 +419,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
-            var collapsibleElem = document.querySelector('.collapsible');
-            var collapsibleInstance = M.Collapsible.init(collapsibleElem);
         });
 
         function DisablebtnChgPWD() {

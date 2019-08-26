@@ -3,6 +3,7 @@ using parti.admin.lib;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -13,9 +14,7 @@ namespace parti.admin
     {
         public static List<GetTraineeList> TraineeLists = new List<GetTraineeList>();
         public static Page _Page = new Page();
-        public static List<GetVillage> listVillage = new List<GetVillage>();
-        public static List<GetDistrict> listDistrict = new List<GetDistrict>();
-        public static List<GetProvince> listProvince = new List<GetProvince>();
+        public static List<GetTrainingExperience> listTrainingExperiences = new List<GetTrainingExperience>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,7 +81,6 @@ namespace parti.admin
                                        "href='#modalTrainee' data-position='left' data-tooltip='ແກ້ໄຂຂໍ້ມູນ' " +
                                        "id='" + (i - 1) + "' onclick='SetTraineeInfo(this.id)'>" +
                                        "<i class='material-icons'>edit</i></button></div></div></td></tr>";
-
                     tbBody.Controls.Add(_tbody);
                     i++;
                 }
@@ -131,7 +129,6 @@ namespace parti.admin
             public string educated_year { get; set; }
             public string education_name { get; set; }
 
-
             public GetTraineeList(string _id, string _fullname_la, string _fullname_eng, DateTime _date_of_birth, string _sex, string _status, string _village,
                 string _district, string _province, string _work_place, string _department, string _position, DateTime _date_of_govermented, string _office_tel,
                 string _mobile_tel, string _email, string _avatar_url, string _approval_id, string _doc1_url, string _doc2_url, string _doc3_url, string _doc4_url,
@@ -178,7 +175,6 @@ namespace parti.admin
                 this.education_name = _education_name;
             }
         }
-
         protected void btnDel_OnClick(object sender, EventArgs e)
         {
             try
@@ -187,11 +183,10 @@ namespace parti.admin
                 string action = "del";
                 string sex = null;
                 string status = null;
-                string picture_url = null;
                 string renamePath = Server.MapPath(txtAvatarHidd_I.Value);
 
                 var result = _parti.EditTrainee(action, txtID.Value, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
-                    status, txtVillage.Value, txtDistrict.Value, txtProvince.Value,
+                    status, txtVill.Value, txtDistrict.Value, txtProvince.Value,
                     txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
                     txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd_I.Value,
                     txtID.Value, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value, txtReferDoc3Hidd_I.Value,
@@ -237,6 +232,7 @@ namespace parti.admin
                 string status = null;
                 string picture_url = null;
                 string txtid = null;
+
                 if (string.IsNullOrEmpty(imageUpload.PostedFile.FileName) == false)
                 {
                     var imgfile = Path.GetFileName(imageUpload.PostedFile.FileName);
@@ -357,7 +353,7 @@ namespace parti.admin
 
                 txtid = txtID.Value;
                 var result = parti.EditTrainee(action, txtid, txtNameLA.Value, txtNameEng.Value, dtpBD.Value, sex,
-                    status, txtVillage.Value, txtDistrict.Value, txtProvince.Value,
+                    status, txtVill.Value, txtDistrict.Value, txtProvince.Value,
                     txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
                     txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd_I.Value,
                     txtid, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value, txtReferDoc3Hidd_I.Value,
@@ -508,123 +504,35 @@ namespace parti.admin
             }
         }
 
-        public class GetVillage
+        public class GetTrainingExperience
         {
-            public string v_id { get; set; }
-            public string v_name { get; set; }
-            public string d_id { get; set; }
-            public string p_id { get; set; }
+            public string training_id { get; set; }
+            public string title { get; set; }
+            public string int_or_ext { get; set; }
+            public string address { get; set; }
+            public string training_date { get; set; }
+            public string trainee_id { get; set; }
 
-            public GetVillage(string v_id, string v_name, string d_id, string p_id)
+            public GetTrainingExperience(string trainingId, string title, string intOrExt, string address, DateTime trainingDate, string traineeId)
             {
-                this.v_id = v_id;
-                this.v_name = v_name;
-                this.d_id = d_id;
-                this.p_id = p_id;
-            }
-        }
-
-        public class GetDistrict
-        {
-            public string d_id { get; set; }
-            public string d_name { get; set; }
-            public string p_id { get; set; }
-
-            public GetDistrict(string d_id, string d_name, string p_id)
-            {
-                this.d_id = d_id;
-                this.d_name = d_name;
-                this.p_id = p_id;
-            }
-        }
-
-        public class GetProvince
-        {
-            public string p_id { get; set; }
-            public string p_name { get; set; }
-
-            public GetProvince(string p_id, string p_name)
-            {
-                this.p_id = p_id;
-                this.p_name = p_name;
+                training_id = trainingId;
+                this.title = title;
+                int_or_ext = intOrExt;
+                this.address = address;
+                training_date = trainingDate.ToString("yyyy-MM-dd");
+                trainee_id = traineeId;
             }
         }
 
         [WebMethod]
-        public static List<GetVillage> GetVillages()
+        public static List<GetTrainingExperience> GetTrainingExperiences(string id)
         {
-            listVillage.Clear();
+            listTrainingExperiences.Clear();
             wcf.parti.Service1 _parti = new wcf.parti.Service1();
             partiDB.RootObject rootObject = new partiDB.RootObject();
-            if (listVillage.Count == 0)
+            if (listTrainingExperiences.Count == 0)
             {
-                string json_str = _parti.GetVillage();
-                if (json_str == "e0")//code error
-                {
-                    MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
-                }
-                else if (json_str == "e1")//no data found
-                {
-                    MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
-                }
-                else if (json_str == "e2")//can't connect databbase
-                {
-                    MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
-                }
-                else
-                {
-                    rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                    foreach (var vl in rootObject.GetVillage)
-                    {
-                        listVillage.Add(new GetVillage(vl.v_id, vl.v_name, vl.d_id, vl.p_id));
-                    }
-                }
-            }
-            return listVillage;
-        }
-
-        [WebMethod]
-        public static List<GetDistrict> GetDistricts()
-        {
-            listDistrict.Clear();
-            wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            partiDB.RootObject rootObject = new partiDB.RootObject();
-            if (listDistrict.Count == 0)
-            {
-                string json_str = _parti.GetDistrict();
-                if (json_str == "e0")//code error
-                {
-                    MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
-                }
-                else if (json_str == "e1")//no data found
-                {
-                    MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
-                }
-                else if (json_str == "e2")//can't connect databbase
-                {
-                    MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
-                }
-                else
-                {
-                    rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                    foreach (var vl in rootObject.GetDistrict)
-                    {
-                        listDistrict.Add(new GetDistrict(vl.d_id, vl.d_name, vl.p_id));
-                    }
-                }
-            }
-            return listDistrict;
-        }
-
-        [WebMethod]
-        public static List<GetProvince> GetProvinces()
-        {
-            listProvince.Clear();
-            wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            partiDB.RootObject rootObject = new partiDB.RootObject();
-            if (listProvince.Count == 0)
-            {
-                string json_str = _parti.GetProvince();
+                string json_str = _parti.GetTrainingExperience(id);
                 if (json_str == "e0")//code error
                 {
                     MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
@@ -640,13 +548,14 @@ namespace parti.admin
                 else
                 {
                     rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                    foreach (var vl in rootObject.GetProvince)
+                    foreach (var vl in rootObject.GetTrainingExperience)
                     {
-                        listProvince.Add(new GetProvince(vl.p_id, vl.p_name));
+                        listTrainingExperiences.Add(new GetTrainingExperience(vl.training_id, 
+                            vl.title, vl.int_or_ext, vl.address, vl.training_date, vl.trainee_id));
                     }
                 }
             }
-            return listProvince;
+            return listTrainingExperiences;
         }
     }
 }

@@ -193,6 +193,15 @@ namespace parti.admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdDivorce;
         
         /// <summary>
+        /// txtUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUsername;
+        
+        /// <summary>
         /// txtEducation_level control.
         /// </summary>
         /// <remarks>
@@ -245,15 +254,6 @@ namespace parti.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtEducated_year;
-        
-        /// <summary>
-        /// txtUsername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUsername;
         
         /// <summary>
         /// txtWork_place control.
@@ -344,33 +344,6 @@ namespace parti.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtEx_Years;
-        
-        /// <summary>
-        /// txtAvatar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload txtAvatar;
-        
-        /// <summary>
-        /// txtAvatarHidd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtAvatarHidd;
-        
-        /// <summary>
-        /// txtAvatarHidd_I control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd_I;
         
         /// <summary>
         /// txtReferDoc1 control.
@@ -542,5 +515,14 @@ namespace parti.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDel;
+        
+        /// <summary>
+        /// txtAvatarHidd_I control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtAvatarHidd_I;
     }
 }

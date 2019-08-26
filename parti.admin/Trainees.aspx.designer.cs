@@ -157,13 +157,13 @@ namespace parti.admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdDivorce;
         
         /// <summary>
-        /// txtVillage control.
+        /// txtVill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtVillage;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtVill;
         
         /// <summary>
         /// txtDistrict control.

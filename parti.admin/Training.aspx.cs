@@ -20,8 +20,34 @@ namespace parti.admin
         public static List<GetTraineeByTraining> TraineeByTrainings = new List<GetTraineeByTraining>();
         public static List<GetTrainerByTraining> TrainerByTrainings = new List<GetTrainerByTraining>();
         public static List<Course.GetCourse> gridData = new List<Course.GetCourse>();
+        public static List<GetVillage> listVillage = new List<GetVillage>();
         public static List<GetDistrict> listDistrict = new List<GetDistrict>();
         public static List<GetProvince> listProvince = new List<GetProvince>();
+        public static List<CheckTraineeForTraining> listCheckTraineeForTraining = new List<CheckTraineeForTraining>();
+
+        public class CheckTraineeForTraining
+        {
+            public string id { get; set; }
+            public string trainee_id { get; set; }
+            public string course_id { get; set; }
+            public string course_name { get; set; }
+            public string title { get; set; }
+            public string training_address { get; set; }
+            public string training_date { get; set; }
+            public string code { get; set; }
+
+            public CheckTraineeForTraining(string id, string trainee_id, string course_id, string course_name, string title, string training_address, DateTime training_date, string code)
+            {
+                this.id = id;
+                this.trainee_id = trainee_id;
+                this.course_id = course_id;
+                this.course_name = course_name;
+                this.title = title;
+                this.training_address = training_address;
+                this.training_date = training_date.ToString("yyyy-MM-dd");
+                this.code = code;
+            }
+        }
 
         public class GetTrainingList
         {
@@ -90,6 +116,22 @@ namespace parti.admin
             }
         }
 
+        public class GetVillage
+        {
+            public string v_id { get; set; }
+            public string v_name { get; set; }
+            public string d_id { get; set; }
+            public string p_id { get; set; }
+
+            public GetVillage(string v_id, string v_name, string d_id, string p_id)
+            {
+                this.v_id = v_id;
+                this.v_name = v_name;
+                this.d_id = d_id;
+                this.p_id = p_id;
+            }
+        }
+
         public class GetDistrict
         {
             public string d_id { get; set; }
@@ -154,14 +196,10 @@ namespace parti.admin
             {
                 int i = 1;
                 rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                Parallel.ForEach(rootObject.GetTrainingList, vl =>
-                {
-
-                });
                 foreach (var vl in rootObject.GetTrainingList)
                 {
                     TrainingLists.Add(new GetTrainingList(vl.id, vl.title, vl.course_id, vl.course_name, vl.int_or_ext,
-                        vl.training_address, vl.training_district, vl.training_province, vl.training_days, vl.training_date, 
+                        vl.training_address, vl.training_district, vl.training_province, vl.training_days, vl.training_date,
                         vl.description, vl.date_of_modified_date));
                     //Render Card Training Main
                     var MMMM = vl.training_date.ToString("MMMM");
@@ -221,7 +259,7 @@ namespace parti.admin
                                        "<p>" + vl.training_address + "</p>" +
                                        "<a class='tooltipped' " +
                                        "data-position='right' data-tooltip='ລົບ' name='" + vl.id + "' id='" + vl.training_date.ToString("yyyy-MM-dd") + "' " +
-                                       "onclick='DelTraining(this.name, this.id)'><i class='material-icons'>delete</i></a>" +
+                                       "onclick='DelTraining(this.name, this.id)'><i class='material-icons red-text darken-3'>delete</i></a>" +
                                        "</div>" +
                                        "</div>";
                     cardTraining.Controls.Add(_tbody);
@@ -254,22 +292,22 @@ namespace parti.admin
             {
                 int i = 1;
                 rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                Parallel.ForEach(rootObject.GetTrainerList, vl =>
-                {
+                //Parallel.ForEach(rootObject.GetTrainerList, vl =>
+                //{
 
-                });
+                //});
                 foreach (var vl in rootObject.GetTrainerList)
                 {
                     TrainerLists.Add(new Trainers.GetTrainerList(vl.id, vl.fullname_la, vl.fullname_eng, vl.date_of_birth, vl.sex, vl.status, vl.village, vl.district,
-                        vl.province, vl.workplace, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email,
+                        vl.province, vl.work_place, vl.department, vl.position, vl.date_of_govermented, vl.office_tel, vl.mobile_tel, vl.email,
                         vl.avatar_url, vl.doc1_url, vl.doc2_url, vl.doc3_url, vl.doc4_url, vl.doc5_url, vl.username, vl.education_level, vl.education_major,
-                        vl.education_country,vl.education_year, vl.education_name));
+                        vl.education_country, vl.educated_year, vl.education_name));
                     //Render Table Trainer Choice
                     HtmlElement _tbody = new HtmlElement();
                     HtmlElement _tbody2 = new HtmlElement();
 
                     _tbody.InnerHtml = "<tr id='1Tner" + i + "' class='trTrainer'>" +
-                                       "<td>" + vl.fullname_la + ", " + vl.workplace + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.work_place + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 blue tooltipped " +
                                        "hvr-grow-shadow' " +
@@ -279,7 +317,7 @@ namespace parti.admin
                                        "<input type='hidden' value='" + vl.id + "' id='i1Tner" + i + "'/></tr>";
 
                     _tbody2.InnerHtml = "<tr id='2Tner" + i + "' hidden>" +
-                                       "<td>" + vl.fullname_la + ", " + vl.workplace + ".</td>" +
+                                       "<td>" + vl.fullname_la + ", " + vl.work_place + ".</td>" +
                                        "<td><div class='row'><div class='col'>" +
                                        "<button type='button' class='btn-floating btn-small z-depth-3 red darken-3 tooltipped " +
                                        "hvr-grow-shadow' " +
@@ -439,7 +477,7 @@ namespace parti.admin
         {
             string result = null;
             wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            string json_str = _parti.EditTrainings(action, id, title, course_id, int_or_ext, training_address, training_district, training_province, 
+            string json_str = _parti.EditTrainings(action, id, title, course_id, int_or_ext, training_address, training_district, training_province,
                 training_days, training_date, description, date_of_modified_data);
             if (json_str == "e0")//code error
             {
@@ -455,7 +493,28 @@ namespace parti.admin
             }
             else if (json_str == "e5")
             {
-                result = "e5:ຈັດການຂໍ້ມູນສຳເລັດ.";
+                result = "e5:ບັນທຶກຕາລາງການຝຶກອົບຮົມເຂົ້າລະບົບຮຽບຮ້ອຍ!";
+            }
+            else if (json_str == "e3")
+            {
+                json_str = _parti.EditTrainings("edit", id, title, course_id, int_or_ext, training_address, training_district, training_province,
+                training_days, training_date, description, date_of_modified_data);
+                if (json_str == "e0")//code error
+                {
+                    result = "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.";
+                }
+                else if (json_str == "e1")//no data found
+                {
+                    result = "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.";
+                }
+                else if (json_str == "e2")//can't connect databbase
+                {
+                    result = "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.";
+                }
+                else if (json_str == "e5")
+                {
+                    result = "e5:ບັນທຶກຕາລາງການຝຶກອົບຮົມເຂົ້າລະບົບຮຽບຮ້ອຍ!";
+                }
             }
 
             return result;
@@ -523,6 +582,39 @@ namespace parti.admin
         }
 
         [WebMethod]
+        public static List<GetVillage> GetVillages(string v_name)
+        {
+            listVillage.Clear();
+            wcf.parti.Service1 _parti = new wcf.parti.Service1();
+            partiDB.RootObject rootObject = new partiDB.RootObject();
+            if (listVillage.Count == 0)
+            {
+                string json_str = _parti.GetVillage(v_name);
+                if (json_str == "e0")//code error
+                {
+                    MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
+                }
+                else if (json_str == "e1")//no data found
+                {
+                    MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
+                }
+                else if (json_str == "e2")//can't connect databbase
+                {
+                    MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
+                }
+                else
+                {
+                    rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
+                    foreach (var vl in rootObject.GetVillage)
+                    {
+                        listVillage.Add(new GetVillage(vl.v_id, vl.v_name, vl.d_id, vl.p_id));
+                    }
+                }
+            }
+            return listVillage;
+        }
+
+        [WebMethod]
         public static List<GetDistrict> GetDistricts()
         {
             listDistrict.Clear();
@@ -586,6 +678,39 @@ namespace parti.admin
                 }
             }
             return listProvince;
+        }
+
+        [WebMethod]
+        public static List<CheckTraineeForTraining> checkTraineeForTrainings(string trainee_id, string course_id)
+        {
+            listCheckTraineeForTraining.Clear();
+            wcf.parti.Service1 _parti = new wcf.parti.Service1();
+            partiDB.RootObject rootObject = new partiDB.RootObject();
+
+            string json_str = _parti.CheckTraineeForTraining(trainee_id, course_id);
+            if (json_str == "e0")//code error
+            {
+                MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
+            }
+            else if (json_str == "e1")//no data found
+            {
+                MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
+            }
+            else if (json_str == "e2")//can't connect databbase
+            {
+                MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
+            }
+            else
+            {
+                rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
+                foreach (var vl in rootObject.CheckTraineeForTraining)
+                {
+                    listCheckTraineeForTraining.Add(new CheckTraineeForTraining(vl.id, vl.trainee_id, vl.course_id, vl.course_name,
+                        vl.title, vl.training_address, vl.training_date, vl.code));
+                }
+            }
+
+            return listCheckTraineeForTraining;
         }
 
     }

@@ -201,16 +201,16 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m4 l4">
-                                <label for="txtVillage">ບ້ານ</label>
-                                <input type="text" id="txtVillage" runat="server" class="validate autocomplete laotxt" required autocomplete="off" />
+                                <label for="txtVil">ບ້ານ</label>
+                                <input type="text" id="txtVill" runat="server" class="validate laotxt autocomplete" required autocomplete="off" onkeyup="GetVill(this.value)" />
                             </div>
                             <div class="input-field col s12 m4 l4">
                                 <label for="txtDistrict">ເມືອງ</label>
-                                <input type="text" id="txtDistrict" runat="server" class="validate autocomplete laotxt" required autocomplete="off" />
+                                <input type="text" id="txtDistrict" runat="server" class="validate laotxt autocomplete" required autocomplete="off" />
                             </div>
                             <div class="input-field col s12 m4 l4">
                                 <label for="txtProvince">ແຂວງ</label>
-                                <input type="text" id="txtProvince" runat="server" class="validate autocomplete laotxt" required autocomplete="off" />
+                                <input type="text" id="txtProvince" runat="server" class="validate laotxt autocomplete" required autocomplete="off" />
                             </div>
                         </div>
                     </div>
@@ -396,20 +396,13 @@
                             <thead>
                                 <tr>
                                     <th class="col s2 m2 l2 grey-text">ລ/ດ</th>
-                                    <th class="col s4 m4 l4 grey-text">ຫົວຂໍ້ຝຶກອົບຮົມ</th>
+                                    <th class="col s3 m3 l3 grey-text">ຫົວຂໍ້ຝຶກອົບຮົມ</th>
                                     <th class="col s2 m2 l2 grey-text">ຈັດໂດຍ</th>
-                                    <th class="col s2 m2 l2 grey-text">ສະຖານທີ່ຈັດ</th>
+                                    <th class="col s3 m3 l3 grey-text">ສະຖານທີ່ຈັດ</th>
                                     <th class="col s2 m2 l2 grey-text">ວັນທີ-ເດືອນ-ປີ</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                            <tbody id="tbody">
                             </tbody>
                         </table>
                     </div>
@@ -440,41 +433,22 @@
 
     <%-- JS --%>
     <script type="text/javascript">
-
         var itemVillage = {};
         var itemDistrict = {};
         var itemProvince = {};
 
-        setTimeout(function () {
-            GetAutocompleteVil();
-            $('#<%: txtVillage.ClientID %>.autocomplete').autocomplete({
-                data: itemVillage,
-                limit: 20, onAutocomplete: function (val) { }, minLength: 2
-            });
-            GetAutocompleteDis();
-            $('#<%: txtDistrict.ClientID %>.autocomplete').autocomplete({
-                data: itemDistrict,
-                limit: 20, onAutocomplete: function (val) { }, minLength: 2
-            });
-            GetAutocompletePro();
-            $('#<%: txtProvince.ClientID %>.autocomplete').autocomplete({
-                data: itemProvince,
-                limit: 10, onAutocomplete: function (val) { }, minLength: 2
-            });
-        }, 2000);
-
-        function GetAutocompleteVil() {
+        function GetAutocompleteVill(v_name) {
             $.ajax({
                 type: "POST",
                 url: "<%: ResolveUrl("Training.aspx/GetVillages") %>",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                data: "{v_name:'" + v_name + "'}",
                 success: function (response) {
                     var obj = response.d;
                     $.each(obj,
                         function (key, value) {
                             itemVillage['' + value.v_name + ''] = null;
-                            alert('Village');
                         });
                 },
                 failure: function (response) {
@@ -562,7 +536,33 @@
                 var thefile = document.getElementById('<%: imageUpload.ClientID %>');
                 document.getElementById('<%: txtAvatarHidd_I.ClientID %>').Value = thefile.value;
             });
+
+            GetAutocompleteVill('');
+            $('#<%: txtVill.ClientID %>.autocomplete').autocomplete({
+                data: itemVillage,
+                limit: 10
+            });
+
+            GetAutocompleteDis();
+            $('#<%: txtDistrict.ClientID %>.autocomplete').autocomplete({
+                data: itemDistrict,
+                limit: 10
+            });
+            GetAutocompletePro();
+            $('#<%: txtProvince.ClientID %>.autocomplete').autocomplete({
+                data: itemProvince,
+                limit: 10
+            });
         });
+
+        function GetVill(txt) {
+            GetAutocompleteVill(txt);
+            $('#<%: txtVill.ClientID %>.autocomplete').autocomplete({
+                data: itemVillage,
+                limit: 10
+            });
+            $('#<%: txtVill.ClientID %>.autocomplete').autocomplete('open');
+        }
 
         function ScrollDown() {
             $('html,body').animate({ scrollTop: 9999 }, 'slow');
@@ -581,6 +581,37 @@
             }
         }
 
+        function GetTrainingExp(id) {
+            $.ajax({
+                type: "POST",
+                url: "<%: ResolveUrl("Trainees.aspx/GetTrainingExperiences") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{id:" + id + "}",
+                success: function (response) {
+                    var obj = response.d;
+                    var i = 1;
+                    $.each(obj,
+                        function (key, value) {
+                            var IntOut = value.int_or_ext;
+                            if (IntOut === "int") {
+                                IntOut = "ຈັດພາຍໃນສະຖາບັນ";
+                            } else if (IntOut === "ext") {
+                                IntOut = "ຈັດພາຍໃນສະຖາບັນ";
+                            }
+                            var element = "<tr><td class='col s2 m2 l2 grey-text'>" + i + "</td><td  class='col s3 m3 l3 grey-text'>" +
+                                value.title + "</td><td class='col s2 m2 l2 grey-text'>" + IntOut + "</td><td class='col s3 m3 l3 grey-text'>" +
+                                value.address + "</td><td class='col s2 m2 l2 grey-text'>" + value.training_date + "</td></tr>";
+                            i++;
+                            document.getElementById("tbody").insertAdjacentHTML("beforeend", element);
+                        });
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+
         function SetTraineeInfo(id) {
             var traineeID = id;
             if (traineeID == "-1") {
@@ -597,6 +628,7 @@
                     success: function (response) {
                         var obj = response.d;
                         document.getElementById("<%: txtID.ClientID %>").value = obj.id;
+                        GetTrainingExp(obj.id);
                         document.getElementById("<%: txtNameLA.ClientID %>").value = obj.fullname_la;
                         document.getElementById("<%: txtNameEng.ClientID %>").value = obj.fullname_eng;
                         document.getElementById("<%: dtpBD.ClientID %>").value = obj.date_of_birth;
@@ -612,7 +644,7 @@
                         } else if (obj.status === "m") {
                             document.getElementById("<%: rdMarried.ClientID %>").setAttribute("checked", "checked");
                         }
-                        document.getElementById("<%: txtVillage.ClientID %>").value = obj.village;
+                        document.getElementById("<%: txtVill.ClientID %>").value = obj.village;
                         document.getElementById("<%: txtDistrict.ClientID %>").value = obj.district;
                         document.getElementById("<%: txtProvince.ClientID %>").value = obj.province;
                         document.getElementById("<%: txtWork_place.ClientID %>").value = obj.work_place;
@@ -666,7 +698,7 @@
             document.getElementById("<%: txtNameLA.ClientID %>").value = "";
             document.getElementById("<%: txtNameEng.ClientID %>").value = "";
             document.getElementById("<%: dtpBD.ClientID %>").value = "";
-            document.getElementById("<%: txtVillage.ClientID %>").value = "";
+            document.getElementById("<%: txtVill.ClientID %>").value = "";
             document.getElementById("<%: txtDistrict.ClientID %>").value = "";
             document.getElementById("<%: txtProvince.ClientID %>").value = "";
             document.getElementById("<%: txtWork_place.ClientID %>").value = "";

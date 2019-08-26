@@ -175,8 +175,21 @@
     <Content Include="404.aspx" />
     <Content Include="500.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="avatar\1.jpeg" />
+    <Content Include="avatar\11.png" />
+    <Content Include="avatar\2.png" />
+    <Content Include="avatar\3.png" />
+    <Content Include="avatar\321.png" />
+    <Content Include="avatar\ABC.jpeg" />
+    <Content Include="avatar\admin.ico" />
+    <Content Include="avatar\admin.jpeg" />
+    <Content Include="avatar\admin.png" />
+    <Content Include="avatar\admin1.jpeg" />
     <Content Include="avatar\cp.jpg" />
+    <Content Include="avatar\itrp.jpeg" />
     <Content Include="avatar\pea.jpg" />
+    <Content Include="avatar\q.1.jpg" />
+    <Content Include="avatar\test1.jpeg" />
     <Content Include="avatar\user.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\addons\datatables-select.css" />
@@ -548,13 +561,12 @@
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
-    <Content Include="img\4.png" />
+    <Content Include="img\4.jpg" />
     <Content Include="img\5.jpg" />
-    <Content Include="img\6.png" />
+    <Content Include="img\6.jpg" />
     <Content Include="img\7.jpg" />
     <Content Include="img\avatar.png" />
     <Content Include="img\famale.png" />
-    <Content Include="img\thumbbnail.svg" />
     <Content Include="Main.aspx" />
     <Content Include="favicon2.ico" />
     <Content Include="Global.asax" />
@@ -1268,6 +1280,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controller\" />
     <Folder Include="traineedocs\" />
+    <Folder Include="trainerdocs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
