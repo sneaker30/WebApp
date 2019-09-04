@@ -247,8 +247,38 @@ namespace parti.admin.lib
             public string code { get; set; }
         }
 
+        public class GetQTitle
+        {
+            public string t_id { get; set; }
+            public string title_name { get; set; }
+            public string training_id { get; set; }
+            public DateTime date_of_modified_data { get; set; }
+            public string q_type { get; set; }
+        }
+
+        public class GetQQuestion
+        {
+            public string q_id { get; set; }
+            public string question_text { get; set; }
+            public string t_id { get; set; }
+            public string date_of_modified_date { get; set; }
+        }
+
+        public class GetQAnswer
+        {
+            public string a_id { get; set; }
+            public string answer_text { get; set; }
+            public string q_id { get; set; }
+            public string t_id { get; set; }
+            public string status { get; set; }
+            public string date_of_modified_date { get; set; }
+        }
+
         public class RootObject
         {
+            public List<GetQAnswer> GetQAnswer { get; set; }
+            public List<GetQQuestion> GetQQuestion { get; set; }
+            public List<GetQTitle> GetQTitle { get; set; }
             public List<CheckTraineeForTraining> CheckTraineeForTraining { get; set; }
             public List<GetTrainingExperience_Trainer> GetTrainingExperience_Trainer { get; set; }
             public List<GetExperience> GetExperience { get; set; }

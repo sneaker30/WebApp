@@ -977,7 +977,6 @@
     <Content Include="dist\fonts\dropify.eot" />
     <Content Include="dist\fonts\dropify.ttf" />
     <Content Include="dist\fonts\dropify.woff" />
-    <Content Include="TestForkRepotoOrg.html" />
     <Content Include="YearPlans.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
@@ -1255,7 +1254,6 @@
     <Compile Include="Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ValuesController1.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

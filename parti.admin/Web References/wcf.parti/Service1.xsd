@@ -377,6 +377,7 @@
         <xs:element minOccurs="0" name="title_name" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="training_id" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="created_date" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="q_type" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="date_of_modified_data" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -610,6 +611,48 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CheckTraineeForTrainingResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQTitle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQTitleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetQTitleResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQQuestion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQQuestionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetQQuestionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQAnswer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQAnswerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetQAnswerResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

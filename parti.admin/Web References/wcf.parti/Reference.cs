@@ -101,6 +101,12 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback CheckTraineeForTrainingOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetQTitleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetQQuestionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetQAnswerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -246,6 +252,15 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event CheckTraineeForTrainingCompletedEventHandler CheckTraineeForTrainingCompleted;
+        
+        /// <remarks/>
+        public event GetQTitleCompletedEventHandler GetQTitleCompleted;
+        
+        /// <remarks/>
+        public event GetQQuestionCompletedEventHandler GetQQuestionCompleted;
+        
+        /// <remarks/>
+        public event GetQAnswerCompletedEventHandler GetQAnswerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1186,24 +1201,25 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditQTitle", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EditQTitle([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string title_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string training_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string created_date, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_modified_data) {
+        public string EditQTitle([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string title_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string training_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string created_date, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_modified_data) {
             object[] results = this.Invoke("EditQTitle", new object[] {
                         action,
                         t_id,
                         title_name,
                         training_id,
                         created_date,
+                        q_type,
                         date_of_modified_data});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string date_of_modified_data) {
-            this.EditQTitleAsync(action, t_id, title_name, training_id, created_date, date_of_modified_data, null);
+        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string q_type, string date_of_modified_data) {
+            this.EditQTitleAsync(action, t_id, title_name, training_id, created_date, q_type, date_of_modified_data, null);
         }
         
         /// <remarks/>
-        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string date_of_modified_data, object userState) {
+        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string q_type, string date_of_modified_data, object userState) {
             if ((this.EditQTitleOperationCompleted == null)) {
                 this.EditQTitleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditQTitleOperationCompleted);
             }
@@ -1213,6 +1229,7 @@ namespace parti.admin.wcf.parti {
                         title_name,
                         training_id,
                         created_date,
+                        q_type,
                         date_of_modified_data}, this.EditQTitleOperationCompleted, userState);
         }
         
@@ -1702,6 +1719,96 @@ namespace parti.admin.wcf.parti {
             if ((this.CheckTraineeForTrainingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckTraineeForTrainingCompleted(this, new CheckTraineeForTrainingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetQTitle", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetQTitle([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id) {
+            object[] results = this.Invoke("GetQTitle", new object[] {
+                        t_id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetQTitleAsync(string t_id) {
+            this.GetQTitleAsync(t_id, null);
+        }
+        
+        /// <remarks/>
+        public void GetQTitleAsync(string t_id, object userState) {
+            if ((this.GetQTitleOperationCompleted == null)) {
+                this.GetQTitleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetQTitleOperationCompleted);
+            }
+            this.InvokeAsync("GetQTitle", new object[] {
+                        t_id}, this.GetQTitleOperationCompleted, userState);
+        }
+        
+        private void OnGetQTitleOperationCompleted(object arg) {
+            if ((this.GetQTitleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetQTitleCompleted(this, new GetQTitleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetQQuestion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetQQuestion([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id) {
+            object[] results = this.Invoke("GetQQuestion", new object[] {
+                        t_id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetQQuestionAsync(string t_id) {
+            this.GetQQuestionAsync(t_id, null);
+        }
+        
+        /// <remarks/>
+        public void GetQQuestionAsync(string t_id, object userState) {
+            if ((this.GetQQuestionOperationCompleted == null)) {
+                this.GetQQuestionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetQQuestionOperationCompleted);
+            }
+            this.InvokeAsync("GetQQuestion", new object[] {
+                        t_id}, this.GetQQuestionOperationCompleted, userState);
+        }
+        
+        private void OnGetQQuestionOperationCompleted(object arg) {
+            if ((this.GetQQuestionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetQQuestionCompleted(this, new GetQQuestionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetQAnswer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetQAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id) {
+            object[] results = this.Invoke("GetQAnswer", new object[] {
+                        t_id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetQAnswerAsync(string t_id) {
+            this.GetQAnswerAsync(t_id, null);
+        }
+        
+        /// <remarks/>
+        public void GetQAnswerAsync(string t_id, object userState) {
+            if ((this.GetQAnswerOperationCompleted == null)) {
+                this.GetQAnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetQAnswerOperationCompleted);
+            }
+            this.InvokeAsync("GetQAnswer", new object[] {
+                        t_id}, this.GetQAnswerOperationCompleted, userState);
+        }
+        
+        private void OnGetQAnswerOperationCompleted(object arg) {
+            if ((this.GetQAnswerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetQAnswerCompleted(this, new GetQAnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2694,6 +2801,84 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal CheckTraineeForTrainingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void GetQTitleCompletedEventHandler(object sender, GetQTitleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetQTitleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetQTitleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void GetQQuestionCompletedEventHandler(object sender, GetQQuestionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetQQuestionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetQQuestionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void GetQAnswerCompletedEventHandler(object sender, GetQAnswerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetQAnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetQAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

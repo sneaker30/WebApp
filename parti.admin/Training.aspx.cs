@@ -260,8 +260,8 @@ namespace parti.admin
                                        "<a class='tooltipped' " +
                                        "data-position='right' data-tooltip='ລົບ' name='" + vl.id + "' id='" + vl.training_date.ToString("yyyy-MM-dd") + "' " +
                                        "onclick='DelTraining(this.name, this.id)'><i class='material-icons red-text darken-3'>delete</i></a>" +
-                                       "</div>" +
-                                       "</div>";
+                                       "<p class='gray-text center' style='font-size:xx-small'>id:" + vl.id + "</p>" +
+                                       "</div></div>";
                     cardTraining.Controls.Add(_tbody);
                     i++;
                 }//);
