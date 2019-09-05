@@ -343,8 +343,7 @@ namespace parti.admin
                 {
                     status = "s";
                 }
-
-                txtid = txtIDHidden.Value;
+                
                 var result = parti.EditTrainer(action, txtid, txtNameLa.Value, txtNameEng.Value, dtpBD.Value, sex, status, txtVillage.Value,
                     txtDistrict.Value, txtProvince.Value, txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
                     txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd_I.Value, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value,

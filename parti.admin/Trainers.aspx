@@ -288,7 +288,7 @@
                                     <input type="text" id="txtPosition" runat="server" class="validate laotxt" required />
                                 </div>
 
-                                <div class="input-field col s12 m6 l6">
+                                <div class="col s12 m6 l6">
                                     <label for="txtDate_of_govermented">ວັນສັງກັດລັດ</label>
                                     <input type="text" id="txtDate_of_govermented" runat="server" class="datepicker validate laotxt" required />
                                 </div>
@@ -487,6 +487,14 @@
                 limit: 10
             });
         });
+
+        function PreviewIMG(file) {
+            if (file != '') {
+                window.open(file);
+            } else {
+                swalToast('info', 'e1: ບໍ່ມີໄຟຣທີ່ຈະສະແດງ...');
+            }
+        }
 
         function GetVill(txt) {
             GetAutocompleteVill(txt);

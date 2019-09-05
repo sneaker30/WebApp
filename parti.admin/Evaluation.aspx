@@ -180,8 +180,8 @@
                         <br />
                         <br />
                         <br />
+                        <input type="hidden" id="txtAnStatus0" value="empty" />
                         <div class="row" id="row_step0">
-                            <input type="hidden" id="txtAnStatus0" value="empty"></input>
                         </div>
                         <div class="step-actions">
                             <button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button>
@@ -213,10 +213,19 @@
                     stepperInstace.deactivateStep(currentStep.active.step);
                     stepperInstace.openStep(active_index - 1);
                 }
+                var rdoChecked = $("div[id^='row_step']");
+                rdoChecked.empty();
             }
+
+            i = 0;
+            r = 0;
+            var stepper = document.querySelector(".stepper");
+            stepperInstace = new MStepper(stepper);
         }
 
         function GetQInfo(index, t_id) {
+            var stepper = document.querySelector(".stepper");
+            stepperInstace = new MStepper(stepper);
             document.getElementById('btnAddT').name = 'edit';
             document.getElementById('txtAction').value = document.getElementById('btnAddT').name;
             action = document.getElementById('txtAction').value;
@@ -228,9 +237,10 @@
                 },
                 1000
             );
-            
+
             GetQTitleID(index);
             GetQQuestionID(t_id);
+            GetQAnswerID(t_id);
         }
 
         function GetQTitleID(id) {
@@ -283,6 +293,7 @@
             $('.evalist:not(:contains("' + txt + '"))').hide('slow');
             $('.evalist:contains("' + txt + '")').show('slow');
             ClearTxT();
+            ScrUp();
         }
 
         function q_answers_tb(action, a_id, answer_text, q_id, t_id, status) {
@@ -460,6 +471,39 @@
             }
         });
 
+        function GetQAnswerID(id) {
+            $.ajax({
+                type: "POST",
+                url: "<%: ResolveUrl("Evaluation.aspx/GetQAnswerID") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{t_id:'" + id + "'}",
+                success: function (response) {
+                    var obj = response.d;
+                    $.each(obj,
+                        function (key, vl) {
+                            var a_i = vl.a_id;
+                            a_i = a_i.substring(5, 6);
+                            var q_i = vl.q_id;
+                            q_i = q_i.substring(4, 5);
+                            var txtAn = 'An_' + q_i + '_' + a_i;
+                            var row = "row_step" + q_i;
+                            var rdo = "rdo" + txtAn;
+                            var element = "<div class='col' id='" + txtAn + "'><label><input id='" + rdo +
+                                "' name='group" + q_i + "' type='radio' class='with-gap' value='" + txtAn +
+                                "'><span id='rdoAnText_" + q_i + "_" + a_i + "'>" + vl.answer_text + "</span></label></div>";
+                            document.getElementById(row).insertAdjacentHTML("beforeend", element);
+                        });
+                    var active_index = $('.step').length;
+                    stepperInstace.openStep(active_index - 1);
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+            M.updateTextFields();
+        }
+
         function GetQQuestionID(id) {
             $.ajax({
                 type: "POST",
@@ -534,9 +578,9 @@
                     (i + 1) +
                     '">ຄຳຖາມ</label></div><div class="col s2 m2 l2"><br /><a class="btn-small waves-effect blue-grey lighten-2 laotxt" id="btnSaveQ' +
                     (i + 1) +
-                    '" onclick="SaveQ()">ບັນທຶກ</a></div></div><br /><br /><br /><div class="row" id="row_step' + (i + 1) + '"><input type="hidden" id="txtAnStatus' +
-                    (i + 1) +
-                    '" value="empty"></input></div><div class="step-actions"><button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button><button class="waves-effect btn-flat btn-small previous-step laotxt">ກັບຄືນ</button></div></div></li>';
+                    '" onclick="SaveQ()">ບັນທຶກ</a></div></div><br /><br /><br /><input type="hidden" id="txtAnStatus' + (i + 1) + '" value="empty" />' +
+                    '<div class="row" id="row_step' + (i + 1) + '"></div>' +
+                    '<div class="step-actions"><button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button><button class="waves-effect btn-flat btn-small previous-step laotxt">ກັບຄືນ</button></div></div ></li > ';
 
                 addedSteps = stepperInstace.activateStep(elements, i + 1);
                 i++;

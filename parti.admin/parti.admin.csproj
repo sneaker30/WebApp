@@ -977,6 +977,18 @@
     <Content Include="dist\fonts\dropify.eot" />
     <Content Include="dist\fonts\dropify.ttf" />
     <Content Include="dist\fonts\dropify.woff" />
+    <Content Include="traineedocs\1_1.png" />
+    <Content Include="traineedocs\1_1.txt" />
+    <Content Include="traineedocs\1_2.png" />
+    <Content Include="traineedocs\2.txt" />
+    <Content Include="traineedocs\2_1.png" />
+    <Content Include="traineedocs\2_1.txt" />
+    <Content Include="traineedocs\2_2.html" />
+    <Content Include="traineedocs\2_2.png" />
+    <Content Include="trainerdocs\1_ABC.png" />
+    <Content Include="trainerdocs\1_itrp.png" />
+    <Content Include="trainerdocs\2_ABC.png" />
+    <Content Include="trainerdocs\2_itrp.png" />
     <Content Include="YearPlans.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
@@ -1277,8 +1289,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controller\" />
-    <Folder Include="traineedocs\" />
-    <Folder Include="trainerdocs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1326,6 +1336,7 @@
     <Content Include="scss\_custom-skin.scss" />
     <Content Include="scss\_custom-styles.scss" />
     <Content Include="scss\_custom-variables.scss" />
+    <Content Include="traineedocs\1_2.xlsx" />
     <None Include="Web References\wcf.parti\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
