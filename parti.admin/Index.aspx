@@ -79,9 +79,13 @@
             align-items: center;
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #f5f5f5;
+            /*background-color: #f5f5f5;*/
             font-family: Phetsarath;
             text-align: center;
+            background: url('img/bg2.png');
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: cover;
         }
 
         .md-form {

@@ -61,35 +61,33 @@
         <h5>ແບບຟອມສອບຖາມແລະປະເມີນ</h5>
         <hr />
         <br />
-        <h6>ຫົວຂໍ້</h6>
-        <div class="input-field col s12 m8 l8">
-            <input id="txtTitle" type="text" placeholder="ຫົວຂໍ້ການຝຶກອົບຮົມ" class="autocomplete" autocomplete="off" onkeyup="GetAutocompleteTrainingIdName('', this.value)" />
-            <span class="helper-text">ຫມາຍເຫດ: ຫົວຂໍ້ການຝຶກອົບຮົມນີ້ຕ້ອງກົງກັບ ຫົວຂໍ້ການຈັດຝຶກອົບຮົມໃນເມນູ "ການຈັດຝຶກອົບຮົມ"</span>
+        <div class="row">
+            <h6>ຫົວຂໍ້</h6>
+            <div class="input-field col s12 m8 l8">
+                <input id="txtTitle" type="text" placeholder="ຫົວຂໍ້ການຝຶກອົບຮົມ" class="autocomplete" autocomplete="off" onkeyup="GetAutocompleteTrainingIdName('', this.value)" />
+                <span class="helper-text">ຫມາຍເຫດ: ຫົວຂໍ້ການຝຶກອົບຮົມນີ້ຕ້ອງກົງກັບ ຫົວຂໍ້ການຈັດຝຶກອົບຮົມໃນເມນູ "ການຈັດຝຶກອົບຮົມ"</span>
+            </div>
+            <div class="input-field col s12 m4 l4"></div>
+            <div class="input-field col s12 m8 l8">
+                <input id="txtTrainingID" type="text" placeholder="ລະຫັດການຝຶກອົບຮົມ" class="autocomplete" autocomplete="off" />
+                <span class="helper-text">ຫມາຍເຫດ: ລະຫັດນີ້ຕ້ອງກົງກັບ ລະຫັດຂອງການຈັດຝຶກອົບຮົມໃນເມນູ "ການຈັດຝຶກອົບຮົມ"</span>
+            </div>
+            <div class="input-field col s12 m4 l4"></div>
         </div>
-        <div class="input-field col s12 m4 l4"></div>
-        <div class="input-field col s12 m8 l8">
-            <input id="txtTrainingID" type="text" placeholder="ລະຫັດການຝຶກອົບຮົມ" class="autocomplete" autocomplete="off" />
-            <span class="helper-text">ຫມາຍເຫດ: ລະຫັດນີ້ຕ້ອງກົງກັບ ລະຫັດຂອງການຈັດຝຶກອົບຮົມໃນເມນູ "ການຈັດຝຶກອົບຮົມ"</span>
+        <div class="row">
+            <div class="col s12 m8 l8">
+                <span class="grey-text">ປະເພດ:</span>
+                <label>
+                    <input class="with-gap" type="radio" id="rdBefore" name="rdQType" value="b" /><span>ຄຳຖາມກ່ອນຝຶກ</span>
+                </label>
+                <label>
+                    <input class="with-gap" type="radio" id="rdAfter" name="rdQType" value="a" /><span>ຄຳຖາມຫຼັງຝຶກ</span>
+                </label>
+            </div>
+            <div class="input-field col s12 m4 l4"></div>
+            <input type="hidden" id="txtT_ID" />
+            <input type="hidden" id="txtAction" />
         </div>
-        <div class="input-field col s12 m4 l4"></div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="col s12 m8 l8">
-            <span class="grey-text">ປະເພດ:</span>
-            <label>
-                <input class="with-gap" type="radio" id="rdBefore" name="rdQType" value="b" /><span>ຄຳຖາມກ່ອນຝຶກ</span>
-            </label>
-            <label>
-                <input class="with-gap" type="radio" id="rdAfter" name="rdQType" value="a" /><span>ຄຳຖາມຫຼັງຝຶກ</span>
-            </label>
-        </div>
-        <div class="input-field col s12 m4 l4"></div>
-        <input type="hidden" id="txtT_ID" />
-        <input type="hidden" id="txtAction" />
-        <br />
-        <br />
         <br />
         <br />
         <div class="row">
@@ -200,13 +198,31 @@
         var stepperInstace;
         var swCorrect = false;
 
+        function SetEvaluationTraining(t_id, index) {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<%: ResolveUrl("Evaluation.aspx/SetEvaluationTraining") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{t_id:'" + t_id + "', index:'" + index + "'}",
+                success: function (response) {
+                    var obj = response;
+                    window.open(obj.d, '_blank');
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+        }
+
         function ClearTxT() {
             document.getElementById('txtTitle').value = '';
             document.getElementById('txtTrainingID').value = '';
             document.getElementById('txtAn').value = '';
             var active_index = $('.step').length;
             stepperInstace.openStep(active_index - 1);
-
+            $('#btnDelT').hide();
             for (i = 0; i < active_index; i++) {
                 var currentStep = stepperInstace.getSteps();//fix
                 if (active_index >= 1) {
@@ -219,8 +235,6 @@
 
             i = 0;
             r = 0;
-            var stepper = document.querySelector(".stepper");
-            stepperInstace = new MStepper(stepper);
         }
 
         function GetQInfo(index, t_id) {
@@ -241,6 +255,7 @@
             GetQTitleID(index);
             GetQQuestionID(t_id);
             GetQAnswerID(t_id);
+            M.updateTextFields();
         }
 
         function GetQTitleID(id) {
@@ -264,7 +279,6 @@
                     }
                     document.getElementById('txtAction').value = 'edit';
                     $('#btnDelT').show();
-                    M.updateTextFields();
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
@@ -480,19 +494,26 @@
                 data: "{t_id:'" + id + "'}",
                 success: function (response) {
                     var obj = response.d;
+                    var a_i;
+                    var q_i;
+                    var txtAn;
+                    var row;
+                    var rdo;
+                    var element;
                     $.each(obj,
                         function (key, vl) {
-                            var a_i = vl.a_id;
-                            a_i = a_i.substring(5, 6);
-                            var q_i = vl.q_id;
-                            q_i = q_i.substring(4, 5);
-                            var txtAn = 'An_' + q_i + '_' + a_i;
-                            var row = "row_step" + q_i;
-                            var rdo = "rdo" + txtAn;
-                            var element = "<div class='col' id='" + txtAn + "'><label><input id='" + rdo +
+                            a_i = vl.a_id.substring(5, 6);
+                            q_i = vl.q_id.substring(4, 5);
+                            txtAn = 'An_' + q_i + '_' + a_i;
+                            row = "row_step" + q_i;
+                            rdo = "rdo" + txtAn;
+                            element = "<div class='col' id='" + txtAn + "'><label><input id='" + rdo +
                                 "' name='group" + q_i + "' type='radio' class='with-gap' value='" + txtAn +
                                 "'><span id='rdoAnText_" + q_i + "_" + a_i + "'>" + vl.answer_text + "</span></label></div>";
-                            document.getElementById(row).insertAdjacentHTML("beforeend", element);
+                            var row_step = document.getElementById(row);
+                            if (row_step) {
+                                row_step.insertAdjacentHTML("beforeend", element);
+                            }
                         });
                     var active_index = $('.step').length;
                     stepperInstace.openStep(active_index - 1);
@@ -501,7 +522,6 @@
                     swalModal('error', response.d, '');
                 }
             });
-            M.updateTextFields();
         }
 
         function GetQQuestionID(id) {
@@ -540,14 +560,11 @@
                                 txtQ.focus();
                             }
                         });
-                    var active_index = $('.step').length;
-                    stepperInstace.openStep(active_index - 1);
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
                 }
             });
-            M.updateTextFields();
         }
 
         window.addEventListener("load", function () {

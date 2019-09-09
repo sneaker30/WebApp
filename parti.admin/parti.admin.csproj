@@ -557,6 +557,7 @@
     <Content Include="dist\js\dropify.min.js" />
     <Content Include="Error.aspx" />
     <Content Include="Evaluation.aspx" />
+    <Content Include="Evaluation_Training.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
@@ -566,6 +567,8 @@
     <Content Include="img\6.jpg" />
     <Content Include="img\7.jpg" />
     <Content Include="img\avatar.png" />
+    <Content Include="img\bg1.png" />
+    <Content Include="img\bg2.png" />
     <Content Include="img\famale.png" />
     <Content Include="Main.aspx" />
     <Content Include="favicon2.ico" />
@@ -1190,6 +1193,13 @@
     </Compile>
     <Compile Include="Evaluation.aspx.designer.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation_Training.aspx.cs">
+      <DependentUpon>Evaluation_Training.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation_Training.aspx.designer.cs">
+      <DependentUpon>Evaluation_Training.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\GetSetEnCoding.cs" />
     <Compile Include="Main.aspx.cs">

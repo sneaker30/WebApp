@@ -2,6 +2,7 @@
 using parti.admin.lib;
 using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -15,6 +16,8 @@ namespace parti.admin
         public static List<GetQAnswer> listGetQAnswer = new List<GetQAnswer>();
         public static List<GetQQuestion> listGetQQuestion = new List<GetQQuestion>();
         public static Page _Page = new Page();
+        public static Control _Control = new Control();
+        public static GetSetEnCoding _EnCoding = new GetSetEnCoding();
 
         public class GetQQuestion
         {
@@ -324,7 +327,7 @@ namespace parti.admin
                             "<a class='btn-floating waves-effect tooltipped' data-position='left' data-tooltip='ແກ້ໄຂ' " +
                             "id='btnEdit" + i + "' name='" + vl.t_id + "' onclick='GetQInfo(" + (i - 1) + ", this.name)'><i class='material-icons right'>edit</i>" +
                             "</a></div><div class='col'><a class='btn-floating waves-effect tooltipped' data-position='right' " +
-                            "data-tooltip='ເປີດຫນ້າແບບຟອມສຳລັບຜູ້ຝຶກ' id='btnEvaLink" + i + "'>" +
+                            "data-tooltip='ເປີດຫນ້າແບບຟອມສຳລັບຜູ້ຝຶກ' id='btnEvaLink" + i + "' name='" + vl.t_id + "' onclick='SetEvaluationTraining(this.name, " + i + ")'>" +
                             "<i class='material-icons right'>open_in_new</i></a></div></div></td></tr>";
                         tbody.Controls.Add(_tbody);
                         i++;
@@ -407,6 +410,19 @@ namespace parti.admin
                 }
             }
             return listGetQAnswer;
+        }
+
+        [WebMethod]
+        public static string SetEvaluationTraining(string t_id, string index)
+        {
+            var param1 = "?tid=";
+            param1 += _EnCoding.SetEncryptData(t_id);
+            var param2 = "&tname=";
+            param2 += _EnCoding.SetEncryptData(index);
+            string authority = HttpContext.Current.Request.Url.Authority;
+            var url = ("http://" + authority + "/Evaluation_Training" + param1 + param2);
+
+            return url;
         }
     }
 }
