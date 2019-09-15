@@ -77,7 +77,7 @@ namespace parti.admin
                                        "<td>" + vl.fullname_la + "</td>" +
                                        "<td>" + vl.work_place + "</td>" +
                                        "<td><div class='row'><div class='col'><button type='button' " +
-                                       "class='btn-small z-depth-3 teal darken-2 tooltipped hvr-grow-shadow modal-trigger' " +
+                                       "class='btn btn-small teal darken-2 tooltipped hvr-grow-shadow modal-trigger z-depth-3' " +
                                        "href='#modalTrainee' data-position='left' data-tooltip='ແກ້ໄຂຂໍ້ມູນ' " +
                                        "id='" + (i - 1) + "' onclick='SetTraineeInfo(this.id)'>" +
                                        "<i class='material-icons'>edit</i></button></div></div></td></tr>";

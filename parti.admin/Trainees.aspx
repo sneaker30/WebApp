@@ -59,6 +59,7 @@
             object-fit: fill;
             cursor: pointer;
         }
+
     </style>
     <br />
     <br />
@@ -138,12 +139,12 @@
                 <br />
                 <div class="col s12 m9 l9">
                     <ul class="tabs">
-                        <li class="tab col s2 m2 l2"><a href="#tab1">ປະຫວັດສ່ວນຕົວ</a></li>
-                        <li class="tab col s2 m2 l2"><a href="#tab2">ວຸດທິການສຶກສາ</a></li>
-                        <li class="tab col s2 m2 l2"><a href="#tab3">ບ່ອນປະຈຳການປະຈຸບັນ</a></li>
-                        <li class="tab col s2 m2 l2"><a href="#tab4">ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</a></li>
-                        <li class="tab col s2 m2 l2"><a href="#tab5">ປະສົບການເຂົ້າຮ່ວມຝຶກອົບຮົມ (03 ມື້ ຫາ 03 ເດືອນ)</a></li>
-                        <li class="tab col s2 m2 l2"><a href="#tab6">ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ປະຫວັດສ່ວນຕົວ"><a href="#tab1" class="grey-text"><h6>ປະຫວັດສ່ວນຕົວ</h6></a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ວຸດທິການສຶກສາ"><a href="#tab2" class="grey-text"><h6>ວຸດທິການສຶກສາ</h6></a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ບ່ອນປະຈຳການປະຈຸບັນ"><a href="#tab3" class="grey-text"><h6>ບ່ອນປະຈຳການປະຈຸບັນ</h6></a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)"><a href="#tab4" class="grey-text"><h6>ການຈັດຕັ້ງທີ່ອານຸມັດ (ຜູ້ທີ່ຕົກລົງໃຫ້ເຂົ້າຮ່ວມຝຶກອົບຮົມ)</h6></a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ປະສົບການເຂົ້າຮ່ວມຝຶກອົບຮົມ (03 ມື້ ຫາ 03 ເດືອນ)"><a href="#tab5" class="grey-text"><h6>ປະສົບການເຂົ້າຮ່ວມຝຶກອົບຮົມ (03 ມື້ ຫາ 03 ເດືອນ)</h6></a></li>
+                        <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ"><a href="#tab6" class="grey-text"><h6>ການຈັດການຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</h6></a></li>
                     </ul>
                     <div id="tab1" class="row">
                         <br />
@@ -415,15 +416,15 @@
             <div class="row">
                 <div class="col s12 m3 l3"></div>
                 <div class="col s12 m1 l1">
-                    <asp:Button class="btn-small waves-effect waves-light laotxt left" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
+                    <asp:Button class="btn-small waves-effect waves-light laotxt left z-depth-3" ID="btnSave" runat="server" OnClick="btnSave_OnClick" Text="ບັນທຶກ"></asp:Button>
                     <input type="hidden" id="Hidden1" runat="server" />
                     <input type="hidden" id="avartaUrl" runat="server" />
                 </div>
                 <div class="col s12 m1 l1">
-                    <a class="btn-small waves-effect waves-light modal-close laotxt left">ຍົກເລີກ</a>
+                    <a class="btn-small waves-effect waves-light modal-close laotxt left z-depth-3">ຍົກເລີກ</a>
                 </div>
                 <div class="col s12 m7 l7">
-                    <asp:Button class="btn-small waves-effect waves-light right red darken-3 laotxt" ID="btnDel" runat="server" Text="ລົບ" OnClick="btnDel_OnClick"></asp:Button>
+                    <asp:Button class="btn-small waves-effect waves-light right red darken-3 laotxt z-depth-3" ID="btnDel" runat="server" Text="ລົບ" OnClick="btnDel_OnClick"></asp:Button>
                 </div>
             </div>
             <input type="hidden" id="btnState" runat="server" />
@@ -574,8 +575,8 @@
 
         function Search() {
             var txt = document.getElementById('<%: txtSearch.ClientID %>').value;
-            $('.search_result:not(:contains("' + txt + '"))').hide("slow");
-            $('.search_result:contains("' + txt + '")').show("slow");
+            $('.search_result:not(:contains("' + txt + '"))').hide("500");
+            $('.search_result:contains("' + txt + '")').show("500");
             if (txt == '') {
                 window.location.reload();
             }

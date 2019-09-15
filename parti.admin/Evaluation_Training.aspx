@@ -60,20 +60,85 @@
         .waves-button-input {
             font-family: PhetsarathOT;
         }
+
+        .preloader-background {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scmEvaluation_Training" runat="server" EnablePageMethods="true" />
+        <%-- preloader --%>
+        <div class="preloader-background">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <h4>ແບບຟອມການປະເມີນ-ສອບຖາມ</h4>
             <hr />
             <div class="row">
                 <p id="txtTitle" style="font-size: xx-large"></p>
                 <p id="txtType" style="font-size: xx-large"></p>
-                <div class="input-field col s6 m6 l6">
-                    <input type="text" id="txtTraineeName" class="validate" required />
-                    <label for="txtTraineeName">ຊື່ນາມສະກຸນ</label>
+                <div class="col s6 m6 l6">
+                    <input type="text" id="txtTraineeName" class="validate" required placeholder="ຊື່ນາມສະກຸນ" />
+                    <span class="helper-text">ຕອບຄຳຖາມແລ້ວຫມົດແລ້ວຄ່ອຍກົດປຸ່ມ "ສຳເລັດ"</span>
                 </div>
                 <input type="hidden" id="txtTrainingID" />
             </div>
@@ -89,21 +154,15 @@
                                         <textarea id="txtQ0" type="text" class="materialize-textarea validate"></textarea>
                                         <label for="txtQ0">ຄຳຖາມ</label>
                                     </div>
-                                    <div class="col s2 m2 l2">
-                                        <br />
-                                        <a class="btn-small waves-effect blue-grey lighten-2 laotxt" id="btnSaveQ0" onclick="SaveQ()">ບັນທຶກ
-                                        </a>
-                                    </div>
                                 </div>
                                 <br />
                                 <br />
                                 <br />
-                                <input type="hidden" id="txtAnStatus0" value="empty" />
                                 <div class="row" id="row_step0">
                                 </div>
                                 <div class="step-actions">
-                                    <button class="waves-effect btn btn-small next-step laotxt">ຕໍ່ໄປ</button>
-                                    <button class="waves-effect btn btn-small previous-step laotxt">ກັບຄືນ</button>
+                                    <button class="waves-effect btn btn-small next-step laotxt z-depth-3" onclick="EditUAnswer()">ຕໍ່ໄປ</button>
+                                    <%--<button class="waves-effect btn btn-small previous-step laotxt z-depth-3">ກັບຄືນ</button>--%>
                                 </div>
                             </div>
                         </li>
@@ -115,6 +174,35 @@
 </body>
 <script>
     var t_id;
+
+    function swalModal(actions, msgs, currentPage) {
+        Swal.fire({
+            type: actions,
+            title: 'ແຈ້ງເຕືອນ',
+            html: msgs,
+        }).then(result => {
+            if (result.value) {
+                if (currentPage != '') {
+                    window.location = currentPage;
+                }
+            }
+        });
+    }
+
+    function swalToast(action, msg) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 6000
+        });
+
+        Toast.fire({
+            type: action,
+            title: msg
+        });
+    }
+
     $(document).ready(function () {
         var stepper = document.querySelector(".stepper");
         stepperInstace = new MStepper(stepper);
@@ -125,13 +213,60 @@
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.preloader-background').delay(2500).fadeOut('slow');
+        $('.preloader-wrapper')
+            .delay(2500)
+            .fadeOut();
+    });
+
     setTimeout(function () {
         t_id = GetTID();
         GetQTitleID(t_id[1]);
         GetQQuestionID(t_id[0]);
-        GetQAnswerID(t_id[0]);
-        M.updateTextFields();
-    }, 1000);
+    }, 1500);
+
+    function FinishedUAnswer() {
+        swalModal('success', 'ສຳເລັດການປະກອບແບບຟອມປະເມີນ...', '');
+    }
+
+    function EditUAnswer(frm) {
+        var currentStep = stepperInstace.getSteps();
+        var index = currentStep.active.step.id;
+        index = index.replace('step', '');
+        var q_id = document.getElementById("txtQ" + index).id;
+        var u_id = document.getElementById('txtTraineeName').value;
+        var a_id = $("input[name='group" + index + "']:checked").val();
+
+        if (u_id === '') {
+            swalToast('warning', 'ກະລຸນາລະບຸຊື່ຂອງທ່ານກ່ອນຈະຕອບຄຳຖາມ...');
+            $('#txtTraineeName').focus();
+        } else {
+            if (a_id) {
+                EditUAnswers(u_id, t_id, q_id, a_id, frm);
+            }
+        }
+    }
+
+    function EditUAnswers(u_id, t_id, q_id, a_id, frm) {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "<%: ResolveUrl("Evaluation_Training.aspx/EditUAnswer") %>",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: "{u_id:'" + u_id + "', t_id:'" + t_id + "', q_id:'" + q_id + "', a_id:'" + a_id + "'}",
+            success: function (response) {
+                swalToast('info', response.d);
+                if (frm === 'ບັນທຶກ') {
+                    swalModal('success', 'ສຳເລັດການປະກອບແບບຟອມປະເມີນ...', '');
+                }
+            },
+            failure: function (response) {
+                swalModal('error', response.d, '');
+            }
+        });
+    }
 
     function GetTID() {
         var result;
@@ -151,13 +286,13 @@
         return result;
     }
 
-    function GetQAnswerID(id) {
+    function GetQAnswerID(id, q_id) {
         $.ajax({
             type: "POST",
             url: "<%: ResolveUrl("Evaluation.aspx/GetQAnswerID") %>",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: "{t_id:'" + id + "'}",
+            data: "{t_id:'" + id + "', q_id:'" + q_id + "'}",
             success: function (response) {
                 var obj = response.d;
                 var a_i;
@@ -181,8 +316,6 @@
                             row_step.insertAdjacentHTML("beforeend", element);
                         }
                     });
-                var active_index = $('.step').length;
-                stepperInstace.openStep(active_index - 1);
             },
             failure: function (response) {
                 swalModal('error', response.d, '');
@@ -199,8 +332,10 @@
             data: "{t_id:'" + id + "'}",
             success: function (response) {
                 var obj = response.d;
+                var round = obj.length;
                 $.each(obj,
                     function (key, vl) {
+                        var nexttxt;
                         var i = vl.q_id;
                         i = i.substring(4, 5);
                         var txtQ = document.getElementById("txtQ" + i);
@@ -208,6 +343,11 @@
                             txtQ.value = vl.question_text;
                             txtQ.focus();
                         } else {
+                            if (key == (round - 1)) {
+                                nexttxt = 'ບັນທຶກ';
+                            } else {
+                                nexttxt = 'ຕໍ່ໄປ';
+                            }
                             elements = '<li class="step" id="step' +
                                 i +
                                 '"><div class="step-title waves-effect"></div><div class="step-content"><div class="row">'
@@ -215,16 +355,18 @@
                                 i +
                                 '" type="text" class="materialize-textarea validate"></textarea><label for="txtQ' +
                                 i +
-                                '">ຄຳຖາມ</label></div><div class="col s2 m2 l2"><br /><a class="btn-small waves-effect blue-grey lighten-2 laotxt" ' +
-                                'id="btnSaveQ' + i + '" onclick="SaveQ()">ບັນທຶກ</a></div></div><br /><br /><br /><div class="row" id="row_step' + i +
+                                '">ຄຳຖາມ</label></div><div class="col s2 m2 l2"><br /></div></div><br /><br /><br /><div class="row" id="row_step' + i +
                                 '"><input type="hidden" id="txtAnStatus' + i + '" value="empty"></input></div><div class="step-actions">' +
-                                '<button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button><button class="waves-effect btn-flat ' +
-                                'btn-small previous-step laotxt">ກັບຄືນ</button></div></div></li>';
+                                '<button class="waves-effect btn btn-small next-step laotxt z-depth-3" name="' + nexttxt + '" onclick="EditUAnswer(this.name)">' +
+                                nexttxt + '</button><button class="waves-effect btn ' +
+                                'btn-small previous-step laotxt z-depth-3">ກັບຄືນ</button></div></div></li>';
                             stepperInstace.activateStep(elements, i);
                             var txtQ = document.getElementById("txtQ" + i);
                             txtQ.value = vl.question_text;
                             txtQ.focus();
+                            M.updateTextFields();
                         }
+                        GetQAnswerID(id, txtQ.id);
                     });
             },
             failure: function (response) {

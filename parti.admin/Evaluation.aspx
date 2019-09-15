@@ -3,7 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="scmEvaluation" runat="server" EnablePageMethods="true" />
     <link rel="stylesheet" href="https://unpkg.com/materialize-stepper@3.1.0/dist/css/mstepper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
     <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
+    <script src="Scripts/customs/qrcode.js"></script>
 
     <style>
         input {
@@ -11,6 +13,10 @@
         }
 
         textarea {
+            font-family: PhetsarathOT;
+        }
+
+        button {
             font-family: PhetsarathOT;
         }
     </style>
@@ -92,12 +98,12 @@
         <br />
         <div class="row">
             <div class="col">
-                <a class="btn waves-effect blue-grey lighten-2" id="btnAddT" onclick="q_title_tb(this.name)">ບັນທຶກ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnAddT" onclick="q_title_tb(this.name)">ບັນທຶກ
                 <i class="material-icons right">save</i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn waves-effect blue-grey lighten-2" id="btnDelT" onclick="q_title_tb('del')">ລົບ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnDelT" onclick="q_title_tb('del')">ລົບ
                 <i class="material-icons right">delete</i>
                 </a>
             </div>
@@ -111,17 +117,17 @@
         <br />
         <div class="row">
             <div class="col">
-                <a class="btn waves-effect blue-grey lighten-2" id="btnAddQ">ເພີ່ມຄຳຖາມ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnAddQ">ເພີ່ມຄຳຖາມ
         <i class="material-icons right">add</i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn waves-effect blue-grey lighten-2" id="btnDelQ">ລຸດຄຳຖາມ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnDelQ">ລຸດຄຳຖາມ
         <i class="material-icons right">delete</i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn waves-effect right" id="btnFinish" onclick="Search()">ສຳເລັດ</a>
+                <a class="btn waves-effect right z-depth-3" id="btnFinish" onclick="Search()">ສຳເລັດ</a>
             </div>
         </div>
         <div class="row">
@@ -145,13 +151,13 @@
             </div>
             <div class="col">
                 <br />
-                <a class="btn waves-effect blue-grey lighten-2" id="btnAddAn">ເພີ່ມຕົວເລືອກຄຳຕອບ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnAddAn">ເພີ່ມຕົວເລືອກຄຳຕອບ
         <i class="material-icons right">add</i>
                 </a>
             </div>
             <div class="col">
                 <br />
-                <a class="btn waves-effect blue-grey lighten-2" id="btnDelAn">ລຸດຕົວເລືອກຄຳຕອບ
+                <a class="btn waves-effect blue-grey lighten-2 z-depth-3" id="btnDelAn">ລຸດຕົວເລືອກຄຳຕອບ
         <i class="material-icons right">delete</i>
                 </a>
             </div>
@@ -171,7 +177,7 @@
                             </div>
                             <div class="col s2 m2 l2">
                                 <br />
-                                <a class="btn-small waves-effect blue-grey lighten-2 laotxt" id="btnSaveQ0" onclick="SaveQ()">ບັນທຶກ
+                                <a class="btn-small waves-effect blue-grey lighten-2 laotxt z-depth-3" id="btnSaveQ0" onclick="SaveQ()">ບັນທຶກ
                                 </a>
                             </div>
                         </div>
@@ -182,8 +188,8 @@
                         <div class="row" id="row_step0">
                         </div>
                         <div class="step-actions">
-                            <button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button>
-                            <button class="waves-effect btn-flat btn-small previous-step laotxt">ກັບຄືນ</button>
+                            <a class="waves-effect btn btn-small next-step laotxt z-depth-3">ຕໍ່ໄປ</a>
+                            <a class="waves-effect btn btn-small previous-step laotxt z-depth-3">ກັບຄືນ</a>
                         </div>
                     </div>
                 </li>
@@ -198,7 +204,29 @@
         var stepperInstace;
         var swCorrect = false;
 
+        function GenLink(t_id, index) {
+            var url = SetEvaluationTraining(t_id, index);
+            window.open(url, '_blank');
+        }
+
+        function GenQRCode(t_id, index) {
+            Swal.fire({
+                title: 'QR Code',
+                html: '<div id="qrcode" align="center"></div>',
+                onOpen: () => {
+                    var url = SetEvaluationTraining(t_id, index);
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        text: url,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                }
+            });
+        }
+
         function SetEvaluationTraining(t_id, index) {
+            var result = null;
             $.ajax({
                 async: false,
                 type: "POST",
@@ -207,13 +235,14 @@
                 dataType: "json",
                 data: "{t_id:'" + t_id + "', index:'" + index + "'}",
                 success: function (response) {
-                    var obj = response;
-                    window.open(obj.d, '_blank');
+                    var obj = response.d;
+                    result = obj;
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
                 }
             });
+            return result;
         }
 
         function ClearTxT() {
@@ -238,13 +267,11 @@
         }
 
         function GetQInfo(index, t_id) {
-            var stepper = document.querySelector(".stepper");
-            stepperInstace = new MStepper(stepper);
             document.getElementById('btnAddT').name = 'edit';
             document.getElementById('txtAction').value = document.getElementById('btnAddT').name;
             action = document.getElementById('txtAction').value;
-            $('#EvaluationTitle').show('slow');
-            $('#EvaluationStep').show('slow');
+            $('#EvaluationTitle').show('500');
+            $('#EvaluationStep').show('500');
             $([document.documentElement, document.body]).animate(
                 {
                     scrollTop: $("#EvaluationTitle").offset().top
@@ -254,8 +281,6 @@
 
             GetQTitleID(index);
             GetQQuestionID(t_id);
-            GetQAnswerID(t_id);
-            M.updateTextFields();
         }
 
         function GetQTitleID(id) {
@@ -287,7 +312,7 @@
         }
 
         function AddEva() {
-            $('#EvaluationTitle').show('slow');
+            $('#EvaluationTitle').show('500');
             $([document.documentElement, document.body]).animate(
                 {
                     scrollTop: $("#EvaluationTitle").offset().top
@@ -301,11 +326,11 @@
         }
 
         function Search() {
-            $('#EvaluationTitle').hide('slow');
-            $('#EvaluationStep').hide('slow');
+            $('#EvaluationTitle').hide();
+            $('#EvaluationStep').hide();
             var txt = document.getElementById('<%: txtSearch.ClientID %>').value;
-            $('.evalist:not(:contains("' + txt + '"))').hide('slow');
-            $('.evalist:contains("' + txt + '")').show('slow');
+            $('.evalist:not(:contains("' + txt + '"))').hide('500');
+            $('.evalist:contains("' + txt + '")').show('500');
             ClearTxT();
             ScrUp();
         }
@@ -382,7 +407,7 @@
 
             if (action === 'add' || action === 'edit') {
                 if (title_name !== '' || training_id !== '') {
-                    $('#EvaluationStep').show('slow');
+                    $('#EvaluationStep').show('500');
                     $([document.documentElement, document.body]).animate(
                         {
                             scrollTop: $("#stepperQ").offset().top
@@ -429,7 +454,30 @@
                     cancelButtonText: 'ຍົກເລີກ'
                 }).then(result => {
                     if (result.value) {
-
+                        $.ajax({
+                            type: "POST",
+                            url: "<%: ResolveUrl("Evaluation.aspx/EditQTitle") %>",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: "{action:'" +
+                                action +
+                                "', t_id:'" +
+                                t_id +
+                                "', title_name:'" +
+                                title_name +
+                                "', training_id:'" +
+                                training_id +
+                                "', created_date:'" +
+                                created_date +
+                                "', q_type:'" +
+                                rdoChecked + "'}",
+                            success: function (response) {
+                                swalModal('success', 'e5:ຈັດການຂໍ້ມູນສຳເລັດ', 'Evaluation');
+                            },
+                            failure: function (response) {
+                                swalModal('error', response.d, '');
+                            }
+                        });
                     }
                 });
             }
@@ -485,13 +533,13 @@
             }
         });
 
-        function GetQAnswerID(id) {
+        function GetQAnswerID(id, q_id) {
             $.ajax({
                 type: "POST",
                 url: "<%: ResolveUrl("Evaluation.aspx/GetQAnswerID") %>",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{t_id:'" + id + "'}",
+                data: "{t_id:'" + id + "', q_id:'" + q_id + "'}",
                 success: function (response) {
                     var obj = response.d;
                     var a_i;
@@ -515,8 +563,6 @@
                                 row_step.insertAdjacentHTML("beforeend", element);
                             }
                         });
-                    var active_index = $('.step').length;
-                    stepperInstace.openStep(active_index - 1);
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
@@ -552,13 +598,15 @@
                                     '">ຄຳຖາມ</label></div><div class="col s2 m2 l2"><br /><a class="btn-small waves-effect blue-grey lighten-2 laotxt" ' +
                                     'id="btnSaveQ' + i + '" onclick="SaveQ()">ບັນທຶກ</a></div></div><br /><br /><br /><div class="row" id="row_step' + i +
                                     '"><input type="hidden" id="txtAnStatus' + i + '" value="empty"></input></div><div class="step-actions">' +
-                                    '<button class="waves-effect btn-flat btn-small next-step laotxt">ຕໍ່ໄປ</button><button class="waves-effect btn-flat ' +
-                                    'btn-small previous-step laotxt">ກັບຄືນ</button></div></div></li>';
+                                    '<a class="waves-effect btn btn-small next-step laotxt z-depth-3">ຕໍ່ໄປ</a><a class="waves-effect btn ' +
+                                    'btn-small previous-step laotxt z-depth-3">ກັບຄືນ</a></div></div></li>';
                                 stepperInstace.activateStep(elements, i);
                                 var txtQ = document.getElementById("txtQ" + i);
                                 txtQ.value = vl.question_text;
                                 txtQ.focus();
+                                M.updateTextFields();
                             }
+                            GetQAnswerID(id, txtQ.id);
                         });
                 },
                 failure: function (response) {
@@ -747,11 +795,11 @@
                 );
                 selectedValue = $("#selAnOption").val();
                 if (selectedValue === "1") {
-                    $("#txtAn").hide("slow");
-                    $("#AnTrueOrFalse").hide("slow");
+                    $("#txtAn").hide("500");
+                    $("#AnTrueOrFalse").hide("500");
                 } else if (selectedValue === "2") {
-                    $("#txtAn").show("slow");
-                    $("#AnTrueOrFalse").show("slow");
+                    $("#txtAn").show("500");
+                    $("#AnTrueOrFalse").show("500");
                 }
             });
 

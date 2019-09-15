@@ -14,7 +14,7 @@ namespace parti.admin
             if (!IsPostBack)
             {
                 if (Session["loginstatus"] == null)
-                    Response.Redirect("index.aspx");
+                    Response.Redirect("index");
                 else
                 {
                     Response.ClearHeaders();
@@ -48,7 +48,7 @@ namespace parti.admin
                     Session.Clear();
                     Session.RemoveAll();
                     Session.Abandon();
-                    Response.Redirect("index.aspx");
+                    Response.Redirect("index");
                 }
             }
             catch (Exception ex)

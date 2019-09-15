@@ -29,55 +29,62 @@ namespace parti.admin
 
         private List<GetCompareYearPlan> GetCompareYear(string courseID, string QorY, string times_range)
         {
-            chartCompareYearPlans.Clear();
-            wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            partiDB.RootObject rootObject = new partiDB.RootObject();
-            if (chartCompareYearPlans.Count == 0)
+            try
             {
-                string json_str = _parti.GetCompareYearPlan(courseID, times_range, QorY);
-                if (json_str == "e0")//code error
+                chartCompareYearPlans.Clear();
+                wcf.parti.Service1 _parti = new wcf.parti.Service1();
+                partiDB.RootObject rootObject = new partiDB.RootObject();
+                if (chartCompareYearPlans.Count == 0)
                 {
-                    MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
-                }
-                else if (json_str == "e1")//no data found
-                {
-                    MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
-                }
-                else if (json_str == "e2")//can't connect databbase
-                {
-                    MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
-                }
-                else
-                {
-                    int tg = 0;
-                    int dtg = 0;
-                    rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                    foreach (var vl in rootObject.GetCompareYearPlan)
+                    string json_str = _parti.GetCompareYearPlan(courseID, times_range, QorY);
+                    if (json_str == "e0")//code error
                     {
-                        chartCompareYearPlans.Add(new GetCompareYearPlan(vl.PlanType, vl.CourseID, vl.CourseName, vl.Targets, vl.DoneTarget));
-                        lblYearPlan.InnerText = vl.PlanType;
-                        lblCourseName.InnerText = vl.CourseName;
-                        lblTargets.InnerText = vl.Targets;
-                        tg = Convert.ToInt16(vl.Targets);
-                        lblDoneTarget.InnerText = vl.DoneTarget;
-                        dtg = Convert.ToInt16(vl.DoneTarget);
+                        MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
                     }
-                    if (dtg > tg)
+                    else if (json_str == "e1")//no data found
                     {
-                        dtg = (dtg * 100) / tg;
-                        lblDetails.InnerText = "ປະຕິບັດໄດ້ລື່ນຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
                     }
-                    else if (dtg < tg)
+                    else if (json_str == "e2")//can't connect databbase
                     {
-                        dtg = (dtg * 100) / tg;
-                        lblDetails.InnerText = "ປະຕິບັດໄດ້ລຸດຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
                     }
-                    else if (dtg == tg)
+                    else
                     {
-                        dtg = (dtg * 100) / tg;
-                        lblDetails.InnerText = "ປະຕິບັດໄດ້ຕາມຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        int tg = 0;
+                        int dtg = 0;
+                        rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
+                        foreach (var vl in rootObject.GetCompareYearPlan)
+                        {
+                            chartCompareYearPlans.Add(new GetCompareYearPlan(vl.PlanType, vl.CourseID, vl.CourseName, vl.Targets, vl.DoneTarget));
+                            lblYearPlan.InnerText = vl.PlanType;
+                            lblCourseName.InnerText = vl.CourseName;
+                            lblTargets.InnerText = vl.Targets;
+                            tg = Convert.ToInt16(vl.Targets);
+                            lblDoneTarget.InnerText = vl.DoneTarget;
+                            dtg = Convert.ToInt16(vl.DoneTarget);
+                        }
+                        if (dtg > tg)
+                        {
+                            dtg = (dtg * 100) / tg;
+                            lblDetails.InnerText = "ປະຕິບັດໄດ້ລື່ນຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        }
+                        else if (dtg < tg)
+                        {
+                            dtg = (dtg * 100) / tg;
+                            lblDetails.InnerText = "ປະຕິບັດໄດ້ລຸດຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        }
+                        else if (dtg == tg)
+                        {
+                            dtg = (dtg * 100) / tg;
+                            lblDetails.InnerText = "ປະຕິບັດໄດ້ຕາມຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                chartCompareYearPlans = null;
             }
             return chartCompareYearPlans;
         }
@@ -114,32 +121,39 @@ namespace parti.admin
 
         public static List<GetYearPlan> GetgridDataYearPlans()
         {
-            gridDataYearPlans.Clear();
-            wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            partiDB.RootObject rootObject = new partiDB.RootObject();
-            if (gridDataYearPlans.Count == 0)
+            try
             {
-                string json_str = _parti.GetYearPlans("");
-                if (json_str == "e0")//code error
+                gridDataYearPlans.Clear();
+                wcf.parti.Service1 _parti = new wcf.parti.Service1();
+                partiDB.RootObject rootObject = new partiDB.RootObject();
+                if (gridDataYearPlans.Count == 0)
                 {
-                    MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
-                }
-                else if (json_str == "e1")//no data found
-                {
-                    MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
-                }
-                else if (json_str == "e2")//can't connect databbase
-                {
-                    MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
-                }
-                else
-                {
-                    rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                    foreach (var vl in rootObject.GetYearPlans)
+                    string json_str = _parti.GetYearPlans("");
+                    if (json_str == "e0")//code error
                     {
-                        gridDataYearPlans.Add(new GetYearPlan(vl.id, vl.year_plan, vl.course_id, vl.target));
+                        MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
+                    }
+                    else if (json_str == "e1")//no data found
+                    {
+                        MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
+                    }
+                    else if (json_str == "e2")//can't connect databbase
+                    {
+                        MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
+                    }
+                    else
+                    {
+                        rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
+                        foreach (var vl in rootObject.GetYearPlans)
+                        {
+                            gridDataYearPlans.Add(new GetYearPlan(vl.id, vl.year_plan, vl.course_id, vl.target));
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                gridDataYearPlans = null;
             }
             return gridDataYearPlans;
         }

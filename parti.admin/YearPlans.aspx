@@ -130,7 +130,7 @@
         </div>
     </div>
     <div class="row">
-        <a class="btn waves-effect waves-light right" id="btnCompare" runat="server" onserverclick="btnCompare_OnServerClick">ທຽບຂໍ້ມູນ</a>
+        <a class="btn waves-effect waves-light right z-depth-3" id="btnCompare" runat="server" onserverclick="btnCompare_OnServerClick">ທຽບຂໍ້ມູນ</a>
     </div>
     <br />
     <div class="row">
@@ -214,11 +214,11 @@
             });
             $('#<%: selYearPlan.ClientID %>').on('change', function () {
                 if (this.value == 'Y') {
-                    $('#<%: txtYear.ClientID %>').show('slow');
-                    $('#<%: txtQuarter.ClientID %>').hide('slow');
+                    $('#<%: txtYear.ClientID %>').show('500');
+                    $('#<%: txtQuarter.ClientID %>').hide('500');
                 } else if (this.value == 'Q') {
-                    $('#<%: txtYear.ClientID %>').hide('slow');
-                    $('#<%: txtQuarter.ClientID %>').show('slow');
+                    $('#<%: txtYear.ClientID %>').hide('500');
+                    $('#<%: txtQuarter.ClientID %>').show('500');
                 };
             });
             $('#<%: txtQuarter.ClientID %>.autocomplete').autocomplete({

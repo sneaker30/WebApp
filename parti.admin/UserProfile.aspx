@@ -277,7 +277,7 @@
                         </div>
                         <div class="col s12 m3 l3">
                             <br />
-                            <a class="waves-effect btn-small grey lighten-1 col s12 m12 l12" onclick="EditExPer()">ເພີ່ມປະສົບການ</a>
+                            <a class="waves-effect btn-small grey lighten-1 col s12 m12 l12 z-depth-3" onclick="EditExPer()">ເພີ່ມປະສົບການ</a>
                         </div>
                     </div>
                     <div class="row">
@@ -376,7 +376,7 @@
     <div class="row">
         <div class="col s12 m3 l3"></div>
         <div class="col s12 m9 l9">
-            <asp:Button class="btn-small waves-effect waves-light laotxt" ID="btnSave" runat="server" OnClick="btnSave_Click" Text="ບັນທຶກ"></asp:Button>
+            <asp:Button class="btn-small waves-effect waves-light laotxt z-depth-3" ID="btnSave" runat="server" OnClick="btnSave_Click" Text="ບັນທຶກ"></asp:Button>
             <input type="hidden" id="btnState" runat="server" />
             <input type="hidden" id="avartaUrl" runat="server" />
             <input type="hidden" id="txtAvatarHidd_I" runat="server" />
@@ -516,7 +516,7 @@
                                 '<td class="col s12 m3 l3 left grey-text">' + value.office + '</td>' +
                                 '<td class="col s12 m3 l3 left grey-text">' + value.years + '</td>' +
                                 '<td class="col s12 m3 l3 left grey-text center">' +
-                                '<a class="btn-floating btn-small waves-effect waves-light tooltipped red darken-3" data-position="right" data-tooltip="ລົບ" id="' +
+                                '<a class="btn-floating btn-small waves-effect waves-light tooltipped red darken-3 z-depth-3" data-position="right" data-tooltip="ລົບ" id="' +
                                 value.id + '" name="' + value.experience_id + '"' +
                                 "onclick='DelExperience(this.id, this.name)'>" +
                                 '<i class="material-icons">delete</i></a>' +

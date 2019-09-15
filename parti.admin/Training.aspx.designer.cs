@@ -76,6 +76,15 @@ namespace parti.admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdExternal;
         
         /// <summary>
+        /// txtDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescription;
+        
+        /// <summary>
         /// txtTriAddre control.
         /// </summary>
         /// <remarks>

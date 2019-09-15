@@ -646,6 +646,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="q_id" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -653,6 +654,40 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetQAnswerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditUAnswer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="u_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="q_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="a_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditUAnswerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditUAnswerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUAnswer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="u_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="q_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUAnswerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUAnswerResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -21,45 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.waves-button-input').addClass('white-text');
-        });
-
-        function swalToast(action, msg) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 6000
-            });
-
-            if (action == 'error') {
-                Toast.fire({
-                    type: 'error',
-                    title: msg
-                });
-            } else if (action == 'warning') {
-                Toast.fire({
-                    type: 'warning',
-                    title: msg
-                });
-            } else if (action == 'success') {
-                Toast.fire({
-                    type: 'success',
-                    title: msg
-                });
-            } else if (action == 'info') {
-                Toast.fire({
-                    type: 'info',
-                    title: msg
-                });
-            }
-        }
-    </script>
-
     <style>
         @font-face {
             font-family: 'PhetsarathOT';
@@ -101,6 +62,7 @@
 </head>
 
 <body class="md-form">
+    <%-- preloader --%>
     <form runat="server" class="md-form" align="center">
         <img class="m4" src="img/LogoMOHA600px.png" alt="#" width="200" height="176" />
         <h5>ລະບົບຄຸ້ມຄອງຂໍ້ມູນການຝຶກອົບຮົມ</h5>
@@ -116,7 +78,7 @@
             <input type="password" id="inputPassword" runat="server" class="validate" required="required" align="center" />
         </div>
         <div class="md-form">
-            <asp:Button ID="btLogin" runat="server" Text="Login" ToolTip="ເຂົ້າສູ່ລະບົບ" class="btn waves-effect waves-light" OnClick="btLogin_Click" align="center" ForeColor="WhiteSmoke" />
+            <asp:Button ID="btLogin" runat="server" Text="Login" ToolTip="ເຂົ້າສູ່ລະບົບ" class="btn waves-effect waves-light z-depth-3" OnClick="btLogin_Click" align="center" ForeColor="WhiteSmoke" />
         </div>
         <br />
         <a onclick="swalToast('info', 'ແຈ້ງເຕືອນ: ຕິດຕໍ່ຜູ້ຄຸ້ມຄອງລະບົບເພື່ອແກ້ໄຂ ຊື່ຜູ້ໃຊ້ຂອງທ່ານ...!')" class="btn btn-flat">ລືມລະຫັດຜ່ານ!</a>
@@ -125,4 +87,48 @@
         <br />
     </form>
 </body>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.waves-button-input').addClass('white-text');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.preloader-background').delay(2500).fadeOut('slow');
+        $('.preloader-wrapper')
+            .delay(2500)
+            .fadeOut();
+    });
+
+    function swalToast(action, msg) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 6000
+        });
+
+        if (action == 'error') {
+            Toast.fire({
+                type: 'error',
+                title: msg
+            });
+        } else if (action == 'warning') {
+            Toast.fire({
+                type: 'warning',
+                title: msg
+            });
+        } else if (action == 'success') {
+            Toast.fire({
+                type: 'success',
+                title: msg
+            });
+        } else if (action == 'info') {
+            Toast.fire({
+                type: 'info',
+                title: msg
+            });
+        }
+    }
+</script>
 </html>

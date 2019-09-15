@@ -324,11 +324,12 @@ namespace parti.admin
                             "<td class='col s4 m4 l4'>" + vl.title_name + "</td>" +
                             "<td class='col s2 m2 l2'>" + QType + " </td>" +
                             "<td class='col s3 m3 l3 center'><div class='row right'><div class='col'>" +
-                            "<a class='btn-floating waves-effect tooltipped' data-position='left' data-tooltip='ແກ້ໄຂ' " +
+                            "<a class='btn-floating waves-effect tooltipped hvr-grow-shadow' data-position='left' data-tooltip='ແກ້ໄຂ' " +
                             "id='btnEdit" + i + "' name='" + vl.t_id + "' onclick='GetQInfo(" + (i - 1) + ", this.name)'><i class='material-icons right'>edit</i>" +
-                            "</a></div><div class='col'><a class='btn-floating waves-effect tooltipped' data-position='right' " +
-                            "data-tooltip='ເປີດຫນ້າແບບຟອມສຳລັບຜູ້ຝຶກ' id='btnEvaLink" + i + "' name='" + vl.t_id + "' onclick='SetEvaluationTraining(this.name, " + i + ")'>" +
-                            "<i class='material-icons right'>open_in_new</i></a></div></div></td></tr>";
+                            "</a></div><div class='col'><a class='btn-floating waves-effect tooltipped hvr-grow-shadow' data-position='top' " +
+                            "data-tooltip='ເປີດຫນ້າແບບຟອມສຳລັບຜູ້ຝຶກ' id='btnEvaLink" + i + "' name='" + vl.t_id + "' onclick='GenLink(this.name, " + i + ")'>" +
+                            "<i class='material-icons right'>open_in_new</i></a></div><div class='col'><a class='btn-floating waves-effect tooltipped hvr-grow-shadow modal-trigger' data-position='right' " + 
+                            "data-tooltip='ສ້າງ QR Code ສຳລັບແບບຟອມນີ້' id='btnQRGent" + i + "' name='" + vl.t_id + "' onclick='GenQRCode(this.name, " + i + ")'><i class='fas fa-qrcode'></i></a></div></div></td></tr>";
                         tbody.Controls.Add(_tbody);
                         i++;
                     }
@@ -379,14 +380,14 @@ namespace parti.admin
         }
 
         [WebMethod]
-        public static List<GetQAnswer> GetQAnswerID(string t_id)
+        public static List<GetQAnswer> GetQAnswerID(string t_id, string q_id)
         {
             listGetQAnswer.Clear();
             wcf.parti.Service1 _parti = new wcf.parti.Service1();
             partiDB.RootObject rootObject = new partiDB.RootObject();
             if (listGetQAnswer.Count == 0)
             {
-                string json_str = _parti.GetQAnswer(t_id);
+                string json_str = _parti.GetQAnswer(t_id, q_id);
                 if (json_str == "e0")//code error
                 {
                     MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
