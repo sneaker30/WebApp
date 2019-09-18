@@ -691,4 +691,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTrainingRPT01">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="int_or_ext" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="t_date_s" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="t_date_e" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTrainingRPT01Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTrainingRPT01Result" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

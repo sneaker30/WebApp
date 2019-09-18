@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="tcrpt01" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" 
+	  Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" 
+	  xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="tcrpt01" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tcrpt01">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="course_id" type="xs:string" minOccurs="0" />
+              <xs:element name="course_name" type="xs:string" minOccurs="0" />
+              <xs:element name="training_id" type="xs:string" minOccurs="0" />
+              <xs:element name="title" type="xs:string" minOccurs="0" />
+              <xs:element name="total_trainee" type="xs:int" minOccurs="0" />
+              <xs:element name="date_range" type="xs:int" minOccurs="0" />
+              <xs:element name="organizer" type="xs:int" minOccurs="0" />
+              <xs:element name="total_event" type="xs:string" minOccurs="0" />
+			  <xs:element name="training_address" type="xs:string" minOccurs="0" />
+			  <xs:element name="total_trainee_famale" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

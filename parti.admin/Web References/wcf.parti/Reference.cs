@@ -111,6 +111,8 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetUAnswerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetTrainingRPT01OperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -271,6 +273,9 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetUAnswerCompletedEventHandler GetUAnswerCompleted;
+        
+        /// <remarks/>
+        public event GetTrainingRPT01CompletedEventHandler GetTrainingRPT01Completed;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1897,6 +1902,40 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetTrainingRPT01", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetTrainingRPT01([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string int_or_ext, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_date_s, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_date_e) {
+            object[] results = this.Invoke("GetTrainingRPT01", new object[] {
+                        int_or_ext,
+                        t_date_s,
+                        t_date_e});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetTrainingRPT01Async(string int_or_ext, string t_date_s, string t_date_e) {
+            this.GetTrainingRPT01Async(int_or_ext, t_date_s, t_date_e, null);
+        }
+        
+        /// <remarks/>
+        public void GetTrainingRPT01Async(string int_or_ext, string t_date_s, string t_date_e, object userState) {
+            if ((this.GetTrainingRPT01OperationCompleted == null)) {
+                this.GetTrainingRPT01OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTrainingRPT01OperationCompleted);
+            }
+            this.InvokeAsync("GetTrainingRPT01", new object[] {
+                        int_or_ext,
+                        t_date_s,
+                        t_date_e}, this.GetTrainingRPT01OperationCompleted, userState);
+        }
+        
+        private void OnGetTrainingRPT01OperationCompleted(object arg) {
+            if ((this.GetTrainingRPT01Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetTrainingRPT01Completed(this, new GetTrainingRPT01CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3015,6 +3054,32 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetUAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void GetTrainingRPT01CompletedEventHandler(object sender, GetTrainingRPT01CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetTrainingRPT01CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetTrainingRPT01CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -274,8 +274,23 @@ namespace parti.admin.lib
             public string date_of_modified_date { get; set; }
         }
 
+        public class trainingrpt01
+        {
+            public string course_id { get; set; }
+            public string course_name { get; set; }
+            public string training_id { get; set; }
+            public string title { get; set; }
+            public string total_trainee { get; set; }
+            public string date_range { get; set; }
+            public string organizer { get; set; }
+            public string total_event { get; set; }
+            public string training_address { get; set; }
+            public string total_trainee_fmale { get; set; }
+        }
+
         public class RootObject
         {
+            public List<trainingrpt01> trainingrpt01 { get; set; }
             public List<GetQAnswer> GetQAnswer { get; set; }
             public List<GetQQuestion> GetQQuestion { get; set; }
             public List<GetQTitle> GetQTitle { get; set; }
