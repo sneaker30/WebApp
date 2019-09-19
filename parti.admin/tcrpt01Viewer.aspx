@@ -1,7 +1,13 @@
 ﻿<%@ Page Title="ບົດລາຍງານ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="tcrpt01Viewer.aspx.cs" Inherits="parti.admin.tcrpt01Viewer" %>
 
+<%@ Register Assembly="Syncfusion.EJ" Namespace="Syncfusion.JavaScript.Models" TagPrefix="ej" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+
+    <script src="https://unpkg.com/jspdf"></script>
+    <script src="https://unpkg.com/jspdf-autotable"></script>
+
     <style>
         input {
             font-family: PhetsarathOT;
@@ -30,6 +36,41 @@
             left: 0;
             right: 0;
             bottom: 0;
+        }
+
+        .e-grid {
+            font-family: PhetsarathOT
+        }
+
+        .e-label {
+            font-family: PhetsarathOT
+        }
+
+        .e-field {
+            font-family: PhetsarathOT
+        }
+
+        .e-ftrchk {
+            font-family: PhetsarathOT
+        }
+
+        .e-fieldset {
+            font-family: PhetsarathOT
+        }
+
+        .e-box {
+            font-family: PhetsarathOT
+        }
+
+        .e-ejinputtext {
+            font-family: PhetsarathOT;
+            font-size: small;
+        }
+        /*working*/
+
+        e-gridsearchbar {
+            font-family: PhetsarathOT;
+            font-size: small;
         }
     </style>
     <%-- preloader --%>
@@ -119,8 +160,9 @@
     </div>
     <hr />
     <br />
-    <div class="row" style="border-radius: 30px">
-        <table class="striped highlight responsive-table">
+    <div class="row">
+        <table class="striped highlight responsive-table" id="tTable">
+            <caption id="tcaption"></caption>
             <thead>
                 <tr>
                     <th class="col s1 m1 l1">ລ/ດ</th>
@@ -141,11 +183,11 @@
     <div class="row">
         <div class="col">
             <a class="hvr-grow-shadow btn-floating teal darken-3 z-depth-3 tooltipped" data-position="bottom"
-                data-tooltip="Export ເປັນ MS Excel"><i class="fas fa-file-export"></i></a>
+                data-tooltip="Export ເປັນ MS Excel" onclick="exportTableToExcel('tTable', this.name)" id="btnExEXCEL"><i class="fas fa-file-export"></i></a>
         </div>
         <div class="col">
             <a class="hvr-grow-shadow btn-floating blue darken-3 z-depth-3 tooltipped" data-position="bottom"
-                data-tooltip="Export ເປັນ PDF"><i class="fas fa-file-pdf"></i></a>
+                data-tooltip="Export ເປັນ PDF" onclick="exportTableToPdf(this.name)" id="btnExpPDF"><i class="fas fa-file-pdf"></i></a>
         </div>
     </div>
     <script>
@@ -177,12 +219,14 @@
             if (int_or_ext === 'int') {
                 type = ' ';
             }
-            else if (int_or_ext == 'int') {
+            else if (int_or_ext == 'ext') {
                 type = 'ຮ່ວມກັບພາກສ່ວນພາຍນອກ ';
             }
 
             if (sdate !== '' && edate !== '') {
-                //$('#lblTitle').InnerText = 'ສະຖິຕິສັງລວມສະຖາບັນ' + type + 'ຈັດຝຶກອົບຮົມລະຫວ່າງ ' + date_range;
+                document.getElementById('tcaption').innerHTML = '<h5><b>ສະຖິຕິສັງລວມສະຖາບັນ' + type + 'ຈັດຝຶກອົບຮົມລະຫວ່າງ ' + date_range + '</b></h5><br /><br />';
+                document.getElementById('btnExEXCEL').name = 'ສະຖິຕິສັງລວມສະຖາບັນ' + type + 'ຈັດຝຶກອົບຮົມລະຫວ່າງ ' + date_range;
+                document.getElementById('btnExpPDF').name = 'ສະຖິຕິສັງລວມສະຖາບັນ' + type + 'ຈັດຝຶກອົບຮົມລະຫວ່າງ ' + date_range;
                 $('#tbBody').empty();
                 $.ajax({
                     async: false,
@@ -223,5 +267,48 @@
                 .delay(2500)
                 .fadeOut();
         });
+
+        function exportTableToExcel(tableID, filename = '') {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                // Setting the file name
+                downloadLink.download = filename;
+
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+
+        function exportTableToPdf(filename) {
+            var doc = new jsPDF();
+            // It can parse html:
+            doc.autoTable({
+                html: '#tTable',
+                theme: 'striped',
+                styles: [[{ font: PhetsarathOT }]]
+            });
+            doc.save(filename + '.pdf');
+        }
+
     </script>
 </asp:Content>

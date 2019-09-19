@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/favicon.ico" />
-    <title>ເຂົ້າສູ່ລະບົບ - PARTI Admin V.1</title>
+    <title>ເຂົ້າສູ່ລະບົບ - PARTI TIS V.1</title>
 
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,8 +64,9 @@
 <body class="md-form">
     <%-- preloader --%>
     <form runat="server" class="md-form" align="center">
-        <img class="m4" src="img/LogoMOHA600px.png" alt="#" width="200" height="176" />
-        <h5>ລະບົບຄຸ້ມຄອງຂໍ້ມູນການຝຶກອົບຮົມ</h5>
+        <img class="m4" src="img/AppLogo.png" alt="#" width="344" height="172" align="center"/>
+        <%--<h5>ລະບົບຄຸ້ມຄອງຂໍ້ມູນການຝຶກອົບຮົມ</h5>--%>
+        <br />
         <br />
         <div class="input-field" style="width: 90%">
             <i class="material-icons prefix">account_circle</i>

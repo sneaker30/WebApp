@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using parti.admin.lib;
+using Syncfusion.JavaScript.Web;
 using System;
 using System.Collections.Generic;
 using System.Web.Services;
@@ -49,47 +50,7 @@ namespace parti.admin
                     }
                 }
             }
-            return listTrainingrpt01s;
-        }
 
-        [WebMethod]
-        public static List<trainingrpt01> GetReport(string type, string sdate, string edate)
-        {
-            try
-            {
-                listTrainingrpt01s.Clear();
-                wcf.parti.Service1 _parti = new wcf.parti.Service1();
-                partiDB.RootObject rootObject = new partiDB.RootObject();
-                if (listTrainingrpt01s.Count == 0)
-                {
-                    string json_str = _parti.GetTrainingRPT01(type, sdate + " 00:00:00", edate + " 23:59:59");
-                    if (json_str == "e0")//code error
-                    {
-                        MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
-                    }
-                    else if (json_str == "e1")//no data found
-                    {
-                        MessageBox.swalModal(_Page, "info", "e1:ບໍ່ມີຂໍ້ມູນທີ່ຈະສະແດງ.", "");
-                    }
-                    else if (json_str == "e2")//can't connect database
-                    {
-                        MessageBox.swalModal(_Page, "warning", "e2:ບໍ່ສາມາດເຊື່ອມຕໍ່ຖານຂໍ້ມູນໄດ້.", "");
-                    }
-                    else
-                    {
-                        rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
-                        foreach (var vl in rootObject.trainingrpt01)
-                        {
-                            listTrainingrpt01s.Add(new trainingrpt01(vl.course_id, vl.course_name, vl.training_id, vl.title,
-                                vl.total_trainee, vl.date_range, vl.organizer, vl.total_event, vl.training_address, vl.total_trainee_fmale));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.swalModal(_Page, "error", "e0: " + ex.Message, "");
-            }
             return listTrainingrpt01s;
         }
 

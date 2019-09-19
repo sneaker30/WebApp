@@ -1118,6 +1118,7 @@
     <Content Include="crystalreportviewers13\prompting\js\promptengine_strings_zh_TW.js" />
     <Content Include="crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="crystalreportviewers13\urlreporting\appletviewer.js" />
+    <Content Include="img\AppLogo.png" />
     <Content Include="tcrpt01Viewer.aspx" />
     <Content Include="dist\css\demo.css" />
     <Content Include="dist\css\dropify.css" />
@@ -1141,7 +1142,6 @@
     <Content Include="img\bg2.png" />
     <Content Include="img\famale.png" />
     <Content Include="Main.aspx" />
-    <Content Include="favicon2.ico" />
     <Content Include="Global.asax" />
     <Content Include="fonts\PhetsarathOT.ttf" />
     <Content Include="img\LogoMOHA600px.png" />
