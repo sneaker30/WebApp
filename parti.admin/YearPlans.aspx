@@ -119,22 +119,23 @@
             </div>
             <div class="col">
                 <div class="input-field">
-                    <input placeholder="Q1-2019" id="txtQuarter" type="text" class="autocomplete validate" runat="server" autocomplete="off"/>
+                    <input placeholder="Q1-2019" id="txtQuarter" type="text" class="autocomplete validate" runat="server" autocomplete="off" />
                 </div>
             </div>
             <div class="col">
                 <div class="input-field">
-                    <input placeholder="2019" id="txtYear" type="number" class="autocomplete validate" hidden runat="server" autocomplete="off"/>
+                    <input placeholder="2019" id="txtYear" type="number" class="autocomplete validate" runat="server" autocomplete="off" />
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <a class="btn waves-effect waves-light right z-depth-3" id="btnCompare" runat="server" onserverclick="btnCompare_OnServerClick">ທຽບຂໍ້ມູນ</a>
+        <br />
+        <div class="col">
+            <a class="btn waves-effect waves-light right z-depth-3" id="btnCompare" runat="server" onserverclick="btnCompare_OnServerClick">ທຽບຂໍ້ມູນ</a>
+        </div>
     </div>
     <br />
     <div class="row">
-        <div class="col s12 m6 l6">
+        <div class="col s12 m12 l12">
             <ej:Chart ID="ChartYearPlans" runat="server" IsResponsive="true" Font-Names="PhetsarathOT" OnClientLoad="onChartLoad" OnClientSeriesRendering="seriesRender">
                 <PrimaryXAxis Title-Text="ສົກປີ" AxisLine-Visible="false" MajorGridLines-Visible="false" MajorTickLines-Visible="false" />
                 <CommonSeriesOptions EnableAnimation="True" Opacity="0.5" Border-Color="transparent" />
@@ -162,39 +163,39 @@
                 </Legend>
             </ej:Chart>
         </div>
-        <div class="col s12 m6 l6">
+        <div class="col s12 m12 l12">
             <table>
                 <tbody>
                     <tr>
                         <td>
-                            <p>ສົກປິ:</p>
+                            <h6>ສົກປິ:</h6>
                         </td>
                         <td>
-                            <p id="lblYearPlan" runat="server" class="grey-text darken-2"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>ຫລັກສູກ:</p>
-                        </td>
-                        <td>
-                            <p id="lblCourseName" runat="server" class="grey-text darken-2"></p>
+                            <h6 id="lblYearPlan" runat="server" class="grey-text darken-5" style="font-weight: bold;"></h6>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p>ໂຕເລກຄາດຫມາຍແຜນ:</p>
+                            <h6>ຫລັກສູກ:</h6>
                         </td>
                         <td>
-                            <p id="lblTargets" runat="server" class="grey-text darken-2"></p>
+                            <h6 id="lblCourseName" runat="server" class="grey-text darken-5" style="font-weight: bold;"></h6>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p>ໂຕເລກທີ່ສາມາດປະຕິບັດໄດ້:</p>
+                            <h6>ໂຕເລກຄາດຫມາຍແຜນ:</h6>
                         </td>
                         <td>
-                            <p id="lblDoneTarget" runat="server" class="grey-text darken-2"></p>
+                            <h6 id="lblTargets" runat="server" class="grey-text darken-5" style="font-weight: bold;"></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>ໂຕເລກທີ່ສາມາດປະຕິບັດໄດ້:</h6>
+                        </td>
+                        <td>
+                            <h6 id="lblDoneTarget" runat="server" class="grey-text darken-5" style="font-weight: bold;"></h6>
                         </td>
                     </tr>
                 </tbody>
@@ -212,15 +213,42 @@
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd'
             });
+
+            let selectVL = sessionStorage.getItem('selectVL');
+            if (selectVL == 'Y') {
+                $('#<%: txtYear.ClientID %>').show('500');
+                $('#<%: txtQuarter.ClientID %>').hide('500');
+                selectVL = 'Y';
+            } else if (selectVL == 'Q') {
+                $('#<%: txtYear.ClientID %>').hide('500');
+                $('#<%: txtQuarter.ClientID %>').show('500');
+                selectVL = 'Q';
+            }
+            else {
+                $('#<%: txtYear.ClientID %>').hide();
+                $('#<%: txtQuarter.ClientID %>').show();
+            };
+            
+
             $('#<%: selYearPlan.ClientID %>').on('change', function () {
                 if (this.value == 'Y') {
                     $('#<%: txtYear.ClientID %>').show('500');
                     $('#<%: txtQuarter.ClientID %>').hide('500');
+                    if (typeof (Storage) !== "undefined") {
+                        // Code for localStorage/sessionStorage.
+                        sessionStorage.setItem('selectVL', 'Y');
+                    }
                 } else if (this.value == 'Q') {
                     $('#<%: txtYear.ClientID %>').hide('500');
                     $('#<%: txtQuarter.ClientID %>').show('500');
+                    selectVL = 'Q';
+                    if (typeof (Storage) !== "undefined") {
+                        // Code for localStorage/sessionStorage.
+                        sessionStorage.setItem('selectVL', 'Q');
+                    }
                 };
             });
+
             $('#<%: txtQuarter.ClientID %>.autocomplete').autocomplete({
                 data: {
                     "Q1-2019": null,
@@ -255,7 +283,6 @@
                 scrollTop: $('#<%: lblDetails.ClientID %>').offset().top
             }, 2500);
         }
-
     </script>
     <script id="template" type="text/template">
         <div class="">

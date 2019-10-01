@@ -82,6 +82,10 @@
             src: url("fonts/PhetsarathOT.ttf") format('truetype');
         }
 
+        .datepicker-modal {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         .navbar {
             font-family: PhetsarathOT;
         }
@@ -244,7 +248,7 @@
             <%-- dropdown --%>
             <ul id="dropdownTraining" class="dropdown-content">
                 <li><a href="Training" class="black-text">ສ້າງການຝຶກອົບຮົມ</a></li>
-                <li><a href="tcrpt01Viewer" class="black-text">ລາຍງານການຝຶກອົບຮົມ</a></li>
+                <li><a href="tcrpt01" class="black-text">ລາຍງານການຝຶກອົບຮົມ</a></li>
             </ul>
             <ul id="dropdownItemData" class="dropdown-content">
                 <li><a href="Trainees" class="black-text">ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</a></li>
@@ -254,12 +258,12 @@
             </ul>
             <ul id="dropdownSurvey" class="dropdown-content">
                 <li><a href="Evaluation" class="black-text">ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></li>
-                <li><a href="#!" class="black-text">ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></li>
+                <%--<li><a href="#!" class="black-text">ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></li>--%>
             </ul>
             <ul id="dropdownReport" class="dropdown-content">
-                <li><a href="#!" class="black-text">ການຈັດຝຶກອົບຮົມໂດຍສະຖາບັນ</a></li>
-                <li><a href="#!" class="black-text">ການຈັດຝຶກອົບຮົມໂດຍພາກສ່ວນອື່ນ</a></li>
-                <li><a href="#!" class="black-text">ການຖືກເຊີນໄປຂື້ນຫ້ອງໃຫ້ພາກສ່ວນອື່ນ</a></li>
+                <li><a href="tcrpt02" class="black-text">ລາຍງານທຽບແຜນການຈັດຝຶກອົບຮົມ</a></li>
+                <li><a href="tcrpt03" class="black-text">ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ</a></li>
+                <li><a href="#!" class="black-text">ລາຍງານ xxx</a></li>
             </ul>
             <ul id="dropdownUser" class="dropdown-content">
                 <li><a href="UserProfile" class="modal-trigger black-text">ຂໍ້ມູນສ່ວນຕົວ</a></li>
@@ -297,7 +301,7 @@
                     <li>
                         <div class="collapsible-header"><i class="material-icons">assignment</i>ການຈັດຝຶກອົບຮົມ</div>
                         <div class="collapsible-body"><a href="Training" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການຝຶກອົບຮົມ</a></div>
-                        <div class="collapsible-body"><a href="tcrpt01Viewer" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານການຝຶກອົບຮົມ</a></div>
+                        <div class="collapsible-body"><a href="tcrpt01" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານການຝຶກອົບຮົມ</a></div>
                     </li>
                     <li>
                         <div class="collapsible-header"><i class="material-icons">info</i>ຈັດການຂໍ້ມູນ</div>
@@ -309,12 +313,12 @@
                     <li>
                         <div class="collapsible-header"><i class="material-icons">poll</i>ການປະເມີນ/ແບບສອບຖາມ</div>
                         <div class="collapsible-body"><a href="Evaluation" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></div>
-                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></div>
+<%--                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></div>--%>
                     </li>
                     <li>
                         <div class="collapsible-header"><i class="material-icons">note</i>ສັງລວມບົດລາຍງານຕ່າງໆ</div>
-                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍສະຖາບັນ</a></div>
-                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຈັດຝຶກອົບຮົມໂດຍພາກສ່ວນອື່ນ</a></div>
+                        <div class="collapsible-body"><a href="tcrpt02" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານທຽບແຜນການຈັດຝຶກອົບຮົມ</a></div>
+                        <div class="collapsible-body"><a href="tcrpt03" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ</a></div>
                         <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການຖືກເຊີນໄປຂື້ນຫ້ອງໃຫ້ພາກສ່ວນອື່ນ</a></div>
                     </li>
                 </ul>

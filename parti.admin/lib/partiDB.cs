@@ -288,8 +288,17 @@ namespace parti.admin.lib
             public string total_trainee_fmale { get; set; }
         }
 
+        public class GetCompareYearPlanByTimeRange
+        {
+            public string CourseID { get; set; }
+            public string CourseName { get; set; }
+            public string Targets { get; set; }
+            public string DoneTarget { get; set; }
+        }
+
         public class RootObject
         {
+            public List<GetCompareYearPlanByTimeRange> GetCompareYearPlanByTimeRange { get; set; }
             public List<trainingrpt01> trainingrpt01 { get; set; }
             public List<GetQAnswer> GetQAnswer { get; set; }
             public List<GetQQuestion> GetQQuestion { get; set; }

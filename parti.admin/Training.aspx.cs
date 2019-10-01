@@ -253,14 +253,14 @@ namespace parti.admin
                                        "tooltipped' data-position='right' data-tooltip='ລາຍລະອຽດ' id='" + (i - 1) + "' name='" + vl.id + "' onclick='SetTrainingInfo(this.id, this.name)'>" +
                                        "<i class='small material-icons'>more_vert</i></a>" +
                                        "</div>" +
-                                       "<div class='card-content grey lighten-3'>" +
+                                       "<div class='card-content grey lighten-4'>" +
                                        "<b class='card-title black-text'>" + TningDate + "</b>" +
-                                       "<p>" + vl.title + "</p>" +
-                                       "<p>" + vl.training_address + "</p>" +
+                                       "<p class='truncate'>" + vl.title + "</p>" +
+                                       "<p class='truncate'>" + vl.training_address + "</p>" +
                                        "<a class='tooltipped' " +
                                        "data-position='right' data-tooltip='ລົບ' name='" + vl.id + "' id='" + vl.training_date.ToString("yyyy-MM-dd") + "' " +
                                        "onclick='DelTraining(this.name, this.id)'><i class='material-icons red-text darken-3'>delete</i></a>" +
-                                       "<p class='gray-text center' style='font-size:xx-small'>id:" + vl.id + "</p>" +
+                                       "<p class='gray-text center' style='font-size:x-small'>id:" + vl.id + "</p>" +
                                        "</div></div>";
                     cardTraining.Controls.Add(_tbody);
                     i++;

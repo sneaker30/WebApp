@@ -113,6 +113,8 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetTrainingRPT01OperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCompareYearPlanByTimeRangeOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -276,6 +278,9 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetTrainingRPT01CompletedEventHandler GetTrainingRPT01Completed;
+        
+        /// <remarks/>
+        public event GetCompareYearPlanByTimeRangeCompletedEventHandler GetCompareYearPlanByTimeRangeCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1936,6 +1941,40 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetCompareYearPlanByTimeRange", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetCompareYearPlanByTimeRange([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string course_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sdate, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string edate) {
+            object[] results = this.Invoke("GetCompareYearPlanByTimeRange", new object[] {
+                        course_id,
+                        sdate,
+                        edate});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate) {
+            this.GetCompareYearPlanByTimeRangeAsync(course_id, sdate, edate, null);
+        }
+        
+        /// <remarks/>
+        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate, object userState) {
+            if ((this.GetCompareYearPlanByTimeRangeOperationCompleted == null)) {
+                this.GetCompareYearPlanByTimeRangeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompareYearPlanByTimeRangeOperationCompleted);
+            }
+            this.InvokeAsync("GetCompareYearPlanByTimeRange", new object[] {
+                        course_id,
+                        sdate,
+                        edate}, this.GetCompareYearPlanByTimeRangeOperationCompleted, userState);
+        }
+        
+        private void OnGetCompareYearPlanByTimeRangeOperationCompleted(object arg) {
+            if ((this.GetCompareYearPlanByTimeRangeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCompareYearPlanByTimeRangeCompleted(this, new GetCompareYearPlanByTimeRangeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3080,6 +3119,32 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetTrainingRPT01CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetCompareYearPlanByTimeRangeCompletedEventHandler(object sender, GetCompareYearPlanByTimeRangeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCompareYearPlanByTimeRangeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCompareYearPlanByTimeRangeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

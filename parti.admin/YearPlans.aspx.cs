@@ -12,10 +12,10 @@ namespace parti.admin
 {
     public partial class YearPlans : System.Web.UI.Page
     {
-        public static List<Course.GetCourse> gridDataCourses = new List<Course.GetCourse>();
-        public static List<GetYearPlan> gridDataYearPlans = new List<GetYearPlan>();
-        public static List<GetCompareYearPlan> chartCompareYearPlans = new List<GetCompareYearPlan>();
-        public static Page _Page = new Page();
+        public List<Course.GetCourse> gridDataCourses = new List<Course.GetCourse>();
+        public List<GetYearPlan> gridDataYearPlans = new List<GetYearPlan>();
+        public List<GetCompareYearPlan> chartCompareYearPlans = new List<GetCompareYearPlan>();
+        public Page _Page = new Page();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -64,20 +64,27 @@ namespace parti.admin
                             lblDoneTarget.InnerText = vl.DoneTarget;
                             dtg = Convert.ToInt16(vl.DoneTarget);
                         }
-                        if (dtg > tg)
+                        if (tg != 0)
                         {
-                            dtg = (dtg * 100) / tg;
-                            lblDetails.InnerText = "ປະຕິບັດໄດ້ລື່ນຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                            if (dtg > tg)
+                            {
+                                dtg = (dtg * 100) / tg;
+                                lblDetails.InnerText = "ປະຕິບັດໄດ້ລື່ນຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                            }
+                            else if (dtg < tg)
+                            {
+                                dtg = (dtg * 100) / tg;
+                                lblDetails.InnerText = "ປະຕິບັດໄດ້ລຸດຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                            }
+                            else if (dtg == tg)
+                            {
+                                dtg = (dtg * 100) / tg;
+                                lblDetails.InnerText = "ປະຕິບັດໄດ້ຕາມຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                            }
                         }
-                        else if (dtg < tg)
+                        else
                         {
-                            dtg = (dtg * 100) / tg;
-                            lblDetails.InnerText = "ປະຕິບັດໄດ້ລຸດຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
-                        }
-                        else if (dtg == tg)
-                        {
-                            dtg = (dtg * 100) / tg;
-                            lblDetails.InnerText = "ປະຕິບັດໄດ້ຕາມຄາດຫມາຍຄິດໄລ່ເປັນ " + dtg + " ສ່ວນຮ້ອຍຂອງໂຕເລກຄາດຫມາຍ.";
+                            lblDetails.InnerText = "ບໍ່ສາມາດຄິດໄລ່ໄດ້, ບໍ່ມີເປົ້າຫມາຍໂຕເລກຄາດຫມາຍ.";
                         }
                     }
                 }
@@ -119,7 +126,7 @@ namespace parti.admin
             }
         }
 
-        public static List<GetYearPlan> GetgridDataYearPlans()
+        public List<GetYearPlan> GetgridDataYearPlans()
         {
             try
             {

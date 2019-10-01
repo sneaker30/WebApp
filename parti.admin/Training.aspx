@@ -13,6 +13,7 @@
 
         .card {
             width: 200px;
+            height: 300px;
             border-radius: 10px;
             margin-right: 20px;
         }
@@ -103,7 +104,7 @@
                         </div>
                         <div class="input-field col s12 m12 l12">
                             <label for="txtDescription">ລາຍລະອຽດພາກສ່ວນພາຍນອກ</label>
-                            <input type="text" class="validate" id="txtDescription" runat="server" />
+                            <input type="text" class="validate" id="txtDescription" runat="server" required/>
                             <span class="helper-text">ພາກສ່ວນພາຍນອກທີ່ເປັນເຈົ້າການໃນການຈັດຝຶກອົບຮົມ.</span>
                         </div>
                     </div>
@@ -255,12 +256,12 @@
             GetAutocompleteDis();
             $('#<%: txtDistrict.ClientID %>.autocomplete').autocomplete({
                 data: itemDistrict,
-                limit: 20, onAutocomplete: function (val) { }, minLength: 2
+                limit: 20, onAutocomplete: function (val) { }, minLength: 1
             });
             GetAutocompletePro();
             $('#<%: txtProvince.ClientID %>.autocomplete').autocomplete({
                 data: itemProvince,
-                limit: 10, onAutocomplete: function (val) { }, minLength: 2
+                limit: 10, onAutocomplete: function (val) { }, minLength: 1
             });
         }, 1000);
 
@@ -384,7 +385,14 @@
             var training_province = document.getElementById('<%: txtProvince.ClientID %>').value;
             var description = document.getElementById('<%: txtDescription.ClientID %>').value;
 
-            SetTraining(action, id, title, course_id, int_or_ext, training_address, training_district, training_province, training_days, training_date, description, formatted_date);
+            if (action !== '' && id !== '' && title !== '' && course_id !== '' && training_address !== '' &&
+                training_days !== '' && training_date !== '' && current_datetime !== '' && formatted_date !== '' &&
+                training_district !== '' && training_province !== '' && description !== '') {
+                SetTraining(action, id, title, course_id, int_or_ext, training_address, training_district,
+                    training_province, training_days, training_date, description, formatted_date);
+            } else {
+                swalToast('warning', 'ໃສ່ຂໍ້ມູນໃຫ້ຄົບດ້ວຍ.');
+            }
         }
 
         function SetTraining(action, id, title, course_id, int_or_ext, training_address, training_district, training_province,
@@ -638,7 +646,7 @@
                     }
                 });
 
-                var msg = "<div class='left'><h6>ບຸກຄົນນີ້ແມ່ນເຄີຍຜ່ານການອົບຮົມໃນຫຼັກສູດນີ້ແລ້ວ!</h6><br />ຫົວຂໍ້: " + _title + "<br />ຫຼັກສູດ: " + _course_name + "<br />ສະຖານທີ: " + _training_address + "<br />ວັນທີຈັດງານ: " + _training_date + "<br />code: e3</div>";
+                var msg = "<div class='center'><h6>ບຸກຄົນນີ້ແມ່ນເຄີຍຜ່ານການອົບຮົມໃນຫຼັກສູດນີ້ແລ້ວ!</h6><br />ຫົວຂໍ້: " + _title + "<br />ຫຼັກສູດ: " + _course_name + "<br />ສະຖານທີ: " + _training_address + "<br />ວັນທີຈັດງານ: " + _training_date + "<br />code: e3</div>";
 
                 if (_code == 'e3') {
                     swalModal('error', msg, '');

@@ -707,4 +707,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetCompareYearPlanByTimeRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="course_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sdate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="edate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompareYearPlanByTimeRangeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCompareYearPlanByTimeRangeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

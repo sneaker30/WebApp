@@ -259,6 +259,12 @@
   <wsdl:message name="IService1_GetTrainingRPT01_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTrainingRPT01Response" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetCompareYearPlanByTimeRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompareYearPlanByTimeRange" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCompareYearPlanByTimeRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompareYearPlanByTimeRangeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetAuthen">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAuthen" message="tns:IService1_GetAuthen_InputMessage" />
@@ -427,6 +433,10 @@
     <wsdl:operation name="GetTrainingRPT01">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainingRPT01" message="tns:IService1_GetTrainingRPT01_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTrainingRPT01Response" message="tns:IService1_GetTrainingRPT01_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompareYearPlanByTimeRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlanByTimeRange" message="tns:IService1_GetCompareYearPlanByTimeRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlanByTimeRangeResponse" message="tns:IService1_GetCompareYearPlanByTimeRange_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -802,6 +812,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTrainingRPT01">
       <soap:operation soapAction="http://tempuri.org/IService1/GetTrainingRPT01" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompareYearPlanByTimeRange">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetCompareYearPlanByTimeRange" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
