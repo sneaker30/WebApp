@@ -83,7 +83,7 @@
     </div>
     <%-- Search --%>
     <div class="row">
-        <h4>ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ</h4>
+        <h4>ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ</h4>
     </div>
     <hr />
     <br />
@@ -103,11 +103,11 @@
                 <h6 class="grey-text">ລະຫວ່າງວັນທີ:</h6>
             </div>
             <div class="col input-field">
-                <input type="text" id="txtDateStart" required="" class="datepicker validate" placeholder="YYYY-MM-DD" />
+                <input type="text" id="txtDateStart" required class="datepicker validate" placeholder="YYYY-MM-DD" />
                 <label for="txtDateStart">ວັນທີ່ເລີ່ມຕົ້ນ</label>
             </div>
             <div class="col input-field">
-                <input type="text" id="txtDateEnd" required="" class="datepicker validate" placeholder="YYYY-MM-DD" />
+                <input type="text" id="txtDateEnd" required class="datepicker validate" placeholder="YYYY-MM-DD" />
                 <label for="txtDateEnd">ວັນທີ່ສຸດທ້າຍ</label>
             </div>
             <div class="col">
@@ -127,26 +127,11 @@
                 <th rowspan="2">ຊື່ການຝຶກ</th>
                 <th rowspan="2">ສະຖານທີ່ຝຶກ</th>
                 <th rowspan="2">ພາກສ່ວນ</th>
-                <th colspan="2">ຈຳນວນຜູ້ເຂົ້າຮ່ວມ</th>
                 <th rowspan="2">ວັນທີ</th>
                 <th rowspan="2">ລາຍລະອຽດ</th>
             </tr>
-            <tr>
-                <th>ລວມ</th>
-                <th>ຍິງ</th>
-            </tr>
         </thead>
-        <tbody class="grey lighten-3">
-            <tr>
-                <td>1</td>
-                <td>ຕົວຢ່າງ (ການຝຶກອົບຮົມລັດຖະກອນໃໝ່)</td>
-                <td>ໂຮງແຮມວຽງຈັນພຣາຊາ</td>
-                <td>ກົມພັດທະນາສີມືແຮງງານແລະຈັດຫາງານ</td>
-                <td>40</td>
-                <td>15</td>
-                <td>10/10/2018 ຫາ 14/10/2018</td>
-                <td><a class="btn-small waves-effect z-depth-3 hvr-grow-shadow" name="course_id" onclick="getDetails(this.name)">ລາຍລະອຽດ</a></td>
-            </tr>
+        <tbody class="grey lighten-3" id="tbody">
         </tbody>
     </table>
     <hr />
@@ -185,6 +170,48 @@
             });
             $('#details').hide();
         });
+
+        function Search() {
+            var course_id = $("#<%: selCourse2.ClientID %>").val();
+            var course_name = $("#<%: selCourse2.ClientID %> option:selected").text();
+            var sdate = document.getElementById('txtDateStart').value;
+            var edate = document.getElementById('txtDateEnd').value;
+
+            document.getElementById('tcaption').innerHTML = '<h6><b>ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ ຫົວຂໍ້ ' + course_name + ' ລະຫວ່າງວັນທີ ' + sdate + ' ຫາ ' + edate + '</b></h6><br /><br />';
+            //document.getElementById('btnExEXCEL').name = 'ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ ຫົວຂໍ້ ' + course_name + ' ລະຫວ່າງວັນທີ ' + sdate + ' ຫາ ' + edate;
+            //document.getElementById('btnExpPDF').name = 'ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ ຫົວຂໍ້ ' + course_name + ' ລະຫວ່າງວັນທີ ' + sdate + ' ຫາ ' + edate;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<%: ResolveUrl("tcrpt03.aspx/getAllQuestionLists") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{course_id:'" + course_id + "', sdate:'" + sdate + "', edate:'" + edate + "'}",
+                success: function (response) {
+                    var obj = response.d;
+                    var i = 1;
+                    $('#tbody').empty();
+                    $.each(obj,
+                        function (key, vl) {
+                            var element = "<tr id='" + i + "'>" +
+                                "<td>" + i + "</td>" +
+                                "<td>" + vl.title + "</td>" +
+                                "<td>" + vl.training_address + "</td>" +
+                                "<td>" + vl.org + "</td>" +
+                                "<td>" + vl.sdate + " ຫາ " + vl.edate + "</td>" +
+                                "<td><a class='btn-small waves-effect z-depth-3 hvr-grow-shadow' name='course_id' onclick='getDetails(this.name)'>ລາຍລະອຽດ</a></td>" +
+                                "</tr>";
+                            document.getElementById('tbody').insertAdjacentHTML("beforeend", element);
+                            i++;
+                        });
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+            $('#details').hide();
+        }
 
         function getDetails(course_id) {
             $('#details').show('slow');

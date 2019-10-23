@@ -296,8 +296,19 @@ namespace parti.admin.lib
             public string DoneTarget { get; set; }
         }
 
+        public class GetAllQuestionList
+        {
+            public string q_id { get; set; }
+            public string title { get; set; }
+            public string training_address { get; set; }
+            public string org { get; set; }
+            public DateTime sdate { get; set; }
+            public DateTime edate { get; set; }
+        }
+
         public class RootObject
         {
+            public List<GetAllQuestionList> GetAllQuestionList { get; set; }
             public List<GetCompareYearPlanByTimeRange> GetCompareYearPlanByTimeRange { get; set; }
             public List<trainingrpt01> trainingrpt01 { get; set; }
             public List<GetQAnswer> GetQAnswer { get; set; }
