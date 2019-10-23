@@ -232,7 +232,8 @@
                         <li><a id="menu2" href="YearPlans" class="waves-effect waves-teal black-text">ແຜນການຈັດຕັ້ງປະຕິບັດ</a></li>
                         <li><a id="menu3" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownTraining">ການຈັດຝຶກອົບຮົມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
                         <li><a id="menu4" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownItemData">ຈັດການຂໍ້ມູນ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
-                        <li><a id="menu5" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownSurvey">ການປະເມີນ/ແບບສອບຖາມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
+                        <%--                        <li><a id="menu5" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownSurvey">ການປະເມີນ/ແບບສອບຖາມ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>--%>
+                        <li><a id="menu5" href="Evaluation" class="waves-effect waves-teal black-text">ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></li>
                         <li><a id="menu6" class="dropdown-trigger waves-effect waves-teal right hvr-icon-hang black-text" data-target="dropdownReport">ສັງລວມບົດລາຍງານຕ່າງໆ<i class="hvr-icon material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                     <ul class="hide-on-med-and-down right">
@@ -313,7 +314,7 @@
                     <li>
                         <div class="collapsible-header"><i class="material-icons">poll</i>ການປະເມີນ/ແບບສອບຖາມ</div>
                         <div class="collapsible-body"><a href="Evaluation" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສ້າງການປະເມີນ/ແບບສອບຖາມ</a></div>
-<%--                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></div>--%>
+                        <%--                        <div class="collapsible-body"><a href="#!" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລາຍການແບບຟອມການປະເມີນ/ແບບສອບຖາມ</a></div>--%>
                     </li>
                     <li>
                         <div class="collapsible-header"><i class="material-icons">note</i>ສັງລວມບົດລາຍງານຕ່າງໆ</div>

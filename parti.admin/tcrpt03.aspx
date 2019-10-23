@@ -11,7 +11,7 @@
             font-family: PhetsarathOT;
         }
 
-        #tbSummary td,#tbSummary th {
+        #tbSummary td, #tbSummary th {
             border: 1px solid #ddd;
             padding: 8px;
         }
@@ -29,7 +29,7 @@
             bottom: 0;
         }
     </style>
-     <%-- preloader --%>
+    <%-- preloader --%>
     <div class="preloader-background">
         <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue">
@@ -96,8 +96,7 @@
                 <h6 class="grey-text">ຫລັກສູດ:</h6>
             </div>
             <div class="input-field col s12 m4 l4">
-                <select name="selCourse2" id="selCourse2">
-                </select>
+                <select id="selCourse2" runat="server"></select>
             </div>
             <div class="col">
                 <br />
@@ -129,8 +128,7 @@
                 <th rowspan="2">ສະຖານທີ່ຝຶກ</th>
                 <th rowspan="2">ພາກສ່ວນ</th>
                 <th colspan="2">ຈຳນວນຜູ້ເຂົ້າຮ່ວມ</th>
-                <th rowspan="2">ວັນທີຝຶກ</th>
-                <th rowspan="2">ວັນທີສຳເລັດການຝຶກ</th>
+                <th rowspan="2">ວັນທີ</th>
                 <th rowspan="2">ລາຍລະອຽດ</th>
             </tr>
             <tr>
@@ -146,21 +144,35 @@
                 <td>ກົມພັດທະນາສີມືແຮງງານແລະຈັດຫາງານ</td>
                 <td>40</td>
                 <td>15</td>
-                <td>10/10/2018</td>
-                <td>14/10/2018</td>
-                <td><a class="btn-small waves-effect z-depth-3 hvr-grow-shadow">ລາຍລະອຽດ</a></td>
+                <td>10/10/2018 ຫາ 14/10/2018</td>
+                <td><a class="btn-small waves-effect z-depth-3 hvr-grow-shadow" name="course_id" onclick="getDetails(this.name)">ລາຍລະອຽດ</a></td>
             </tr>
         </tbody>
     </table>
     <hr />
     <br />
-    <div class="row" id="row_details">
-        <div class="col s12 m12 l12">
-            <h6 id="Q0">1. 1 + 1 = ?</h6>
-            <p id="An0_1">1<a class="btn-small blue-grey lighten-2">ມີຄົນຕອບຈຳນວນ:4</a></p>
-            <p id="An0_2">2</p>
-            <p id="An0_3">3</p>
-            <p id="An0_4">4</p>
+    <div class="row" id="details">
+        <div class="row" id="row_0">
+            <div class="row">
+                <h6 id="Q0">ຄຳຖາມ: <a>1. ແມວມັກກິນຫຍັງທີ່ສຸດ?</a></h6>
+            </div>
+            <div class="row">
+                <p>ຄຳຕອບ: <a id="A0_0">ປາ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_0">10</a></p>
+                <p>ຄຳຕອບ: <a id="A0_1">ຊີ້ນຫມູ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_1">0</a></p>
+                <p>ຄຳຕອບ: <a id="A0_2">ໄກ່</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_2">0</a></p>
+                <p>ຄຳຕອບ: <a id="A0_3">ຫມາ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_3">3</a></p>
+            </div>
+        </div>
+        <div class="row" id="row_1">
+            <div class="row">
+                <h6 id="Q1">ຄຳຖາມ: <a>2. ຂໍໃດຕໍ່ໄປນີ້ບໍ່ສັດກິນຜືດ?</a></h6>
+            </div>
+            <div class="row">
+                <p>ຄຳຕອບ: <a id="A1_0">ງົວ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_0">0</a></p>
+                <p>ຄຳຕອບ: <a id="A1_1">ແບ້</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_1">0</a></p>
+                <p>ຄຳຕອບ: <a id="A1_2">ຄວາຍ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_2">0</a></p>
+                <p>ຄຳຕອບ: <a id="A1_3">ເສືອ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_3">5</a></p>
+            </div>
         </div>
     </div>
 
@@ -171,7 +183,12 @@
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd'
             });
+            $('#details').hide();
         });
+
+        function getDetails(course_id) {
+            $('#details').show('slow');
+        }
 
         function complete(args) {
             $('select').formSelect();
@@ -180,7 +197,7 @@
 
         function ScrollDownCompare() {
             $('html, body').animate({
-                scrollTop: $('#').offset().top
+                scrollTop: $('#details').offset().top
             }, 2500);
         }
 

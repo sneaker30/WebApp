@@ -93,12 +93,24 @@
         <br />
         <div class="col s12 m9 l9">
             <ul class="tabs" id="myTab">
-                <li class="tab col s2 m2 l2"><a href="#PersonalInfo">ປະຫວັດສ່ວນຕົວ</a></li>
-                <li class="tab col s2 m2 l2"><a href="#Edocation">ວຸດທິການສຶກສາ</a></li>
-                <li class="tab col s2 m2 l2"><a href="#Workplace">ບ່ອນປະຈຳການປະຈຸບັນ</a></li>
-                <li class="tab col s2 m2 l2"><a href="#Experiance">ປະສົບການດ້ານການປະຕິບັດວຽກງານຜ່ານມາຫາປັດຈຸບັນ</a></li>
-                <li class="tab col s2 m2 l2"><a href="#Trainer">ປະສົບການໃນການເປັນຄູຝຶກຜ່ານມາຫາປັດຈຸບັນ</a></li>
-                <li class="tab col s2 m2 l2"><a href="#FileUpload">ຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ປະຫວັດສ່ວນຕົວ"><a href="#PersonalInfo" class="grey-text">
+                    <h6>ປະຫວັດສ່ວນຕົວ</h6>
+                </a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ວຸດທິການສຶກສາ"><a href="#Edocation" class="grey-text">
+                    <h6>ວຸດທິການສຶກສາ</h6>
+                </a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ບ່ອນປະຈຳການປະຈຸບັນ"><a href="#Workplace" class="grey-text">
+                    <h6>ບ່ອນປະຈຳການປະຈຸບັນ</h6>
+                </a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ປະສົບການດ້ານການປະຕິບັດວຽກງານຜ່ານມາຫາປັດຈຸບັນ"><a href="#Experiance" class="grey-text">
+                    <h6>ປະສົບການດ້ານການປະຕິບັດວຽກງານຜ່ານມາຫາປັດຈຸບັນ</h6>
+                </a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ປະສົບການໃນການເປັນຄູຝຶກຜ່ານມາຫາປັດຈຸບັນ"><a href="#Trainer" class="grey-text">
+                    <h6>ປະສົບການໃນການເປັນຄູຝຶກຜ່ານມາຫາປັດຈຸບັນ</h6>
+                </a></li>
+                <li class="tab col s2 m2 l2 tooltipped" data-position="top" data-tooltip="ຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ"><a href="#FileUpload" class="grey-text">
+                    <h6>ຟຣາຍເອກະສານແນບເຂົ້າໃນລະບົບ</h6>
+                </a></li>
             </ul>
             <div id="myTabContent">
                 <div id="PersonalInfo" class="col s12 m12 l12">
@@ -427,7 +439,7 @@
                 limit: 10
             });
 
-            var uid = document.getElementById('<%: uid.ClientID %>').value;            
+            var uid = document.getElementById('<%: uid.ClientID %>').value;
             GetTrainingExp_Trainer(uid);
             GetExperience(uid);
         });

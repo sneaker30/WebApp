@@ -224,6 +224,7 @@
         t_id = GetTID();
         GetQTitleID(t_id[1]);
         GetQQuestionID(t_id[0]);
+        t_id = t_id[0];
     }, 1500);
 
     function FinishedUAnswer() {

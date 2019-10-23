@@ -713,6 +713,7 @@
         <xs:element minOccurs="0" name="course_id" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sdate" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="edate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="year_plan" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -720,6 +721,38 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetCompareYearPlanByTimeRangeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllQuestionList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="course_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sdate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="edate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllQuestionListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAllQuestionListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountUserAnswer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="q_type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="t_id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="q_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountUserAnswerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCountUserAnswerResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

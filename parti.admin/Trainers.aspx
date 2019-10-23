@@ -42,7 +42,8 @@
         .card {
             display: inline-block;
             position: relative;
-            width: 150px;
+            width: 170px;
+            height: 200px;
             margin-bottom: 50px;
             margin-right: 20px;
             border-radius: 6px;
@@ -67,7 +68,7 @@
         }
 
         .table {
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 0px;
             background-color: transparent;
         }

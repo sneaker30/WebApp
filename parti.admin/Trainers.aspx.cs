@@ -65,10 +65,10 @@ namespace parti.admin
                         "<a href='#'><img class='img' src='" + vl.avatar_url.Replace("~", "") + "'></a>" +
                         "</div>" +
                         "<div class='table center'>" +
-                        "<p>" + vl.fullname_la + "</p>" +
-                        "<h6>" + vl.position + "</h6>" +
+                        "<p class='truncate'>" + vl.fullname_la + "</p>" +
+                        "<p class='truncate'>" + vl.position + "</p>" +
                         "<button id='btn" + i + "' value='" + i + "' onclick='SetTrainerInfo(this.value); return false;' type='button' " +
-                        "class='btn-floating btn-small waves-effect waves-light red darken-3 tooltipped modal-trigger' href='#modalTrainer' data-position='top' " +
+                        "class='btn-floating btn-small waves-effect waves-light red darken-3 tooltipped modal-trigger' href='#modalTrainer' data-position='buttom' " +
                         "data-tooltip='ຂໍ້ມູນເພີ່ມຕື່ມ'><i class='material-icons'>keyboard_arrow_down</i></button>" +
                         "</div></div>";
                     crsTrainerList.Controls.AddAt(i, carouselItem);
@@ -232,6 +232,11 @@ namespace parti.admin
                     File.Move(imgfilePath, renamePath);
                     txtAvatarHidd_I.Value = picture_url;
                 }
+                else
+                {
+                    picture_url = "img/avatar.png";
+                    txtAvatarHidd_I.Value = picture_url;
+                }
                 if (string.IsNullOrEmpty(txtReferDoc1.PostedFile.FileName) == false)
                 {
                     var imgfile = Path.GetFileName(txtReferDoc1.PostedFile.FileName);
@@ -343,7 +348,7 @@ namespace parti.admin
                 {
                     status = "s";
                 }
-                
+
                 var result = parti.EditTrainer(action, txtid, txtNameLa.Value, txtNameEng.Value, dtpBD.Value, sex, status, txtVillage.Value,
                     txtDistrict.Value, txtProvince.Value, txtWork_place.Value, txtDepartment.Value, txtPosition.Value, txtDate_of_govermented.Value,
                     txtOffice_tel.Value, txtMobile_tel.Value, txtEmail.Value, txtAvatarHidd_I.Value, txtReferDoc1Hidd_I.Value, txtReferDoc2Hidd_I.Value,

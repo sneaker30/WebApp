@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace parti.admin {
-    
-    
-    public partial class _Default {
-        
-        /// <summary>
-        /// pieChart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Syncfusion.JavaScript.Web.Chart pieChart;
-        
+namespace parti.admin
+{
+
+
+    public partial class _Default
+    {
+
         /// <summary>
         /// columnChart control.
         /// </summary>
@@ -29,5 +22,14 @@ namespace parti.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Syncfusion.JavaScript.Web.Chart columnChart;
+
+        /// <summary>
+        /// pieChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Syncfusion.JavaScript.Web.Chart pieChart;
     }
 }

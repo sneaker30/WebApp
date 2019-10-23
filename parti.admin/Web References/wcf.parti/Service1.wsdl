@@ -265,6 +265,18 @@
   <wsdl:message name="IService1_GetCompareYearPlanByTimeRange_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCompareYearPlanByTimeRangeResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetAllQuestionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllQuestionList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllQuestionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllQuestionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCountUserAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountUserAnswer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetCountUserAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountUserAnswerResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetAuthen">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAuthen" message="tns:IService1_GetAuthen_InputMessage" />
@@ -437,6 +449,14 @@
     <wsdl:operation name="GetCompareYearPlanByTimeRange">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlanByTimeRange" message="tns:IService1_GetCompareYearPlanByTimeRange_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetCompareYearPlanByTimeRangeResponse" message="tns:IService1_GetCompareYearPlanByTimeRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQuestionList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllQuestionList" message="tns:IService1_GetAllQuestionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllQuestionListResponse" message="tns:IService1_GetAllQuestionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountUserAnswer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetCountUserAnswer" message="tns:IService1_GetCountUserAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetCountUserAnswerResponse" message="tns:IService1_GetCountUserAnswer_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -821,6 +841,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetCompareYearPlanByTimeRange">
       <soap:operation soapAction="http://tempuri.org/IService1/GetCompareYearPlanByTimeRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQuestionList">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllQuestionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountUserAnswer">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetCountUserAnswer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

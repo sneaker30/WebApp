@@ -115,6 +115,10 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetCompareYearPlanByTimeRangeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAllQuestionListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCountUserAnswerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -281,6 +285,12 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetCompareYearPlanByTimeRangeCompletedEventHandler GetCompareYearPlanByTimeRangeCompleted;
+        
+        /// <remarks/>
+        public event GetAllQuestionListCompletedEventHandler GetAllQuestionListCompleted;
+        
+        /// <remarks/>
+        public event GetCountUserAnswerCompletedEventHandler GetCountUserAnswerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1943,8 +1953,44 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetCompareYearPlanByTimeRange", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string GetCompareYearPlanByTimeRange([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string course_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sdate, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string edate) {
+        public string GetCompareYearPlanByTimeRange([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string course_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sdate, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string edate, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string year_plan) {
             object[] results = this.Invoke("GetCompareYearPlanByTimeRange", new object[] {
+                        course_id,
+                        sdate,
+                        edate,
+                        year_plan});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate, string year_plan) {
+            this.GetCompareYearPlanByTimeRangeAsync(course_id, sdate, edate, year_plan, null);
+        }
+        
+        /// <remarks/>
+        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate, string year_plan, object userState) {
+            if ((this.GetCompareYearPlanByTimeRangeOperationCompleted == null)) {
+                this.GetCompareYearPlanByTimeRangeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompareYearPlanByTimeRangeOperationCompleted);
+            }
+            this.InvokeAsync("GetCompareYearPlanByTimeRange", new object[] {
+                        course_id,
+                        sdate,
+                        edate,
+                        year_plan}, this.GetCompareYearPlanByTimeRangeOperationCompleted, userState);
+        }
+        
+        private void OnGetCompareYearPlanByTimeRangeOperationCompleted(object arg) {
+            if ((this.GetCompareYearPlanByTimeRangeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCompareYearPlanByTimeRangeCompleted(this, new GetCompareYearPlanByTimeRangeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAllQuestionList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetAllQuestionList([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string course_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sdate, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string edate) {
+            object[] results = this.Invoke("GetAllQuestionList", new object[] {
                         course_id,
                         sdate,
                         edate});
@@ -1952,25 +1998,59 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
-        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate) {
-            this.GetCompareYearPlanByTimeRangeAsync(course_id, sdate, edate, null);
+        public void GetAllQuestionListAsync(string course_id, string sdate, string edate) {
+            this.GetAllQuestionListAsync(course_id, sdate, edate, null);
         }
         
         /// <remarks/>
-        public void GetCompareYearPlanByTimeRangeAsync(string course_id, string sdate, string edate, object userState) {
-            if ((this.GetCompareYearPlanByTimeRangeOperationCompleted == null)) {
-                this.GetCompareYearPlanByTimeRangeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompareYearPlanByTimeRangeOperationCompleted);
+        public void GetAllQuestionListAsync(string course_id, string sdate, string edate, object userState) {
+            if ((this.GetAllQuestionListOperationCompleted == null)) {
+                this.GetAllQuestionListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllQuestionListOperationCompleted);
             }
-            this.InvokeAsync("GetCompareYearPlanByTimeRange", new object[] {
+            this.InvokeAsync("GetAllQuestionList", new object[] {
                         course_id,
                         sdate,
-                        edate}, this.GetCompareYearPlanByTimeRangeOperationCompleted, userState);
+                        edate}, this.GetAllQuestionListOperationCompleted, userState);
         }
         
-        private void OnGetCompareYearPlanByTimeRangeOperationCompleted(object arg) {
-            if ((this.GetCompareYearPlanByTimeRangeCompleted != null)) {
+        private void OnGetAllQuestionListOperationCompleted(object arg) {
+            if ((this.GetAllQuestionListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCompareYearPlanByTimeRangeCompleted(this, new GetCompareYearPlanByTimeRangeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetAllQuestionListCompleted(this, new GetAllQuestionListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetCountUserAnswer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GetCountUserAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_id) {
+            object[] results = this.Invoke("GetCountUserAnswer", new object[] {
+                        q_type,
+                        t_id,
+                        q_id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id) {
+            this.GetCountUserAnswerAsync(q_type, t_id, q_id, null);
+        }
+        
+        /// <remarks/>
+        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id, object userState) {
+            if ((this.GetCountUserAnswerOperationCompleted == null)) {
+                this.GetCountUserAnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCountUserAnswerOperationCompleted);
+            }
+            this.InvokeAsync("GetCountUserAnswer", new object[] {
+                        q_type,
+                        t_id,
+                        q_id}, this.GetCountUserAnswerOperationCompleted, userState);
+        }
+        
+        private void OnGetCountUserAnswerOperationCompleted(object arg) {
+            if ((this.GetCountUserAnswerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCountUserAnswerCompleted(this, new GetCountUserAnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3145,6 +3225,58 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetCompareYearPlanByTimeRangeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetAllQuestionListCompletedEventHandler(object sender, GetAllQuestionListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllQuestionListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllQuestionListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetCountUserAnswerCompletedEventHandler(object sender, GetCountUserAnswerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCountUserAnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCountUserAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
