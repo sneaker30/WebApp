@@ -19,7 +19,7 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
 
     <style>
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="container">
-            <h4>ແບບຟອມການປະເມີນ-ສອບຖາມ</h4>
+            <div id="title"></div>
             <hr />
             <div class="row">
                 <p id="txtTitle" style="font-size: xx-large"></p>
@@ -161,7 +161,7 @@
                                 <div class="row" id="row_step0">
                                 </div>
                                 <div class="step-actions">
-                                    <button class="waves-effect btn btn-small next-step laotxt z-depth-3" onclick="EditUAnswer()">ຕໍ່ໄປ</button>
+                                    <button class="waves-effect btn btn-small next-step laotxt z-depth-3" onclick="EditUAnswer('')">ຕໍ່ໄປ</button>
                                     <%--<button class="waves-effect btn btn-small previous-step laotxt z-depth-3">ກັບຄືນ</button>--%>
                                 </div>
                             </div>
@@ -174,6 +174,7 @@
 </body>
 <script>
     var t_id;
+    var q_type;
 
     function swalModal(actions, msgs, currentPage) {
         Swal.fire({
@@ -224,7 +225,15 @@
         t_id = GetTID();
         GetQTitleID(t_id[1]);
         GetQQuestionID(t_id[0]);
+        q_type = t_id[2];
         t_id = t_id[0];
+        var q_type_name;
+        if (q_type == 'b') {
+            q_type_name = 'ກ່ອນຝຶກ';
+        } else if (q_type == 'a') {
+            q_type_name = 'ຫຼັງຝຶກ';
+        }
+        document.getElementById('title').innerHTML = '<h4>ແບບຟອມການປະເມີນ-ສອບຖາມ ' + q_type_name + '</h4>';
     }, 1500);
 
     function FinishedUAnswer() {
@@ -256,11 +265,11 @@
             url: "<%: ResolveUrl("Evaluation_Training.aspx/EditUAnswer") %>",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: "{u_id:'" + u_id + "', t_id:'" + t_id + "', q_id:'" + q_id + "', a_id:'" + a_id + "'}",
+            data: "{u_id:'" + u_id + "', t_id:'" + t_id + "', q_id:'" + q_id + "', a_id:'" + a_id + "', q_type:'" + q_type + "'}",
             success: function (response) {
                 swalToast('info', response.d);
                 if (frm === 'ບັນທຶກ') {
-                    swalModal('success', 'ສຳເລັດການປະກອບແບບຟອມປະເມີນ...', '');
+                    swalModal('success', 'ສຳເລັດການບັນທຶກ, ການປະກອບແບບຟອມປະເມີນ...', '');
                 }
             },
             failure: function (response) {

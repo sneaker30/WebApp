@@ -13,8 +13,9 @@
     <br />
     <br />
     <!-- start row 1 Width="500" Height="450"-->
-    <div class="row">
-        <ej:Chart ID="columnChart" runat="server" ClientIDMode="Static" IsResponsive="true" OnClientLoad="onChartLoad" Font-Names="Phetsarath OT" OnClientSeriesRendering="seriesRender">
+    <div class="row grey lighten-5">
+        <ej:Chart ID="columnChart" runat="server" ClientIDMode="Static" IsResponsive="true" OnClientLoad="onChartLoad" 
+            Font-Names="Phetsarath OT" OnClientSeriesRendering="seriesRender" BackColor="White">
             <PrimaryXAxis Title-Text="" LabelIntersectAction="Trim">
                 <Font FontFamily="PhetsarathOT"></Font>
             </PrimaryXAxis>
@@ -58,8 +59,9 @@
         </ej:Chart>
     </div>
 
-    <div class="row">
-        <ej:Chart ID="pieChart" runat="server" IsResponsive="true" OnClientLoad="onChartLoad" Font-Names="Phetsarath OT" OnClientSeriesRendering="seriesRender">
+    <div class="row grey lighten-5">
+        <ej:Chart ID="pieChart" runat="server" IsResponsive="true" OnClientLoad="onChartLoad" 
+            Font-Names="Phetsarath OT" OnClientSeriesRendering="seriesRender" BackColor="White">
             <Title Text="ສັງລວມການຈັດຝຶກອົບຮົມທັງຫມົດໃນຖານຂໍ້ມູນ" TextAlignment="Center">
                 <Font FontFamily="PhetsarathOT"></Font>
             </Title>

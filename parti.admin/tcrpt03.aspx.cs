@@ -73,7 +73,7 @@ namespace parti.admin
                                     rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
                                     foreach (var vl in rootObject.GetAllQuestionList)
                                     {
-                                        questionLists.Add(new GetAllQuestionList(vl.q_id, vl.title, vl.training_address, vl.org, vl.sdate, vl.edate));
+                                        questionLists.Add(new GetAllQuestionList(vl.t_id, vl.title, vl.course_name, vl.training_address, vl.org, vl.sdate, vl.edate));
                                     }
                                 }
                             }
@@ -99,7 +99,7 @@ namespace parti.admin
                             rootObject = JsonConvert.DeserializeObject<partiDB.RootObject>(json_str);
                             foreach (var vl in rootObject.GetAllQuestionList)
                             {
-                                questionLists.Add(new GetAllQuestionList(vl.q_id, vl.title, vl.training_address, vl.org, vl.sdate, vl.edate));
+                                questionLists.Add(new GetAllQuestionList(vl.t_id, vl.title, vl.course_name, vl.training_address, vl.org, vl.sdate, vl.edate));
                             }
                         }
                     }
@@ -114,14 +114,14 @@ namespace parti.admin
         }
 
         [WebMethod]
-        public static string getCountUserAnswer(string q_type, string t_id, string q_id)
+        public static string getCountUserAnswer(string q_type, string t_id, string q_id, string a_id)
         {
             string uan = null;
             wcf.parti.Service1 _parti = new wcf.parti.Service1();
             partiDB.RootObject rootObject = new partiDB.RootObject();
             try
             {
-                string json_str = _parti.GetCountUserAnswer(q_type, t_id, q_id);
+                string json_str = _parti.GetCountUserAnswer(q_type, t_id, q_id, a_id);
                 if (json_str == "e0")//code error
                 {
                     MessageBox.swalModal(_Page, "error", "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.", "");
@@ -148,17 +148,19 @@ namespace parti.admin
 
         public class GetAllQuestionList
         {
-            public string q_id { get; set; }
+            public string t_id { get; set; }
             public string title { get; set; }
+            public string course_name { get; set; }
             public string training_address { get; set; }
             public string org { get; set; }
             public string sdate { get; set; }
             public string edate { get; set; }
 
-            public GetAllQuestionList(string q_id, string title, string training_address, string org, DateTime sdate, DateTime edate)
+            public GetAllQuestionList(string t_id, string title, string course_name, string training_address, string org, DateTime sdate, DateTime edate)
             {
-                this.q_id = q_id;
+                this.t_id = t_id;
                 this.title = title;
+                this.course_name = course_name;
                 this.training_address = training_address;
                 this.org = org;
                 this.sdate = sdate.ToString("yyyy-MM-dd");

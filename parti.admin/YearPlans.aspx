@@ -134,7 +134,7 @@
         </div>
     </div>
     <br />
-    <div class="row">
+    <div class="row grey lighten-5">
         <div class="col s12 m12 l12">
             <ej:Chart ID="ChartYearPlans" runat="server" IsResponsive="true" Font-Names="PhetsarathOT" OnClientLoad="onChartLoad" OnClientSeriesRendering="seriesRender">
                 <PrimaryXAxis Title-Text="ສົກປີ" AxisLine-Visible="false" MajorGridLines-Visible="false" MajorTickLines-Visible="false" />
@@ -163,7 +163,7 @@
                 </Legend>
             </ej:Chart>
         </div>
-        <div class="col s12 m12 l12">
+        <div class="col s12 m12 l12 grey lighten-5">
             <table>
                 <tbody>
                     <tr>

@@ -1231,25 +1231,24 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditQTitle", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EditQTitle([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string title_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string training_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string created_date, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_modified_data) {
+        public string EditQTitle([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string title_name, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string training_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string created_date, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date_of_modified_data) {
             object[] results = this.Invoke("EditQTitle", new object[] {
                         action,
                         t_id,
                         title_name,
                         training_id,
                         created_date,
-                        q_type,
                         date_of_modified_data});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string q_type, string date_of_modified_data) {
-            this.EditQTitleAsync(action, t_id, title_name, training_id, created_date, q_type, date_of_modified_data, null);
+        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string date_of_modified_data) {
+            this.EditQTitleAsync(action, t_id, title_name, training_id, created_date, date_of_modified_data, null);
         }
         
         /// <remarks/>
-        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string q_type, string date_of_modified_data, object userState) {
+        public void EditQTitleAsync(string action, string t_id, string title_name, string training_id, string created_date, string date_of_modified_data, object userState) {
             if ((this.EditQTitleOperationCompleted == null)) {
                 this.EditQTitleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditQTitleOperationCompleted);
             }
@@ -1259,7 +1258,6 @@ namespace parti.admin.wcf.parti {
                         title_name,
                         training_id,
                         created_date,
-                        q_type,
                         date_of_modified_data}, this.EditQTitleOperationCompleted, userState);
         }
         
@@ -1847,23 +1845,24 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/EditUAnswer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EditUAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string u_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string a_id) {
+        public string EditUAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string u_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string a_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type) {
             object[] results = this.Invoke("EditUAnswer", new object[] {
                         action,
                         u_id,
                         t_id,
                         q_id,
-                        a_id});
+                        a_id,
+                        q_type});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void EditUAnswerAsync(string action, string u_id, string t_id, string q_id, string a_id) {
-            this.EditUAnswerAsync(action, u_id, t_id, q_id, a_id, null);
+        public void EditUAnswerAsync(string action, string u_id, string t_id, string q_id, string a_id, string q_type) {
+            this.EditUAnswerAsync(action, u_id, t_id, q_id, a_id, q_type, null);
         }
         
         /// <remarks/>
-        public void EditUAnswerAsync(string action, string u_id, string t_id, string q_id, string a_id, object userState) {
+        public void EditUAnswerAsync(string action, string u_id, string t_id, string q_id, string a_id, string q_type, object userState) {
             if ((this.EditUAnswerOperationCompleted == null)) {
                 this.EditUAnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditUAnswerOperationCompleted);
             }
@@ -1872,7 +1871,8 @@ namespace parti.admin.wcf.parti {
                         u_id,
                         t_id,
                         q_id,
-                        a_id}, this.EditUAnswerOperationCompleted, userState);
+                        a_id,
+                        q_type}, this.EditUAnswerOperationCompleted, userState);
         }
         
         private void OnEditUAnswerOperationCompleted(object arg) {
@@ -2023,28 +2023,30 @@ namespace parti.admin.wcf.parti {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetCountUserAnswer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string GetCountUserAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_id) {
+        public string GetCountUserAnswer([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_type, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string t_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string q_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string a_id) {
             object[] results = this.Invoke("GetCountUserAnswer", new object[] {
                         q_type,
                         t_id,
-                        q_id});
+                        q_id,
+                        a_id});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id) {
-            this.GetCountUserAnswerAsync(q_type, t_id, q_id, null);
+        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id, string a_id) {
+            this.GetCountUserAnswerAsync(q_type, t_id, q_id, a_id, null);
         }
         
         /// <remarks/>
-        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id, object userState) {
+        public void GetCountUserAnswerAsync(string q_type, string t_id, string q_id, string a_id, object userState) {
             if ((this.GetCountUserAnswerOperationCompleted == null)) {
                 this.GetCountUserAnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCountUserAnswerOperationCompleted);
             }
             this.InvokeAsync("GetCountUserAnswer", new object[] {
                         q_type,
                         t_id,
-                        q_id}, this.GetCountUserAnswerOperationCompleted, userState);
+                        q_id,
+                        a_id}, this.GetCountUserAnswerOperationCompleted, userState);
         }
         
         private void OnGetCountUserAnswerOperationCompleted(object arg) {

@@ -25,7 +25,7 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script type="text/javascript">
 
@@ -80,10 +80,6 @@
         @font-face {
             font-family: 'PhetsarathOT';
             src: url("fonts/PhetsarathOT.ttf") format('truetype');
-        }
-
-        .datepicker-modal {
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         .navbar {
@@ -249,7 +245,7 @@
             <%-- dropdown --%>
             <ul id="dropdownTraining" class="dropdown-content">
                 <li><a href="Training" class="black-text">ສ້າງການຝຶກອົບຮົມ</a></li>
-                <li><a href="tcrpt01" class="black-text">ລາຍງານການຝຶກອົບຮົມ</a></li>
+                <li><a href="tcrpt01" class="black-text">ລາຍງານສັງລວມການຈັດຝຶກອົບຮົມ</a></li>
             </ul>
             <ul id="dropdownItemData" class="dropdown-content">
                 <li><a href="Trainees" class="black-text">ຂໍ້ມູນຜູ້ຝຶກອົບຮົມ</a></li>
@@ -264,7 +260,7 @@
             <ul id="dropdownReport" class="dropdown-content">
                 <li><a href="tcrpt02" class="black-text">ລາຍງານທຽບແຜນການຈັດຝຶກອົບຮົມ</a></li>
                 <li><a href="tcrpt03" class="black-text">ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ</a></li>
-                <li><a href="#!" class="black-text">ລາຍງານ xxx</a></li>
+                <li><a href="#!" class="black-text">ລາຍງານສັງລວມການຈັດຝຶກອົບຮົມ</a></li>
             </ul>
             <ul id="dropdownUser" class="dropdown-content">
                 <li><a href="UserProfile" class="modal-trigger black-text">ຂໍ້ມູນສ່ວນຕົວ</a></li>

@@ -128,7 +128,7 @@ namespace parti.admin
         {
             string result = null;
             wcf.parti.Service1 _parti = new wcf.parti.Service1();
-            string json_str = _parti.EditQTitle(action, t_id, title_name, training_id, created_date, q_type, "");
+            string json_str = _parti.EditQTitle(action, t_id, title_name, training_id, created_date, "");
             if (json_str == "e0")//code error
             {
                 result = "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.";
@@ -328,7 +328,7 @@ namespace parti.admin
                             "id='btnEdit" + i + "' name='" + vl.t_id + "' onclick='GetQInfo(" + (i - 1) + ", this.name)'><i class='material-icons right'>edit</i>" +
                             "</a></div><div class='col'><a class='btn-floating waves-effect tooltipped hvr-grow-shadow' data-position='top' " +
                             "data-tooltip='ເປີດຫນ້າແບບຟອມສຳລັບຜູ້ຝຶກ' id='btnEvaLink" + i + "' name='" + vl.t_id + "' onclick='GenLink(this.name, " + i + ")'>" +
-                            "<i class='material-icons right'>open_in_new</i></a></div><div class='col'><a class='btn-floating waves-effect tooltipped hvr-grow-shadow modal-trigger' data-position='right' " + 
+                            "<i class='material-icons right'>open_in_new</i></a></div><div class='col'><a class='btn-floating waves-effect tooltipped hvr-grow-shadow modal-trigger' data-position='right' " +
                             "data-tooltip='ສ້າງ QR Code ສຳລັບແບບຟອມນີ້' id='btnQRGent" + i + "' name='" + vl.t_id + "' onclick='GenQRCode(this.name, " + i + ")'><i class='fas fa-qrcode'></i></a></div></div></td></tr>";
                         tbody.Controls.Add(_tbody);
                         i++;
@@ -414,14 +414,16 @@ namespace parti.admin
         }
 
         [WebMethod]
-        public static string SetEvaluationTraining(string t_id, string index)
+        public static string SetEvaluationTraining(string t_id, string index, string q_type)
         {
             var param1 = "?tid=";
             param1 += _EnCoding.SetEncryptData(t_id);
             var param2 = "&tname=";
             param2 += _EnCoding.SetEncryptData(index);
+            var param3 = "&qtype=";
+            param3 += _EnCoding.SetEncryptData(q_type);
             string authority = HttpContext.Current.Request.Url.Authority;
-            var url = ("http://" + authority + "/Evaluation_Training" + param1 + param2);
+            var url = ("http://" + authority + "/Evaluation_Training" + param1 + param2 + param3);
 
             return url;
         }

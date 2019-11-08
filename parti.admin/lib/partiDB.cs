@@ -298,8 +298,9 @@ namespace parti.admin.lib
 
         public class GetAllQuestionList
         {
-            public string q_id { get; set; }
+            public string t_id { get; set; }
             public string title { get; set; }
+            public string course_name { get; set; }
             public string training_address { get; set; }
             public string org { get; set; }
             public DateTime sdate { get; set; }

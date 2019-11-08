@@ -13,7 +13,9 @@ namespace parti.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            param = new string[] { enCoding.GetDecryptData(Request.QueryString["tid"]), enCoding.GetDecryptData(Request.QueryString["tname"]) };
+            param = new string[] { enCoding.GetDecryptData(Request.QueryString["tid"]),
+                enCoding.GetDecryptData(Request.QueryString["tname"]),
+                enCoding.GetDecryptData(Request.QueryString["qtype"]) };
         }
 
         [WebMethod]
@@ -23,7 +25,7 @@ namespace parti.admin
         }
 
         [WebMethod]
-        public static string EditUAnswer(string u_id, string t_id, string q_id, string a_id)
+        public static string EditUAnswer(string u_id, string t_id, string q_id, string a_id, string q_type)
         {
             string result = null;
             string json_str = null;
@@ -38,7 +40,7 @@ namespace parti.admin
                 }
                 else if (json_str == "e1" && action == "add")//no data found
                 {
-                    json_str = _parti.EditUAnswer(action, u_id, t_id, q_id, a_id);
+                    json_str = _parti.EditUAnswer(action, u_id, t_id, q_id, a_id, q_type);
                     if (json_str == "e0")//code error
                     {
                         result = "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.";
@@ -69,7 +71,7 @@ namespace parti.admin
                     }
                     else if (action == "edit")
                     {
-                        json_str = _parti.EditUAnswer(action, u_id, t_id, q_id, a_id);
+                        json_str = _parti.EditUAnswer(action, u_id, t_id, q_id, a_id, q_type);
                         if (json_str == "e0")//code error
                         {
                             result = "e0:ລະບົບຂັດຂ້ອງຕິດຕໍ່ຜູ້ເບີ່ງແຍ່ງດ່ວນ.";
@@ -89,7 +91,7 @@ namespace parti.admin
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result = "e0:" + e.Message;
             }

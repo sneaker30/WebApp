@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="tcrpt03.aspx.cs" Inherits="parti.admin.tcrpt03" %>
+﻿<%@ Page Title="ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="tcrpt03.aspx.cs" Inherits="parti.admin.tcrpt03" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -29,6 +29,7 @@
             bottom: 0;
         }
     </style>
+
     <%-- preloader --%>
     <div class="preloader-background">
         <div class="preloader-wrapper big active">
@@ -83,7 +84,7 @@
     </div>
     <%-- Search --%>
     <div class="row">
-        <h4>ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ</h4>
+        <h4>ບົດລາຍງານ: ລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ</h4>
     </div>
     <hr />
     <br />
@@ -119,47 +120,29 @@
     </div>
     <hr />
     <br />
-    <table class="striped responsive-table" id="tbSummary">
-        <caption id="tcaption"></caption>
-        <thead class="grey lighten-3">
-            <tr>
-                <th rowspan="2">ລ/ດ</th>
-                <th rowspan="2">ຊື່ການຝຶກ</th>
-                <th rowspan="2">ສະຖານທີ່ຝຶກ</th>
-                <th rowspan="2">ພາກສ່ວນ</th>
-                <th rowspan="2">ວັນທີ</th>
-                <th rowspan="2">ລາຍລະອຽດ</th>
-            </tr>
-        </thead>
-        <tbody class="grey lighten-3" id="tbody">
-        </tbody>
-    </table>
+    <div class="row">
+        <table class="striped responsive-table" id="tbSummary">
+            <caption id="tcaption"></caption>
+            <thead class="grey lighten-3">
+                <tr>
+                    <th rowspan="1">ລ/ດ</th>
+                    <th rowspan="2">ຊື່ການຝຶກ</th>
+                    <th rowspan="2">ຫຼັກສູດ</th>
+                    <th rowspan="2">ສະຖານທີ່ຝຶກ</th>
+                    <th rowspan="2">ພາກສ່ວນ</th>
+                    <th rowspan="2">ວັນທີ</th>
+                    <th rowspan="1">ລາຍລະອຽດ</th>
+                </tr>
+            </thead>
+            <tbody class="grey lighten-3" id="tbody">
+            </tbody>
+        </table>
+    </div>
     <hr />
     <br />
-    <div class="row" id="details">
-        <div class="row" id="row_0">
-            <div class="row">
-                <h6 id="Q0">ຄຳຖາມ: <a>1. ແມວມັກກິນຫຍັງທີ່ສຸດ?</a></h6>
-            </div>
-            <div class="row">
-                <p>ຄຳຕອບ: <a id="A0_0">ປາ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_0">10</a></p>
-                <p>ຄຳຕອບ: <a id="A0_1">ຊີ້ນຫມູ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_1">0</a></p>
-                <p>ຄຳຕອບ: <a id="A0_2">ໄກ່</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_2">0</a></p>
-                <p>ຄຳຕອບ: <a id="A0_3">ຫມາ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA0_3">3</a></p>
-            </div>
-        </div>
-        <div class="row" id="row_1">
-            <div class="row">
-                <h6 id="Q1">ຄຳຖາມ: <a>2. ຂໍໃດຕໍ່ໄປນີ້ບໍ່ສັດກິນຜືດ?</a></h6>
-            </div>
-            <div class="row">
-                <p>ຄຳຕອບ: <a id="A1_0">ງົວ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_0">0</a></p>
-                <p>ຄຳຕອບ: <a id="A1_1">ແບ້</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_1">0</a></p>
-                <p>ຄຳຕອບ: <a id="A1_2">ຄວາຍ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_2">0</a></p>
-                <p>ຄຳຕອບ: <a id="A1_3">ເສືອ</a> --> ຕອບກ່ອນຝຶກ: <a id="CA1_3">5</a></p>
-            </div>
-        </div>
-    </div>
+    <div class="row" id="h4_title"></div>
+    <br />
+    <div class="row" id="details"></div>
 
     <script>
         $(document).ready(function () {
@@ -176,6 +159,7 @@
             var course_name = $("#<%: selCourse2.ClientID %> option:selected").text();
             var sdate = document.getElementById('txtDateStart').value;
             var edate = document.getElementById('txtDateEnd').value;
+            document.getElementById('h4_title').innerHTML = '';
 
             document.getElementById('tcaption').innerHTML = '<h6><b>ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ ຫົວຂໍ້ ' + course_name + ' ລະຫວ່າງວັນທີ ' + sdate + ' ຫາ ' + edate + '</b></h6><br /><br />';
             //document.getElementById('btnExEXCEL').name = 'ລາຍງານລະດັບຄວາມເຂົ້າໃຈ ກ່ອນ-ຫຼັງ ການເຂົ້າຝຶກອົບຮົມ ຫົວຂໍ້ ' + course_name + ' ລະຫວ່າງວັນທີ ' + sdate + ' ຫາ ' + edate;
@@ -197,10 +181,11 @@
                             var element = "<tr id='" + i + "'>" +
                                 "<td>" + i + "</td>" +
                                 "<td>" + vl.title + "</td>" +
+                                "<td>" + vl.course_name + "</td>" +
                                 "<td>" + vl.training_address + "</td>" +
                                 "<td>" + vl.org + "</td>" +
                                 "<td>" + vl.sdate + " ຫາ " + vl.edate + "</td>" +
-                                "<td><a class='btn-small waves-effect z-depth-3 hvr-grow-shadow' name='course_id' onclick='getDetails(this.name)'>ລາຍລະອຽດ</a></td>" +
+                                "<td><a class='btn-small waves-effect z-depth-3 hvr-grow-shadow' id='" + vl.t_id + "' name='" + vl.title + "' onclick='getDetails(this.id, this.name)'>ລາຍລະອຽດ</a></td>" +
                                 "</tr>";
                             document.getElementById('tbody').insertAdjacentHTML("beforeend", element);
                             i++;
@@ -213,8 +198,10 @@
             $('#details').hide();
         }
 
-        function getDetails(course_id) {
+        function getDetails(t_id, title) {
             $('#details').show('slow');
+            document.getElementById('h4_title').innerHTML = '<h6><b>ແບບຟອມປະເມີນຂອງ ການຝຶກອົບຮົມຫົວຂໍ້: <a>' + title + '</a></b></h6>';
+            GetQQuestionID(t_id);
         }
 
         function complete(args) {
@@ -234,5 +221,94 @@
                 .delay(2500)
                 .fadeOut();
         });
+
+        function GetQAnswerID(t_id, q_id) {
+            $.ajax({
+                type: "POST",
+                url: "<%: ResolveUrl("Evaluation.aspx/GetQAnswerID") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{t_id:'" + t_id + "', q_id:'" + q_id + "'}",
+                success: function (response) {
+                    var obj = response.d;
+                    var a_i;
+                    var q_i;
+                    var txtAn;
+                    var row;
+                    var element;
+                    $.each(obj,
+                        function (key, vl) {
+                            a_i = vl.a_id.substring(5, 6);
+                            q_i = vl.q_id.substring(4, 5);
+                            txtAn = 'An_' + q_i + '_' + a_i;
+                            row = "txtQ" + q_i;
+                            element = "<p id='" + txtAn + "'>ຄຳຕອບ: <a>" + vl.answer_text + "</a> --> ຕອບກ່ອນຝຶກ: <a id='BU_" +
+                                txtAn + "'>" + GetCountUAnswer('b', vl.t_id, vl.q_id, txtAn) + "</a>, ຕອບຫຼັງຝຶກ: <a id='AU_" +
+                                txtAn + "'>" + GetCountUAnswer('a', vl.t_id, vl.q_id, txtAn) + "</a></p>";
+                            var row_Q = document.getElementById(row);
+                            if (row_Q) {
+                                row_Q.insertAdjacentHTML("beforeend", element);
+                            }
+                        });
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+        }
+
+        function GetQQuestionID(t_id) {
+            $.ajax({
+                type: "POST",
+                url: "<%: ResolveUrl("Evaluation.aspx/GetQQuestionID") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{t_id:'" + t_id + "'}",
+                success: function (response) {
+                    var obj = response.d;
+                    var round = obj.length;
+                    $('#details').empty();
+                    $.each(obj,
+                        function (key, vl) {
+                            var i = vl.q_id;
+                            i = i.substring(4, 5);
+                            var element = "<div class='row card grey lighten-5' id='row_Q" + i + "'>" +
+                                "<div class='card-content'>" +
+                                "<div class='row card-title'>" +
+                                "<h6>ຄຳຖາມ" + (parseInt(i) + 1) + ": <a>" + vl.question_text + "</a></h6>" +
+                                "</div>" +
+                                "<div class='row' id='txtQ" + i + "'>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div >";
+                            document.getElementById('details').insertAdjacentHTML("beforeend", element);
+                            GetQAnswerID(vl.t_id, 'txtQ' + i);
+                        });
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+        }
+
+        function GetCountUAnswer(q_type, t_id, q_id, a_id) {
+            //getCountUserAnswer
+            var result;
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<%: ResolveUrl("tcrpt03.aspx/getCountUserAnswer") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{q_type:'" + q_type + "', t_id:'" + t_id + "', q_id:'" + q_id + "', a_id:'" + a_id + "'}",
+                success: function (response) {
+                    result = response.d;
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+            return result;
+        }
     </script>
 </asp:Content>

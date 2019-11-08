@@ -51,8 +51,7 @@
                 <tr>
                     <th class="col s1 m1 l1">ລ/ດ</th>
                     <th class="col s2 m2 l2">ລະຫັດການຝຶກອົບຮົມ</th>
-                    <th class="col s4 m4 l4">ຫົວຂໍ້ການຝຶກອົບຮົມ</th>
-                    <th class="col s2 m2 l2">ປະເພດຂອງແບບສອບຖາມ</th>
+                    <th class="col s6 m6 l6">ຫົວຂໍ້ການຝຶກອົບຮົມ</th>
                     <th class="col s3 m3 l3"></th>
                 </tr>
             </thead>
@@ -80,7 +79,7 @@
             </div>
             <div class="input-field col s12 m4 l4"></div>
         </div>
-        <div class="row">
+        <%--        <div class="row">
             <div class="col s12 m8 l8">
                 <span class="grey-text">ປະເພດ:</span>
                 <label>
@@ -91,9 +90,9 @@
                 </label>
             </div>
             <div class="input-field col s12 m4 l4"></div>
-            <input type="hidden" id="txtT_ID" />
-            <input type="hidden" id="txtAction" />
-        </div>
+        </div>--%>
+        <input type="hidden" id="txtT_ID" />
+        <input type="hidden" id="txtAction" />
         <br />
         <br />
         <div class="row">
@@ -205,27 +204,70 @@
         var swCorrect = false;
 
         function GenLink(t_id, index) {
-            var url = SetEvaluationTraining(t_id, index);
-            window.open(url, '_blank');
+            Swal.fire({
+                title: 'ຈະເອົາຟອມປະເມີນແບບໃດ?',
+                text: "ກ່ອນການຝຶກ ຫຼື ຫຼັງການຝຶກ",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'ກ່ອນ',
+                cancelButtonText: 'ຫຼັງ'
+            }).then(result => {
+                if (result.value) {
+                    var url = SetEvaluationTraining(t_id, index, 'b');
+                    window.open(url, '_blank');
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    var url = SetEvaluationTraining(t_id, index, 'a');
+                    window.open(url, '_blank');
+                }
+            });
         }
 
         function GenQRCode(t_id, index) {
             Swal.fire({
-                title: 'QR Code',
-                html: '<div id="qrcode" align="center"></div>',
-                onOpen: () => {
-                    var url = SetEvaluationTraining(t_id, index);
-                    var qrcode = new QRCode(document.getElementById("qrcode"), {
-                        text: url,
-                        colorDark: "#000000",
-                        colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.H
+                title: 'ຈະເອົາຟອມປະເມີນແບບໃດ?',
+                text: "ກ່ອນການຝຶກ ຫຼື ຫຼັງການຝຶກ",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'ກ່ອນ',
+                cancelButtonText: 'ຫຼັງ'
+            }).then(result => {
+                if (result.value) {
+                    Swal.fire({
+                        title: 'QR Code',
+                        html: '<div id="qrcode" align="center"></div>',
+                        onOpen: () => {
+                            var url = SetEvaluationTraining(t_id, index, 'b');
+                            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                                text: url,
+                                colorDark: "#000000",
+                                colorLight: "#ffffff",
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'QR Code',
+                        html: '<div id="qrcode" align="center"></div>',
+                        onOpen: () => {
+                            var url = SetEvaluationTraining(t_id, index, 'a');
+                            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                                text: url,
+                                colorDark: "#000000",
+                                colorLight: "#ffffff",
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+                        }
                     });
                 }
             });
         }
 
-        function SetEvaluationTraining(t_id, index) {
+        function SetEvaluationTraining(t_id, index, q_type) {
             var result = null;
             $.ajax({
                 async: false,
@@ -233,7 +275,7 @@
                 url: "<%: ResolveUrl("Evaluation.aspx/SetEvaluationTraining") %>",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{t_id:'" + t_id + "', index:'" + index + "'}",
+                data: "{t_id:'" + t_id + "', index:'" + index + "', q_type:'" + q_type + "'}",
                 success: function (response) {
                     var obj = response.d;
                     result = obj;

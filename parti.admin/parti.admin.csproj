@@ -195,10 +195,8 @@
     <Content Include="500.aspx" />
     <Content Include="About.aspx" />
     <Content Include="avatar\1.jpeg" />
-    <Content Include="avatar\11.png" />
     <Content Include="avatar\2.png" />
     <Content Include="avatar\3.png" />
-    <Content Include="avatar\321.png" />
     <Content Include="avatar\ABC.jpeg" />
     <Content Include="avatar\admin.ico" />
     <Content Include="avatar\admin.jpeg" />
