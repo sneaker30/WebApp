@@ -28,7 +28,7 @@
             <div class="input-field">
                 <label for="txtSearch">ຄົ້ນຫາ</label>
                 <input id="txtSearch" runat="server" type="text" class="laotxt autocomplete" autocomplete="off" />
-                <span class="helper-text">ຂໍ້ມູນທີ່ສາມາດຄົ້ນຫາໄດ້: ຊື່ ແລະ ນາມສະກຸນ...</span>
+                <span class="helper-text">ຂໍ້ມູນທີ່ສາມາດຄົ້ນຫາໄດ້: ລະຫັດ ແລະ ຫົວຂໍ້ການຝຶກອົບຮົມ...</span>
             </div>
         </div>
         <div class="col">

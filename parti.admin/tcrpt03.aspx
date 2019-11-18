@@ -125,13 +125,13 @@
             <caption id="tcaption"></caption>
             <thead class="grey lighten-3">
                 <tr>
-                    <th rowspan="1">ລ/ດ</th>
-                    <th rowspan="2">ຊື່ການຝຶກ</th>
-                    <th rowspan="2">ຫຼັກສູດ</th>
-                    <th rowspan="2">ສະຖານທີ່ຝຶກ</th>
-                    <th rowspan="2">ພາກສ່ວນ</th>
-                    <th rowspan="2">ວັນທີ</th>
-                    <th rowspan="1">ລາຍລະອຽດ</th>
+                    <th>ລ/ດ</th>
+                    <th>ຊື່ການຝຶກ</th>
+                    <th>ຫຼັກສູດ</th>
+                    <th>ສະຖານທີ່ຝຶກ</th>
+                    <th>ພາກສ່ວນ</th>
+                    <th>ວັນທີ</th>
+                    <th>ລາຍລະອຽດ</th>
                 </tr>
             </thead>
             <tbody class="grey lighten-3" id="tbody">
@@ -185,11 +185,14 @@
                                 "<td>" + vl.training_address + "</td>" +
                                 "<td>" + vl.org + "</td>" +
                                 "<td>" + vl.sdate + " ຫາ " + vl.edate + "</td>" +
-                                "<td><a class='btn-small waves-effect z-depth-3 hvr-grow-shadow' id='" + vl.t_id + "' name='" + vl.title + "' onclick='getDetails(this.id, this.name)'>ລາຍລະອຽດ</a></td>" +
+                                "<td><a class='btn-small waves-effect z-depth-3 hvr-grow-shadow tooltipped' data-position='right' " +
+                                "data-tooltip='ລາຍລະອຽດ' id = '" + vl.t_id + "' name = '" + vl.title + "' onclick = 'getDetails(this.id, this.name)' >" +
+                                "<i class='material-icons'>info</i></a></td>" +
                                 "</tr>";
                             document.getElementById('tbody').insertAdjacentHTML("beforeend", element);
                             i++;
                         });
+                    $('.tooltipped').tooltip();
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
@@ -202,6 +205,7 @@
             $('#details').show('slow');
             document.getElementById('h4_title').innerHTML = '<h6><b>ແບບຟອມປະເມີນຂອງ ການຝຶກອົບຮົມຫົວຂໍ້: <a>' + title + '</a></b></h6>';
             GetQQuestionID(t_id);
+            ScrollDownCompare()
         }
 
         function complete(args) {

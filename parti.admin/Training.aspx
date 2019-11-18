@@ -12,19 +12,19 @@
         }
 
         .card {
-            width: 200px;
+            width: 210px;
             height: 300px;
             border-radius: 10px;
             margin-right: 20px;
         }
 
         .card-image {
-            width: 200px;
+            width: 210px;
             height: 120px;
         }
 
         .img {
-            width: 200px;
+            width: 210px;
             height: 120px;
             object-fit: fill;
         }
