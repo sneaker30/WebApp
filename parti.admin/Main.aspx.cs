@@ -5,6 +5,7 @@ using parti.admin.lib;
 using Newtonsoft.Json;
 using static parti.admin.YearPlans;
 using static parti.admin.Course;
+using System.Threading.Tasks;
 
 namespace parti.admin
 {

@@ -71,12 +71,14 @@ namespace parti.admin
                             Session["loginstatus"] = "1";//1:logged in, 0 or Null:logout
                             Response.Redirect("Main");
                         }
+                        parti.LoggingAsync("set", "login", "user:" + inputUsername.Value + " had login successful", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalToast(this.Page, "error", "ex: " + ex.Message.Replace("'", ""));
+                parti.LoggingAsync("set", "login", ex.Message.ToString(), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
     }

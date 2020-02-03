@@ -261,6 +261,7 @@
                 <li><a href="tcrpt02" class="black-text">ລາຍງານທຽບແຜນການຈັດຝຶກອົບຮົມ</a></li>
                 <li><a href="tcrpt03" class="black-text">ລາຍງານລະດັບຄວາມເຂົ້າໃຈກ່ອນການເຂົ້າຝຶກອົບຮົມ</a></li>
                 <li><a href="tcrpt01" class="black-text">ລາຍງານສັງລວມການຈັດຝຶກອົບຮົມ</a></li>
+                <li><a href="Logs" class="black-text">ລາຍງານການເຮັດວຽກຂອງລະບົບ</a></li>
             </ul>
             <ul id="dropdownUser" class="dropdown-content">
                 <li><a href="UserProfile" class="modal-trigger black-text">ຂໍ້ມູນສ່ວນຕົວ</a></li>
@@ -316,6 +317,7 @@
                         <div class="collapsible-body"><a href="tcrpt02" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ທຽບແຜນການຈັດຝຶກອົບຮົມ</a></div>
                         <div class="collapsible-body"><a href="tcrpt03" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ລະດັບຄວາມເຂົ້າໃຈກ່ອນ-ຫຼັງການຝຶກອົບຮົມ</a></div>
                         <div class="collapsible-body"><a href="tcrpt01" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ສັງລວມການຈັດຝຶກອົບຮົມ</a></div>
+                        <div class="collapsible-body"><a href="Logs" class="black-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ການເຮັດວຽກຂອງລະບົບ</a></div>
                     </li>
                 </ul>
             </ul>

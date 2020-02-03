@@ -177,9 +177,9 @@ namespace parti.admin
         }
         protected void btnDel_OnClick(object sender, EventArgs e)
         {
+            wcf.parti.Service1 _parti = new wcf.parti.Service1();
             try
             {
-                wcf.parti.Service1 _parti = new wcf.parti.Service1();
                 string action = "del";
                 string sex = null;
                 string status = null;
@@ -214,19 +214,22 @@ namespace parti.admin
                     EditEducation(action);
                     string currentPage = Request.RawUrl;
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", currentPage);
+                    _parti.LoggingAsync("set", "Trainee", "user: " + Session["username"].ToString() + " had delete a Trainee: " +
+                        txtNameLA.Value + " from system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                _parti.LoggingAsync("set", "Trainee", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
+            wcf.parti.Service1 parti = new wcf.parti.Service1();
             try
             {
-                wcf.parti.Service1 parti = new wcf.parti.Service1();
                 var action = btnState.Value.ToString();
                 string sex = null;
                 string status = null;
@@ -376,11 +379,14 @@ namespace parti.admin
                     EditApproval(action);
                     EditEducation(action);
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "Trainee", "user: " + Session["username"].ToString() + " had " + action + " a Trainee: " +
+                        txtNameLA.Value + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "Trainee", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
@@ -455,11 +461,14 @@ namespace parti.admin
                 else if (result == "e5")
                 {
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "Trainee Approval", "user: " + Session["username"].ToString() + " had " + action + " a Trainee Approval: " +
+                        txtAppr_Fullname.Value + " from system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "Trainee Approval", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
@@ -496,11 +505,14 @@ namespace parti.admin
                 else if (result == "e5")
                 {
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "Education", "user: " + Session["username"].ToString() + " had " + action + " a Trainee's Education: " +
+                        txtID.Value + " to system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "Education", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 

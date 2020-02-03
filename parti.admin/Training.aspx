@@ -265,6 +265,22 @@
             });
         }, 1000);
 
+        function SetLog(method, txt) {
+            $.ajax({
+                type: "POST",
+                url: "<%: ResolveUrl("Training.aspx/Loging") %>",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{method:'" + method + "', txt:'" + txt + "'}",
+                success: function (response) {
+                    var obj = response.d;
+                },
+                failure: function (response) {
+                    swalModal('error', response.d, '');
+                }
+            });
+        }
+
         function GetAutocompleteDis() {
             $.ajax({
                 type: "POST",
@@ -407,6 +423,7 @@
                     "', training_days:'" + training_days + "', training_date:'" + training_date + "', description:'" + description + "', date_of_modified_data:'" + date_of_modified_data + "'}",
                 success: function (response) {
                     swalToast('success', response.d);
+                    SetLog('Training',action + ' Training:' + id + ':' + title);
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
@@ -423,6 +440,7 @@
                 data: "{action:'" + action + "', id:'" + id + "', trainer_id:'" + trainer_id + "', training_id:'" + training_id + "'}",
                 success: function (response) {
                     //swalModal('success', response.d, '');
+                    SetLog('Training', action + ' Trainer:' + trainer_id + 'to Training:' + training_id);
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');
@@ -439,6 +457,7 @@
                 data: "{action:'" + action + "', id:'" + id + "', trainee_id:'" + trainee_id + "', training_id:'" + training_id + "'}",
                 success: function (response) {
                     //swalModal('success', response.d, '');
+                    SetLog('Training', action + ' Trainee:' + trainee_id + 'to Training:' + training_id);
                 },
                 failure: function (response) {
                     swalModal('error', response.d, '');

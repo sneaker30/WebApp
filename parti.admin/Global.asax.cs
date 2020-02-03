@@ -10,7 +10,7 @@ namespace parti.admin
         void Application_Start(object sender, EventArgs e)
         {
             ////Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzI4NTNAMzEzNjJlMzQyZTMwbFJKamNiSFhSdDB3dG11MjRTemlwN0xSU1ZRaStxeVgwZ0J4WG55emxhST0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjA1MTc0QDMxMzcyZTM0MmUzMEtiNXNYTC8rNGdzeDE3dm5uRUxPUElwRXExTTRCcWQzL2ZxV1ZENnEvcWc9");
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

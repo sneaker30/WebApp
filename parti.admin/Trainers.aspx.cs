@@ -208,9 +208,9 @@ namespace parti.admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            wcf.parti.Service1 parti = new wcf.parti.Service1();
             try
             {
-                wcf.parti.Service1 parti = new wcf.parti.Service1();
                 var action = btnState.Value.ToString();
                 string sex = null;
                 string picture_url = null;
@@ -370,19 +370,22 @@ namespace parti.admin
                 {
                     EditEducation(action);
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "Trainer", "user: " + Session["username"].ToString() + " had " + action + " a Trainer: " +
+                        txtNameLa.Value + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "Trainer", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
         protected void btnDel_Click(object sender, EventArgs e)
         {
+            wcf.parti.Service1 _parti = new wcf.parti.Service1();
             try
             {
-                wcf.parti.Service1 _parti = new wcf.parti.Service1();
                 string action = "del";
                 string sex = null;
                 string status = null;
@@ -413,11 +416,14 @@ namespace parti.admin
                     EditEducation(action);
                     string currentPage = Request.RawUrl;
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", currentPage);
+                    _parti.LoggingAsync("set", "Trainer", "user: " + Session["username"].ToString() + " had delete a Trainer: " +
+                        txtNameLa.Value + " from system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                _parti.LoggingAsync("set", "Trainer", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
@@ -540,11 +546,14 @@ namespace parti.admin
                 else if (result == "e5")
                 {
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "Trainer Education", "user: " + Session["username"].ToString() + " had " + action + " a Trainer Education: " +
+                        txtID.Value + " from system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "Trainer Education", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
     }

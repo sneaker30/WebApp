@@ -28,9 +28,9 @@ namespace parti.admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            wcf.parti.Service1 parti = new wcf.parti.Service1();
             try
             {
-                wcf.parti.Service1 parti = new wcf.parti.Service1();
                 var action = "edit";
                 string sex = null;
                 string picture_url = null;
@@ -186,11 +186,14 @@ namespace parti.admin
                 {
                     EditEducation(action);
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "User Trainer", "user: " + Session["username"].ToString() + " had " + action + " a User Trainer: " +
+                        txtid + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "User Trainer", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 
@@ -403,11 +406,14 @@ namespace parti.admin
                 else if (result == "e5")
                 {
                     MessageBox.swalModal(this.Page, "success", "ຈັດການຂໍ້ມູນສຳເລັດ...", Request.RawUrl);
+                    parti.LoggingAsync("set", "User Trainer Education", "user: " + Session["username"].ToString() + " had " + action + " a User Trainer Education: " +
+                        txtID.Value + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'", "") + "]", "");
+                parti.LoggingAsync("set", "User Trainer Education", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
     }

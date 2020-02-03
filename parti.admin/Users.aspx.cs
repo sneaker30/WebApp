@@ -141,6 +141,8 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditUsers("add", claUsers.id, true, claUsers.username, enCoding.SetEncryptData(claUsers.passwd), claUsers.rules);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "User", "user: " + Session["username"].ToString() + " had add a User: " +
+                        claUsers.username + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endEdit")
                 {
@@ -148,6 +150,8 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditUsers("edit", claUsers.id, true, claUsers.username, enCoding.SetEncryptData(claUsers.passwd), claUsers.rules);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "User", "user: " + Session["username"].ToString() + " had edit a User: " +
+                        claUsers.username + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endDelete")
                 {
@@ -155,11 +159,15 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditUsers("del", claUsers.id, true, claUsers.username, enCoding.SetEncryptData(claUsers.passwd), claUsers.rules);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "User", "user: " + Session["username"].ToString() + " had delete a User: " +
+                        claUsers.username + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.swalModal(this.Page, "error", "en:internal error[" + ex.Message.Replace("'","") + "]", "");
+                wcf.parti.Service1 _parti = new wcf.parti.Service1();
+                _parti.LoggingAsync("set", "User", ex.Message, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
             }
         }
 

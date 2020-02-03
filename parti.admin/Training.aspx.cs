@@ -709,9 +709,15 @@ namespace parti.admin
                         vl.title, vl.training_address, vl.training_date, vl.code));
                 }
             }
-
             return listCheckTraineeForTraining;
         }
+
+        [WebMethod]
+        public static void Loging(string method, string txt)
+        {
+            wcf.parti.Service1 _parti = new wcf.parti.Service1();
+            _parti.LoggingAsync("set", method, txt, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
+        } 
 
     }
 }

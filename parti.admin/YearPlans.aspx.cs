@@ -293,6 +293,8 @@ namespace parti.admin
                     var result = _parti.EditYearPlans("add", claYearPlan.id, true, claYearPlan.year_plan,
                         claYearPlan.course_id, claYearPlan.target, true);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "YearPlan", "user: " + Session["username"].ToString() + " had add a YearPlan: " +
+                        claYearPlan.id + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endEdit")
                 {
@@ -320,6 +322,8 @@ namespace parti.admin
                     var result = _parti.EditYearPlans("edit", claYearPlan.id, true, claYearPlan.year_plan,
                         claYearPlan.course_id, claYearPlan.target, true);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "YearPlan", "user: " + Session["username"].ToString() + " had edit a YearPlan: " +
+                        claYearPlan.id + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endDelete")
                 {
@@ -347,6 +351,8 @@ namespace parti.admin
                     var result = _parti.EditYearPlans("del", claYearPlan.id, true, claYearPlan.year_plan,
                         claYearPlan.course_id, claYearPlan.target, true);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "YearPlan", "user: " + Session["username"].ToString() + " had delete a YearPlan: " +
+                        claYearPlan.id + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)

@@ -307,8 +307,17 @@ namespace parti.admin.lib
             public DateTime edate { get; set; }
         }
 
+        public class GetLogs
+        {
+            public int id { get; set; }
+            public string method { get; set; }
+            public string log_txt { get; set; }
+            public string date_time { get; set; }
+        }
+
         public class RootObject
         {
+            public List<GetLogs> GetLogs { get; set; }
             public List<GetAllQuestionList> GetAllQuestionList { get; set; }
             public List<GetCompareYearPlanByTimeRange> GetCompareYearPlanByTimeRange { get; set; }
             public List<trainingrpt01> trainingrpt01 { get; set; }

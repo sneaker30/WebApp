@@ -114,6 +114,8 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditCourse("add", claCourse.id, true, claCourse.name, claCourse.description);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "Course", "user: " + Session["username"].ToString() + " had add new Course: " + 
+                        claCourse.name + " to system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endEdit")
                 {
@@ -121,6 +123,8 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditCourse("edit", claCourse.id, true, claCourse.name, claCourse.description);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "Course", "user: " + Session["username"].ToString() + " had edit a Course: " +
+                        claCourse.name + " on system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
                 else if (eventType == "endDelete")
                 {
@@ -128,6 +132,8 @@ namespace parti.admin
                     wcf.parti.Service1 _parti = new wcf.parti.Service1();
                     var result = _parti.EditCourse("del", claCourse.id, true, claCourse.name, claCourse.description);
                     ReloadData(result);
+                    _parti.LoggingAsync("set", "Course", "user: " + Session["username"].ToString() + " had delete a Course: " +
+                        claCourse.name + " from system", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                 }
             }
             catch (Exception ex)

@@ -29,6 +29,8 @@ namespace parti.admin.wcf.parti {
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IService1", Namespace="http://tempuri.org/")]
     public partial class Service1 : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback LoggingAsyncOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetAuthenOperationCompleted;
         
         private System.Threading.SendOrPostCallback SumYearlyCourseOperationCompleted;
@@ -119,6 +121,8 @@ namespace parti.admin.wcf.parti {
         
         private System.Threading.SendOrPostCallback GetCountUserAnswerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SendMailNotiOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -156,6 +160,9 @@ namespace parti.admin.wcf.parti {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event LoggingAsyncCompletedEventHandler LoggingAsyncCompleted;
         
         /// <remarks/>
         public event GetAuthenCompletedEventHandler GetAuthenCompleted;
@@ -291,6 +298,47 @@ namespace parti.admin.wcf.parti {
         
         /// <remarks/>
         public event GetCountUserAnswerCompletedEventHandler GetCountUserAnswerCompleted;
+        
+        /// <remarks/>
+        public event SendMailNotiCompletedEventHandler SendMailNotiCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/LoggingAsync", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LoggingAsync([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string action, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string method, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string txt, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date1, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string date2) {
+            object[] results = this.Invoke("LoggingAsync", new object[] {
+                        action,
+                        method,
+                        txt,
+                        date1,
+                        date2});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoggingAsyncAsync(string action, string method, string txt, string date1, string date2) {
+            this.LoggingAsyncAsync(action, method, txt, date1, date2, null);
+        }
+        
+        /// <remarks/>
+        public void LoggingAsyncAsync(string action, string method, string txt, string date1, string date2, object userState) {
+            if ((this.LoggingAsyncOperationCompleted == null)) {
+                this.LoggingAsyncOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoggingAsyncOperationCompleted);
+            }
+            this.InvokeAsync("LoggingAsync", new object[] {
+                        action,
+                        method,
+                        txt,
+                        date1,
+                        date2}, this.LoggingAsyncOperationCompleted, userState);
+        }
+        
+        private void OnLoggingAsyncOperationCompleted(object arg) {
+            if ((this.LoggingAsyncCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoggingAsyncCompleted(this, new LoggingAsyncCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/GetAuthen", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2057,6 +2105,38 @@ namespace parti.admin.wcf.parti {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IService1/SendMailNoti", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string SendMailNoti([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string training_id, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string txt) {
+            object[] results = this.Invoke("SendMailNoti", new object[] {
+                        training_id,
+                        txt});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendMailNotiAsync(string training_id, string txt) {
+            this.SendMailNotiAsync(training_id, txt, null);
+        }
+        
+        /// <remarks/>
+        public void SendMailNotiAsync(string training_id, string txt, object userState) {
+            if ((this.SendMailNotiOperationCompleted == null)) {
+                this.SendMailNotiOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendMailNotiOperationCompleted);
+            }
+            this.InvokeAsync("SendMailNoti", new object[] {
+                        training_id,
+                        txt}, this.SendMailNotiOperationCompleted, userState);
+        }
+        
+        private void OnSendMailNotiOperationCompleted(object arg) {
+            if ((this.SendMailNotiCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendMailNotiCompleted(this, new SendMailNotiCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2118,6 +2198,32 @@ namespace parti.admin.wcf.parti {
             }
             set {
                 this.stringValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void LoggingAsyncCompletedEventHandler(object sender, LoggingAsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoggingAsyncCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoggingAsyncCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -3279,6 +3385,32 @@ namespace parti.admin.wcf.parti {
         private object[] results;
         
         internal GetCountUserAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SendMailNotiCompletedEventHandler(object sender, SendMailNotiCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendMailNotiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendMailNotiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
